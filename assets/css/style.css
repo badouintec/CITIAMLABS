@@ -230,6 +230,12 @@ code {
     font-size: 18px;
 }
 
+/* Sin "cursive" de respaldo: en Mac sería una letra manuscrita. */
+.subtitle,
+.sidebar {
+    font-family: "Comic Sans MS", "Comic Sans", Arial, sans-serif;
+}
+
 .school {
     margin: 6px 0 12px;
     color: #ff66ff;

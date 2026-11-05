@@ -440,7 +440,7 @@ El volumen del simulador de sonido está fijo y bajo (`VOLUME`). No lo subas.
 
 Antes de agregar algo, pregúntate si se podía ver en 1998.
 
-**Sí:** colores puros, bordes `ridge`, `inset` y `outset`, Arial, Impact y Courier, fondos de mosaico, GIF pixelados, tablas con borde, botones de 88 x 31, contador de visitas, libro de visitas, "zona de obra" y texto en movimiento.
+**Sí:** colores puros, bordes `ridge`, `inset` y `outset`, Arial, Impact, Courier y Comic Sans (solo en la barra lateral y los subtítulos, nunca con `cursive` de respaldo), fondos de mosaico, GIF pixelados, tablas con borde, botones de 88 x 31, contador de visitas, libro de visitas, "zona de obra" y texto en movimiento.
 
 **No:** esquinas redondeadas, sombras suaves, degradados decorativos, transparencias, animaciones suaves, fuentes descargadas ni iconos modernos. (La única excepción es el Sol del laboratorio de sombras, que es redondo porque el Sol lo es.)
 
