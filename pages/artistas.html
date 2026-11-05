@@ -1,0 +1,164 @@
+<!doctype html>
+<!--
+    Artistas de Hermosillo y Sonora.
+    Antes de agregar a alguien, confirma dónde nació y enlaza una fuente. Esta sala
+    es para estudiantes de secundaria: elige obra adecuada para esa edad.
+    El mural interactivo está en assets/js/artistas.js.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Músicos, pintores y muralistas de Hermosillo y Sonora, y un mural pixelado para que pintes el tuyo.">
+    <title>Artistas de Hermosillo — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>SALA DE ARTE:</strong> la A de CiTIAM también nació en el desierto.</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">MÚSICA · PINTURA · MUROS · PALABRAS</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/sol-mini.gif" alt="" width="96" height="96">
+                <h1>Artistas</h1>
+                <img src="../assets/gifs/estrella.gif" alt="" width="48" height="48">
+            </div>
+            <p class="subtitle">Gente de aquí que hizo cosas increíbles</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html" aria-current="page">Artistas</a>
+            <a href="laboratorio.html">Laboratorio</a>
+            <a href="programacion.html">Programación</a>
+            <a href="bloques.html">Bloques</a>
+            <a href="arcade.html">Arcade</a>
+            <a href="ajedrez.html">Ajedrez</a>
+            <a href="pasaporte.html">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns">
+            <aside class="sidebar" aria-label="Índice de artistas">
+                <h2 class="sidebar-title">[ ARTISTAS ]</h2>
+                <ul class="menu">
+                    <li><a href="#mural">¡Pinta tu mural!</a></li>
+                    <li><a href="#sangre">Sangre del Desierto</a></li>
+                    <li><a href="#campodonico">Rodolfo Campodónico</a></li>
+                    <li><a href="#yuridia">Yuridia</a></li>
+                    <li><a href="#moreno">Mario Moreno Zazueta</a></li>
+                    <li><a href="#gonzalez">Carlos González Vega</a></li>
+                    <li><a href="#arteche">Martínez Arteche</a></li>
+                    <li><a href="#armida">Armida de la Vara</a></li>
+                    <li><a href="#ortiz">Ortiz Tirado</a></li>
+                </ul>
+                <div class="badge">IMAGINAR<br><span>CREAR · COMPARTIR</span></div>
+                <img class="sidebar-gif" src="../assets/gifs/pixel-artista.gif" alt="Una cuadrícula se llena hasta formar un cactus y un Sol" width="160" height="55">
+                <p class="tiny privacy-note">Esta sala apenas empieza. ¿Falta alguien? Cuéntale a tu docente y busquen una fuente.</p>
+                <figure class="photo-frame">
+                    <img src="../assets/images/paleta-de-pintor.jpg" alt="Pintura antigua con una paleta, pinceles e instrumentos musicales" width="800" height="524" loading="lazy">
+                    <figcaption>Pintura de Bartolomeo Bettera, siglo XVII, dominio público.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="../assets/gifs/onda-sonido.gif" alt="Onda de sonido que avanza" width="160" height="55" loading="lazy">
+            </aside>
+            <main class="content" id="contenido">
+                <section class="article-card game-page-section" id="mural" aria-labelledby="mural-title">
+                    <h2 class="yellow" id="mural-title">¡Pinta tu propio mural del desierto!</h2>
+                    <p>Elige un color y dibuja sobre la pared. ¿Te animas a poner un coyote, un saguaro o un cielo de atardecer? Cuando te guste, descárgalo para enseñarlo.</p>
+                    <div class="mural-palette" id="mural-palette" role="group" aria-label="Colores"></div>
+                    <canvas class="sim-canvas" id="mural-canvas" width="320" height="180" role="img" aria-label="Pared pixelada donde puedes pintar con el puntero"></canvas>
+                    <div class="block-controls">
+                        <button class="retro-button" id="mural-save" type="button">DESCARGAR MI MURAL</button>
+                        <button class="retro-button" id="mural-reset" type="button">EMPEZAR DE NUEVO</button>
+                    </div>
+                    <p class="tiny" id="mural-status" aria-live="polite">Tu mural se guarda solo en este navegador.</p>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card" id="sangre" aria-labelledby="sangre-title">
+                    <h2 class="green" id="sangre-title">Colectivo Sangre del Desierto: puentes que cuentan el desierto</h2>
+                    <p>¿Has pasado por el puente del bulevar Luis Encinas y la avenida Rosales, en Hermosillo? Estos muralistas pintaron ahí la flora y la fauna de Sonora: plantas y flores de la región, un coyote, una serpiente de cascabel y aves.</p>
+                    <p>En esa ocasión, en 2021, usaron <strong>260 latas y botes de pintura</strong>. Los muralistas que menciona la nota son Lucy Aguirre, Francisco Méndez, César Duarte, Miguel Velasco y Juan Félix. Según ellos, querían darle "más vida" al lugar y "que no sea el típico puente por donde pasas".</p>
+                    <p class="learning-note"><strong>Reto:</strong> la próxima vez que vayas por ahí con tu familia, busca el mural. ¿Cuántas especies reconoces? ¿Cuáles has visto en la vida real?</p>
+                    <p class="tiny">Fuente: <a href="https://www.elimparcial.com/son/hermosillo/2021/10/18/pintan-el-desierto-sonorense-en-puente-bicentenario/" target="_blank" rel="noopener noreferrer">El Imparcial, 2021</a>.</p>
+                </section>
+
+                <section class="article-card" id="campodonico" aria-labelledby="campodonico-title">
+                    <h2 class="cyan" id="campodonico-title">Rodolfo Campodónico: el niño que componía valses</h2>
+                    <p><strong>Nació en Hermosillo en 1866.</strong> Entró a la orquesta de su papá a los <strong>7 años</strong> y empezó a componer a los <strong>11</strong>. Tocó cornetín, flauta, trombón, chelo, contrabajo y clarinete, y le decían "Champ".</p>
+                    <p>Se estima que compuso más de 2,500 piezas, entre ellas más de 1,000 valses. Su vals más famoso es <em>Club Verde</em>, conocido dentro y fuera de México. En 1910 fundó la Orquesta del Estado de Sonora, con 40 músicos.</p>
+                    <p class="learning-note"><strong>Escucha:</strong> busca <em>Club Verde</em> y marca el ritmo: un vals se cuenta de tres en tres. Matemáticas y música son vecinas.</p>
+                    <p class="tiny">Fuente: <a href="https://es.wikipedia.org/wiki/Rodolfo_Campodónico" target="_blank" rel="noopener noreferrer">Wikipedia, Rodolfo Campodónico</a>.</p>
+                </section>
+
+                <section class="article-card" id="yuridia" aria-labelledby="yuridia-title">
+                    <h2 class="magenta" id="yuridia-title">Yuridia: la voz de Hermosillo</h2>
+                    <p><strong>Nació en Hermosillo en 1986,</strong> en una familia de música: su papá es compositor y su mamá, cantante. De chica participó en concursos locales de canto.</p>
+                    <p>En 2005 entró a <em>La Academia</em> y quedó en segundo lugar. Su primer disco, <em>La voz de un ángel</em>, recibió disco de diamante en México. Veinte años después, en 2025, fue la primera mujer en llenar la Monumental Plaza de Toros México.</p>
+                    <p class="learning-note"><strong>Piénsalo:</strong> quedó en segundo lugar y su carrera despegó de todos modos. Un resultado no es el final de la historia.</p>
+                    <p class="tiny">Fuente: <a href="https://es.wikipedia.org/wiki/Yuridia" target="_blank" rel="noopener noreferrer">Wikipedia, Yuridia</a>.</p>
+                </section>
+
+                <section class="article-card" id="moreno" aria-labelledby="moreno-title">
+                    <h2 class="orange" id="moreno-title">Mario Moreno Zazueta: pintar la luz</h2>
+                    <p><strong>Pintor y grabador nacido en Hermosillo en 1942.</strong> Estudió en la Universidad de Sonora, en La Esmeralda de la Ciudad de México y en San Francisco. Su obra experimenta con el color, la luz y la sombra de manera abstracta. También ha sido profesor en la Universidad de Sonora.</p>
+                    <p>Sus títulos ya cuentan algo: <em>Llovió en alguna parte</em> y <em>El agua del norte nunca llega</em>. ¿Qué te imaginas al leerlos, viviendo en el desierto?</p>
+                    <p class="tiny">Fuente: <a href="https://en.wikipedia.org/wiki/Mario_Moreno_Zazueta" target="_blank" rel="noopener noreferrer">Wikipedia, Mario Moreno Zazueta</a>.</p>
+                </section>
+
+                <section class="article-card" id="gonzalez" aria-labelledby="gonzalez-title">
+                    <h2 class="yellow" id="gonzalez-title">Carlos González Vega: el desierto al óleo</h2>
+                    <p>Joven pintor hermosillense, de quien en 2024 se contaban 10 años de trayectoria. Pinta al óleo figuras humanas junto con la naturaleza y las especies de la región, con colores saturados y un toque surrealista.</p>
+                    <p>Participó en <em>Artistas de Sonora 2024</em>, en la Galería-Estudio Ozuna, en el centro de Hermosillo: unos 20 pintores y cerca de 100 obras. Esto demuestra que el arte de aquí se está haciendo ahora mismo, no solo en los libros.</p>
+                    <p class="tiny">Fuente: <a href="https://www.elimparcial.com/son/hermosillo/2024/05/16/despliegan-talento-pictorico-en-artistas-de-sonora" target="_blank" rel="noopener noreferrer">El Imparcial, 2024</a>.</p>
+                </section>
+
+                <section class="article-card" id="adoptados" aria-labelledby="adoptados-title">
+                    <h2 class="cyan" id="adoptados-title">De otros lados, con huella en Sonora</h2>
+                    <h3 id="arteche">Héctor Martínez Arteche, muralista</h3>
+                    <p>Nació en la Ciudad de México en 1934, pero pasó casi toda su vida en Sonora. Pintó más de 4,000 metros cuadrados de murales, sobre todo en Hermosillo, Ciudad Obregón y Navojoa. Fue la principal influencia de Mario Moreno Zazueta. <a href="https://en.wikipedia.org/wiki/H%C3%A9ctor_Mart%C3%ADnez_Arteche" target="_blank" rel="noopener noreferrer">Fuente</a>.</p>
+                    <h3 id="armida">Armida de la Vara, escritora</h3>
+                    <p>Nació en Opodepe, Sonora, en 1926. A los 22 años, su libro recibió la máxima distinción del Concurso del Libro Sonorense. Muchos niños de México leyeron sus textos en los Libros de Texto Gratuitos. Hoy, un foro de la Feria del Libro de Hermosillo lleva su nombre. <a href="https://boletinbnm.iib.unam.mx/index.php/BBNM/article/download/432/747" target="_blank" rel="noopener noreferrer">Fuente</a>.</p>
+                    <h3 id="ortiz">Alfonso Ortiz Tirado, médico y tenor</h3>
+                    <p>Nacido en Álamos, Sonora, era doctor y cantante de ópera a la vez, y le decían "El Tenor de las Américas". Ciencia y arte en una misma persona. En su honor se celebra cada año en Álamos el Festival Alfonso Ortiz Tirado. <a href="https://www.elimparcial.com/espectaculos/2025/01/27/asi-nacio-el-faot/" target="_blank" rel="noopener noreferrer">Fuente</a>.</p>
+                </section>
+
+                <section class="article-card bulletin">
+                    <h2 class="green">Investiga: ¿qué artista falta aquí?</h2>
+                    <p>Pregunta en tu casa quién es el artista favorito de Hermosillo de tu familia. Busca dos fuentes, confirma dónde nació y prepara su ficha con tu docente. Hay mucho arte sonorense que todavía no aparece en esta sala.</p>
+                    <a class="retro-button button-link" href="temas.html#artes">VER CÓMO SE CONECTAN LAS ARTES CON STEAM</a>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Artistas</strong><br>
+            Un puente también puede ser un lienzo.
+            <p>[ <a href="historias.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="laboratorio.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/artistas.js"></script>
+</body>
+</html>

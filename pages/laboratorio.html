@@ -1,0 +1,276 @@
+<!doctype html>
+<!--
+    Laboratorio virtual: siete simuladores.
+    Sus programas están en assets/js/laboratorio.js, en el mismo orden.
+    Un simulador es un modelo: cada uno explica aquí qué deja fuera de la realidad.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simuladores de ciencia: órbitas, epidemias, átomos, tiempo de reacción, sonido y más.">
+    <title>Laboratorio virtual — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>LABORATORIO VIRTUAL:</strong> experimentos que no caben en el salón de clases.</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">FÍSICA · BIOLOGÍA · QUÍMICA · SALUD · TIERRA</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/atomo.gif" alt="" width="96" height="96">
+                <h1>Laboratorio</h1>
+                <img src="../assets/gifs/adn.gif" alt="" width="96" height="96">
+            </div>
+            <p class="subtitle">Cambia una cosa, predice qué pasará y compruébalo</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="laboratorio.html" aria-current="page">Laboratorio</a>
+            <a href="programacion.html">Programación</a>
+            <a href="bloques.html">Bloques</a>
+            <a href="arcade.html">Arcade</a>
+            <a href="ajedrez.html">Ajedrez</a>
+            <a href="pasaporte.html">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns">
+            <aside class="sidebar" aria-label="Lista de simuladores">
+                <h2 class="sidebar-title">[ SIMULADORES ]</h2>
+                <ul class="menu">
+                    <li><a href="#orbitas">Órbitas</a></li>
+                    <li><a href="#epidemia">Epidemia</a></li>
+                    <li><a href="#atomos">Átomos</a></li>
+                    <li><a href="#reaccion">Tiempo de reacción</a></li>
+                    <li><a href="#sonido">Sonido y oído</a></li>
+                    <li><a href="#caida">Caída en otros mundos</a></li>
+                    <li><a href="#reloj">Reloj de la Tierra</a></li>
+                </ul>
+                <div class="badge">PREDECIR<br><span>PROBAR · COMPARAR</span></div>
+                <img class="sidebar-gif" src="../assets/gifs/orbita.gif" alt="Planeta en órbita elíptica alrededor de una estrella; va más rápido cuando está cerca" width="96" height="96">
+                <figure class="photo-frame">
+                    <img src="../assets/images/tierra-apolo-17.jpg" alt="La Tierra completa vista desde el espacio, con África y la Antártida" width="800" height="800" loading="lazy">
+                    <figcaption>La Tierra vista desde el Apolo 17, 1972. Foto: NASA, dominio público.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="../assets/gifs/hongo-mini.gif" alt="Hongo pixelado que se mueve de arriba abajo" width="48" height="48" loading="lazy">
+                <p class="tiny privacy-note">Tus datos se quedan en esta página y se borran al recargarla.</p>
+                <img class="sidebar-gif" src="../assets/gifs/adn.gif" alt="Doble hélice de ADN que gira" width="96" height="96" loading="lazy">
+                <figure class="photo-frame">
+                    <img src="../assets/images/pinacate.jpg" alt="Gran cráter volcánico en el desierto, con montañas al fondo" width="640" height="418" loading="lazy">
+                    <figcaption>Campo volcánico de El Pinacate, Sonora. Foto: Richard Waitt, USGS, dominio público.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="../assets/gifs/atomo.gif" alt="Átomo con electrones que giran alrededor de un núcleo" width="96" height="96" loading="lazy">
+            </aside>
+            <main class="content" id="contenido">
+                <section class="article-card">
+                    <h2 class="cyan">¿Cómo se usa un simulador?</h2>
+                    <p>Como un experimento de verdad: <strong>antes de mover un control, predice qué pasará.</strong> Después compruébalo y cambia una sola cosa a la vez. Un simulador es un modelo: deja fuera mucho de la realidad para que se entienda una idea. Por eso cada uno te dice qué simplifica.</p>
+                </section>
+
+                <section class="article-card game-page-section" id="orbitas" aria-labelledby="orbitas-title">
+                    <h2 class="yellow" id="orbitas-title">1. Órbitas: el lanzamiento perfecto</h2>
+                    <p>Pon un planeta en órbita sin que caiga en la estrella ni se pierda en el espacio. <strong>Arrastra sobre el cuadro negro</strong>: donde empiezas nace el planeta y la línea indica hacia dónde sale y qué tan rápido. También puedes usar los controles.</p>
+                    <canvas class="sim-canvas" id="orbit-canvas" width="480" height="320" role="img" aria-label="Espacio con una estrella al centro y los planetas que lanzas"></canvas>
+                    <div class="sim-controls">
+                        <label for="orbit-mass">Masa de la estrella: <output id="orbit-mass-label">2000</output></label>
+                        <input id="orbit-mass" type="range" min="500" max="5000" step="100" value="2000">
+                        <label for="orbit-distance">Distancia inicial: <output id="orbit-distance-label">100</output></label>
+                        <input id="orbit-distance" type="range" min="30" max="220" value="100">
+                        <label for="orbit-speed">Velocidad inicial: <output id="orbit-speed-label">4.0</output></label>
+                        <input id="orbit-speed" type="range" min="0" max="10" step="0.1" value="4">
+                    </div>
+                    <div class="block-controls">
+                        <button class="retro-button" id="orbit-launch" type="button">LANZAR</button>
+                        <button class="retro-button" id="orbit-circular" type="button">LANZAR EN ÓRBITA CIRCULAR</button>
+                        <button class="retro-button" id="orbit-clear" type="button">BORRAR TODO</button>
+                    </div>
+                    <p class="sim-report" id="orbit-report" aria-live="off"></p>
+                    <p class="learning-note"><strong>Observa:</strong> en una órbita alargada, ¿cuándo va más rápido el planeta? Es la segunda ley de Kepler. <strong>Calcula:</strong> la velocidad para una órbita circular es la raíz de masa / distancia. ¿Qué pasa si la superas por mucho?</p>
+                    <p class="tiny"><strong>Qué simplifica:</strong> los planetas no se atraen entre sí y la estrella no se mueve. Las unidades son del simulador, no metros. La Estación Espacial Internacional hace lo mismo a unos 7.7 km/s: da una vuelta a la Tierra cada 90 minutos, cayendo todo el tiempo sin llegar nunca al suelo.</p>
+                </section>
+
+                <section class="article-card game-page-section" id="epidemia" aria-labelledby="epidemia-title">
+                    <h2 class="magenta" id="epidemia-title">2. Epidemia: ¿qué tanto ayuda una vacuna?</h2>
+                    <p>Cada punto es una persona y una está enferma. Quien se le acerca puede contagiarse. Prueba con 0 % de vacunados y luego con 40 %, 70 % y 90 %. Los resultados se anotan solos en la tabla.</p>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/contagio.gif" alt="Animación de dos cuadrículas: sin vacunas, el rojo se extiende por toda la población; con vacunas, se detiene pronto" width="320" height="110" loading="lazy">
+                        <figcaption>Los vacunados también protegen a quienes tienen cerca.</figcaption>
+                    </figure>
+                    <canvas class="sim-canvas" id="sir-canvas" width="480" height="240" role="img" aria-label="Personas representadas como puntos que se mueven y se contagian"></canvas>
+                    <p class="legend" aria-hidden="true">
+                        <span style="--swatch: #ffffff">Sana</span>
+                        <span style="--swatch: #ff0000">Enferma</span>
+                        <span style="--swatch: #808080">Recuperada</span>
+                        <span style="--swatch: #00ffff">Vacunada</span>
+                    </p>
+                    <canvas class="sim-canvas" id="sir-chart" width="480" height="70" role="img" aria-label="Gráfica de la epidemia a lo largo del tiempo"></canvas>
+                    <div class="sim-controls">
+                        <label for="sir-vaccine">Vacunados: <output id="sir-vaccine-label">0</output> %</label>
+                        <input id="sir-vaccine" type="range" min="0" max="95" step="5" value="0">
+                        <label for="sir-still">Se quedan en casa: <output id="sir-still-label">0</output> %</label>
+                        <input id="sir-still" type="range" min="0" max="90" step="10" value="0">
+                    </div>
+                    <button class="retro-button" id="sir-start" type="button">INICIAR EPIDEMIA</button>
+                    <p class="sim-report" id="sir-report" aria-live="off"></p>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <caption>Mis experimentos</caption>
+                            <thead><tr><th scope="col">Vacunados</th><th scope="col">En casa</th><th scope="col">Pico de enfermos</th><th scope="col">Enfermaron</th><th scope="col">De los no vacunados</th><th scope="col">Días</th></tr></thead>
+                            <tbody id="sir-runs"></tbody>
+                        </table>
+                    </div>
+                    <p class="learning-note"><strong>Busca el punto de quiebre:</strong> con cierto porcentaje de vacunados, la epidemia casi no despega, aunque muchas personas sigan sin vacuna. Eso se llama <strong>inmunidad de grupo</strong>. Corre cada caso varias veces: el azar hace que los resultados varíen.</p>
+                    <p class="tiny"><strong>Qué simplifica:</strong> aquí la vacuna protege al 100 % y nadie se enferma dos veces. Las vacunas reales reducen mucho el riesgo, pero no siempre lo eliminan. Es un modelo para entender la idea, no para predecir una enfermedad real.</p>
+                </section>
+
+                <section class="article-card game-page-section" id="atomos" aria-labelledby="atomos-title">
+                    <h2 class="cyan" id="atomos-title">3. Constructor de átomos</h2>
+                    <p>Todo lo que ves está hecho de átomos, y solo necesitas tres piezas para armarlos. Prueba qué cambia con cada una.</p>
+                    <div class="atom-layout">
+                        <canvas class="sim-canvas is-small" id="atom-canvas" width="240" height="240" role="img" aria-label="Dibujo del átomo: núcleo con protones y neutrones, y electrones en capas"></canvas>
+                        <div>
+                            <div class="atom-row"><span style="color: #ff6666">Protones</span><button class="retro-button" type="button" data-atom="p" data-delta="-1" aria-label="Quitar un protón">-</button><output id="atom-p">0</output><button class="retro-button" type="button" data-atom="p" data-delta="1" aria-label="Agregar un protón">+</button></div>
+                            <div class="atom-row"><span>Neutrones</span><button class="retro-button" type="button" data-atom="n" data-delta="-1" aria-label="Quitar un neutrón">-</button><output id="atom-n">0</output><button class="retro-button" type="button" data-atom="n" data-delta="1" aria-label="Agregar un neutrón">+</button></div>
+                            <div class="atom-row"><span style="color: #00ffff">Electrones</span><button class="retro-button" type="button" data-atom="e" data-delta="-1" aria-label="Quitar un electrón">-</button><output id="atom-e">0</output><button class="retro-button" type="button" data-atom="e" data-delta="1" aria-label="Agregar un electrón">+</button></div>
+                            <p id="atom-name" aria-live="polite"></p>
+                            <p id="atom-detail" class="tiny"></p>
+                            <p id="atom-stability" class="tiny"></p>
+                        </div>
+                    </div>
+                    <h3>Retos: arma estos átomos</h3>
+                    <ul id="atom-challenges"></ul>
+                    <p class="learning-note"><strong>La regla:</strong> los <strong>protones</strong> deciden qué elemento es. Los <strong>neutrones</strong> cambian el isótopo, sin cambiar el elemento. Los <strong>electrones</strong> cambian la carga: si faltan o sobran, el átomo es un ion.</p>
+                    <p class="tiny"><strong>Qué simplifica:</strong> los electrones no giran como planetas; las capas son un modelo útil para contarlos. Aquí se llega hasta el calcio, con 20 protones, y el dibujo no está a escala: si el núcleo fuera una canica, el átomo mediría cientos de metros.</p>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card game-page-section" id="reaccion" aria-labelledby="reaccion-title">
+                    <h2 class="orange" id="reaccion-title">4. Tu tiempo de reacción: experimenta contigo</h2>
+                    <p>Pulsa el recuadro cuando se ponga verde. Haz series en distintas condiciones y compara. Aquí el dato eres tú.</p>
+                    <div class="sim-controls">
+                        <label for="reaction-condition">Condición de esta serie:</label>
+                        <select id="reaction-condition">
+                            <option>Mano con la que escribo</option>
+                            <option>La otra mano</option>
+                            <option>Contando de 3 en 3 en voz alta</option>
+                            <option>Después de hacer 20 sentadillas</option>
+                            <option>Otra persona de mi equipo</option>
+                        </select>
+                    </div>
+                    <button class="reaction-pad is-idle" id="reaction-pad" type="button">Pulsa para empezar</button>
+                    <p id="reaction-attempts" class="tiny" aria-live="polite"></p>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <caption>Mis resultados</caption>
+                            <thead><tr><th scope="col">Condición</th><th scope="col">Mediana</th><th scope="col">Mejor</th><th scope="col">Peor</th></tr></thead>
+                            <tbody id="reaction-results"></tbody>
+                        </table>
+                    </div>
+                    <p class="learning-note"><strong>¿Por qué la mediana?</strong> Ordena los tiempos y toma el de en medio. Un intento en el que te distrajiste casi no la mueve, y al promedio sí. <strong>Reflexiona:</strong> ¿es justo comparar si hiciste más práctica en una condición que en otra?</p>
+                    <p class="tiny"><strong>Qué mide:</strong> una respuesta típica a una señal visual tarda unos 250 milisegundos. Las señales de tus nervios más rápidos viajan a más de 100 metros por segundo, así que recorrer tu cuerpo les toma pocos milisegundos: casi todo el resto es tu cerebro decidiendo. Tu pantalla y tu mouse también agregan algunos milisegundos.</p>
+                </section>
+
+                <section class="article-card game-page-section" id="sonido" aria-labelledby="sonido-title">
+                    <h2 class="magenta" id="sonido-title">5. Sonido: ¿oyes lo que tu profe no oye?</h2>
+                    <p class="safety-note"><strong>Cuida tus oídos:</strong> baja el volumen de tu equipo antes de empezar. Si usas audífonos, déjalos a un volumen bajo. Si algo te molesta, detente.</p>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/onda-sonido.gif" alt="Animación de una onda verde que avanza" width="320" height="110" loading="lazy">
+                    </figure>
+                    <canvas class="sim-canvas" id="wave-canvas" width="480" height="110" role="img" aria-label="Forma de la onda del sonido elegido"></canvas>
+                    <div class="sim-controls">
+                        <label for="tone-slider">Frecuencia: <output id="tone-label">440</output> Hz</label>
+                        <input id="tone-slider" type="range" min="0" max="800" value="314">
+                    </div>
+                    <p>En el aire, esta onda mide <strong id="tone-wavelength"></strong> de largo. El dibujo no está a escala.</p>
+                    <button class="retro-button" id="tone-toggle" type="button">ENCENDER EL TONO</button>
+                    <h3>Prueba de oído</h3>
+                    <p>Las personas jóvenes suelen oír hasta cerca de 20,000 Hz, y ese límite baja con la edad. Comenzará en 8,000 Hz e irá subiendo. Compara con tus compañeros y con tu docente.</p>
+                    <button class="retro-button" id="hearing-start" type="button">COMENZAR LA PRUEBA</button>
+                    <button class="retro-button" id="hearing-yes" type="button" hidden>SÍ LO OÍ</button>
+                    <button class="retro-button" id="hearing-no" type="button" hidden>NO LO OÍ</button>
+                    <p class="sim-report" id="hearing-report" aria-live="polite">Pulsa COMENZAR cuando estés en un lugar tranquilo.</p>
+                    <p class="tiny"><strong>Qué limita la prueba:</strong> muchas bocinas de computadora no reproducen bien los tonos más agudos, así que el resultado depende también del equipo. Es un juego, no un examen médico.</p>
+                </section>
+
+                <section class="article-card game-page-section" id="caida" aria-labelledby="caida-title">
+                    <h2 class="yellow" id="caida-title">6. Caída libre en otros mundos</h2>
+                    <p>Suelta un objeto desde la misma altura en cuatro mundos. El tiempo de la animación es el real. Predice antes: ¿dónde tarda más en caer?</p>
+                    <canvas class="sim-canvas" id="fall-canvas" width="480" height="240" role="img" aria-label="Cuatro columnas: un objeto cae en la Luna, Marte, la Tierra y Júpiter"></canvas>
+                    <div class="sim-controls">
+                        <label for="fall-height">Altura: <output id="fall-label">20</output> metros</label>
+                        <input id="fall-height" type="range" min="5" max="100" step="5" value="20">
+                    </div>
+                    <button class="retro-button" id="fall-start" type="button">SOLTAR</button>
+                    <h3>¿Qué tan alto saltarías?</h3>
+                    <div class="sim-controls">
+                        <label for="jump-height">Mi salto en la Tierra: <output id="jump-label">40</output> cm</label>
+                        <input id="jump-height" type="range" min="10" max="100" step="5" value="40">
+                    </div>
+                    <p class="sim-report" id="jump-results" aria-live="polite"></p>
+                    <p class="learning-note"><strong>Sin aire, todo cae igual.</strong> En 1971, el astronauta David Scott soltó un martillo y una pluma en la Luna: llegaron juntos al suelo, como predijo Galileo. La gravedad cambia de mundo a mundo; tu masa no.</p>
+                    <p class="tiny"><strong>Qué simplifica:</strong> no hay aire ni rotación, y Júpiter en realidad no tiene una superficie sólida donde pararse. Usamos g = 1.62, 3.71, 9.81 y 24.79 m/s².</p>
+                </section>
+
+                <section class="article-card game-page-section" id="reloj" aria-labelledby="reloj-title">
+                    <h2 class="green" id="reloj-title">7. El reloj de la Tierra</h2>
+                    <p>La Tierra tiene unos 4,540 millones de años, un número difícil de imaginar. Comprime toda esa historia en un solo día y mueve el control: ¿a qué hora crees que aparecimos nosotros?</p>
+                    <span id="clock-time" aria-live="polite">00:00:00</span>
+                    <input id="clock-slider" type="range" min="0" max="86400" value="0" aria-label="Hora del día en el reloj de la Tierra">
+                    <p id="clock-ago"></p>
+                    <p id="clock-event" aria-live="polite"></p>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <tbody id="clock-events"></tbody>
+                        </table>
+                    </div>
+                    <figure class="photo-frame gif-solo">
+                        <img src="../assets/images/chicxulub.jpg" alt="Mapa de colores con forma circular que revela el cráter de Chicxulub bajo tierra" width="688" height="592" loading="lazy">
+                        <figcaption>Cráter de Chicxulub, en México, visto en un mapa de gravedad: está enterrado, pero mide unos 180 km de diámetro. Imagen: NASA, dominio público.</figcaption>
+                    </figure>
+                    <p class="learning-note"><strong>México en la historia de la Tierra:</strong> el asteroide que marcó el fin de los dinosaurios cayó en lo que hoy es Yucatán. ¿Y en Sonora? En el Pinacate hay cráteres volcánicos tan parecidos a los de la Luna que los astronautas del Apolo entrenaron allí. Investiga cuáles.</p>
+                    <p class="tiny">Las fechas son aproximadas y la ciencia las sigue afinando.</p>
+                </section>
+
+                <section class="article-card bulletin">
+                    <h2 class="cyan">Convierte un simulador en tu proyecto</h2>
+                    <p>Elige una pregunta, predice, haz al menos tres corridas por cada condición y haz una tabla. Eso ya es una investigación. Si lo llevas a una actividad real, trabaja con tu docente y con materiales seguros.</p>
+                    <a class="retro-button button-link" href="proyectos.html">VER PROYECTOS DEL CLUB</a>
+                    <a class="retro-button button-link" href="temas.html">VER TEMAS STEAM</a>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Laboratorio virtual</strong><br>
+            Un modelo no es la realidad, pero ayuda a hacerle mejores preguntas.
+            <p>[ <a href="artistas.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="programacion.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/laboratorio.js"></script>
+</body>
+</html>

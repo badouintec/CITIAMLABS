@@ -1,0 +1,350 @@
+<!doctype html>
+<!--
+    Manual del sitio para estudiantes. Reemplaza al enlace directo a README.md,
+    porque un navegador no sabe mostrar un archivo .md como página.
+    Si cambias cómo funciona el sitio, actualiza esta página y README.md.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Guía de CiTIAM Labs: cómo está hecho el sitio y cómo cambiarlo paso a paso.">
+    <title>Guía del sitio — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>MANUAL DEL LABORATORIO:</strong> cambia una cosa a la vez y vuelve a cargar la página.</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">CÓMO ESTÁ HECHO ESTE SITIO</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/robot-mini.gif" alt="" width="96" height="96">
+                <h1>Guía del sitio</h1>
+                <img src="../assets/gifs/computadora-crt.gif" alt="" width="64" height="64">
+            </div>
+            <p class="subtitle">Para mirar debajo del cofre sin descomponer nada</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="laboratorio.html">Laboratorio</a>
+            <a href="programacion.html">Programación</a>
+            <a href="bloques.html">Bloques</a>
+            <a href="arcade.html">Arcade</a>
+            <a href="ajedrez.html">Ajedrez</a>
+            <a href="pasaporte.html">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html" aria-current="page">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns">
+            <aside class="sidebar" aria-label="Índice de la guía">
+                <h2 class="sidebar-title">[ MANUAL ]</h2>
+                <ul class="menu">
+                    <li><a href="#empezar">Para empezar</a></li>
+                    <li><a href="#mapa">Mapa del sitio</a></li>
+                    <li><a href="#archivos">Los archivos</a></li>
+                    <li><a href="#programas">Qué programa hace qué</a></li>
+                    <li><a href="#foto">Agregar una foto</a></li>
+                    <li><a href="#gif">Agregar un GIF</a></li>
+                    <li><a href="#agregar-caso">Agregar un caso</a></li>
+                    <li><a href="#recetas">Recetas para copiar</a></li>
+                    <li><a href="#pruebas">Antes de publicar</a></li>
+                    <li><a href="#problemas">Si algo falla</a></li>
+                    <li><a href="#seguridad">Seguridad</a></li>
+                    <li><a href="#glosario">Glosario</a></li>
+                </ul>
+                <div class="badge">CAMBIAR<br><span>PROBAR · REGRESAR</span></div>
+                <img class="sidebar-gif" src="../assets/gifs/bajo-construccion.gif" alt="Letrero amarillo y negro: zona de obra, seguimos construyendo" width="160" height="44">
+                <img class="sidebar-gif" src="../assets/gifs/lupa-codigo.gif" alt="Lupa que recorre líneas de código de colores" width="96" height="96">
+                <p class="tiny privacy-note">¿Vas a cambiar mucho? Copia antes la carpeta completa. Así siempre puedes regresar.</p>
+                <img class="sidebar-gif" src="../assets/gifs/estrella.gif" alt="" width="24" height="24" loading="lazy">
+            </aside>
+            <main class="content" id="contenido">
+                <section class="article-card" id="empezar">
+                    <h2 class="cyan">Para empezar</h2>
+                    <p>Este sitio se ve como una página de 1998, pero funciona con HTML, CSS y JavaScript actuales. No usa programas adicionales ni necesita instalar nada: basta con abrir <code>index.html</code> en un navegador moderno.</p>
+                    <ul>
+                        <li>Las páginas, las fotos y los juegos funcionan sin internet. Solo los enlaces a otros sitios y la tabla de récords necesitan conexión.</li>
+                        <li>Mantén juntas las páginas HTML y la carpeta <code>assets</code>. Ahí están sus estilos, programas e imágenes.</li>
+                        <li>Para aprender desde cero, empieza por <a href="programacion.html">Programación</a>.</li>
+                        <li>Para ver cómo está escrita cualquier página, usa <strong>Ver código fuente</strong>. Dejamos comentarios para ti.</li>
+                    </ul>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/html-css-js.gif" alt="Animación en tres pasos: una página sencilla con HTML, luego con colores por CSS, y al final un botón que responde a un clic gracias a JavaScript" width="320" height="110">
+                        <figcaption>HTML es el contenido, CSS la apariencia y JavaScript las acciones.</figcaption>
+                    </figure>
+                </section>
+
+                <section class="article-card" id="mapa">
+                    <h2 class="yellow">Mapa del sitio</h2>
+                    <p><code>index.html</code> está en la carpeta principal y todas las demás páginas viven en la carpeta <code>pages</code>.</p>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <thead><tr><th scope="col">Página</th><th scope="col">Para qué sirve</th><th scope="col">Programas que carga</th></tr></thead>
+                            <tbody>
+                                <tr><td><a href="../index.html">index.html</a></td><td>Portada, historia del club, misión de observación y libro de visitas.</td><td><code>script.js</code>, <code>home.js</code></td></tr>
+                                <tr><td><a href="acerca.html">acerca.html</a></td><td>Qué es el programa, con video y respuestas para familias y profesores.</td><td><code>script.js</code></td></tr>
+                                <tr><td><a href="proyectos.html">proyectos.html</a></td><td>Hongo ostra, robótica y jardín escolar.</td><td><code>script.js</code></td></tr>
+                                <tr><td><a href="casos-de-exito.html">casos-de-exito.html</a></td><td>Proyectos de exalumnos del club, como el equipo IRVEN.</td><td><code>script.js</code></td></tr>
+                                <tr><td><a href="temas.html">temas.html</a></td><td>Las cinco áreas de STEAM.</td><td><code>script.js</code></td></tr>
+                                <tr><td><a href="historias.html">historias.html</a></td><td>Historias reales de ciencia, con adivinanzas y fuentes.</td><td><code>script.js</code>, <code>historias.js</code></td></tr>
+                                <tr><td><a href="artistas.html">artistas.html</a></td><td>Artistas de Hermosillo y Sonora, y un mural para pintar.</td><td><code>script.js</code>, <code>artistas.js</code></td></tr>
+                                <tr><td><a href="laboratorio.html">laboratorio.html</a></td><td>Siete simuladores de ciencia.</td><td><code>script.js</code>, <code>laboratorio.js</code></td></tr>
+                                <tr><td><a href="programacion.html">programacion.html</a></td><td>Curso inicial y taller de código.</td><td><code>script.js</code>, <code>programacion.js</code></td></tr>
+                                <tr><td><a href="bloques.html">bloques.html</a></td><td>Programar a un robot con bloques.</td><td><code>script.js</code>, <code>bloques.js</code></td></tr>
+                                <tr><td><a href="arcade.html">arcade.html</a></td><td>Maquinitas (Robot Runner, Buscacactus, Hongotchi y Expedición), siete retos y la bitácora.</td><td><code>script.js</code>, <code>records.js</code>, <code>arcade.js</code>, <code>maquinitas.js</code></td></tr>
+                                <tr><td><a href="ajedrez.html">ajedrez.html</a></td><td>Ajedrez, problemas de mate y la matemática del tablero.</td><td><code>script.js</code>, <code>ajedrez-motor.js</code>, <code>ajedrez.js</code></td></tr>
+                                <tr><td><a href="pasaporte.html">pasaporte.html</a></td><td>Sellos, rangos, diploma y sala secreta.</td><td><code>script.js</code>, <code>pasaporte.js</code></td></tr>
+                                <tr><td><a href="sitios.html">sitios.html</a></td><td>Directorio de sitios útiles.</td><td><code>script.js</code></td></tr>
+                                <tr><td><a href="galeria.html">galeria.html</a></td><td>Todas las fotos y los GIF, con sus créditos.</td><td><code>script.js</code></td></tr>
+                                <tr><td><a href="guia.html">guia.html</a></td><td>Este manual.</td><td><code>script.js</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="article-card" id="archivos">
+                    <h2 class="green">Los archivos</h2>
+                    <pre class="code-block"><code>CITIAMLABS/
+|-- index.html        la portada: el único HTML aquí
+|-- README.md         documentación técnica
+|-- pages/            todas las demás páginas
+|-- tools/film98.py   filtro de rollo para fotos nuevas
+`-- assets/           "recursos" en inglés
+    |-- css/style.css     colores, bordes y distribución
+    |-- js/script.js      común: sonido y pausar animaciones
+    |-- js/home.js        portada: ideas, contador y libro de visitas
+    |-- js/arcade.js      los retos del arcade
+    |-- js/maquinitas.js  las maquinitas del arcade
+    |-- js/records.js     la tabla de récords
+    |-- js/programacion.js  el taller de código
+    |-- js/bloques.js     el taller de bloques
+    |-- js/laboratorio.js los simuladores
+    |-- js/ajedrez-motor.js  reglas del ajedrez y computadora
+    |-- js/ajedrez.js     tablero de ajedrez
+    |-- js/historias.js   adivinanzas y la roca que suena
+    |-- js/artistas.js    el mural para pintar
+    |-- js/pasaporte.js   sellos y diploma
+    |-- gifs/             animaciones y botones
+    |   `-- ajedrez/      las piezas
+    `-- images/           fotos grandes
+        `-- mini/         miniaturas para la galería</code></pre>
+                    <p class="learning-note"><strong>El menú está copiado en cada página.</strong> Sin programas adicionales, no hay forma sencilla de compartirlo. Si agregas una página, guárdala en <code>pages</code> y pega su enlace en el menú de <em>todas</em> las demás. En <code>index.html</code> el enlace lleva <code>pages/</code> delante.</p>
+                </section>
+
+                <section class="article-card" id="programas">
+                    <h2 class="magenta">Qué programa hace qué</h2>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <thead><tr><th scope="col">Quiero cambiar...</th><th scope="col">Abre este archivo</th><th scope="col">Busca</th></tr></thead>
+                            <tbody>
+                                <tr><td>Las preguntas de Misión desierto</td><td><code>assets/js/arcade.js</code></td><td>sección 3, <code>questions</code></td></tr>
+                                <tr><td>Los fragmentos de Detective de código</td><td><code>assets/js/arcade.js</code></td><td>sección 6, <code>questions</code></td></tr>
+                                <tr><td>Las parejas del memorama</td><td><code>assets/js/arcade.js</code></td><td><code>memoryTerms</code></td></tr>
+                                <tr><td>Las rocas del robot</td><td><code>assets/js/arcade.js</code></td><td><code>routeRocks</code></td></tr>
+                                <tr><td>Las fichas de la bitácora</td><td><code>assets/js/arcade.js</code></td><td><code>desertFacts</code></td></tr>
+                                <tr><td>Las misiones del robot</td><td><code>assets/js/bloques.js</code></td><td><code>MISSIONS</code></td></tr>
+                                <tr><td>Un bloque nuevo</td><td><code>assets/js/bloques.js</code></td><td><code>BLOCK_TYPES</code>, <code>runBlock</code>, <code>codeFor</code></td></tr>
+                                <tr><td>Los problemas de mate</td><td><code>assets/js/ajedrez.js</code></td><td><code>MATE_PUZZLES</code></td></tr>
+                                <tr><td>Los niveles de la computadora</td><td><code>assets/js/ajedrez.js</code></td><td><code>CHESS_LEVELS</code></td></tr>
+                                <tr><td>Los eventos del reloj de la Tierra</td><td><code>assets/js/laboratorio.js</code></td><td><code>EVENTS</code></td></tr>
+                                <tr><td>Las decisiones de la Expedición</td><td><code>assets/js/maquinitas.js</code></td><td><code>SCENES</code></td></tr>
+                                <tr><td>Los sellos del Pasaporte</td><td><code>assets/js/script.js</code></td><td><code>STAMPS</code></td></tr>
+                                <tr><td>Lo que dice Robotín</td><td><code>assets/js/script.js</code></td><td><code>ROBOTIN_LINES</code></td></tr>
+                                <tr><td>El dato del día</td><td><code>assets/js/home.js</code></td><td><code>DAILY_FACTS</code></td></tr>
+                                <tr><td>Las ideas de DAME UNA IDEA</td><td><code>assets/js/home.js</code></td><td><code>investigationIdeas</code></td></tr>
+                                <tr><td>La melodía de MÚSICA MIDI</td><td><code>assets/js/script.js</code></td><td><code>melody</code></td></tr>
+                                <tr><td>Un color o un borde</td><td><code>assets/css/style.css</code></td><td>el índice al principio del archivo</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>En las preguntas, <code>correct</code> indica la posición de la respuesta correcta en la lista <code>answers</code>: <code>0</code> es la primera. El juego mezcla las opciones en cada partida, así que puedes escribir siempre la correcta al principio.</p>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card" id="foto">
+                    <h2 class="orange">Agregar una foto</h2>
+                    <figure class="photo-frame float-right">
+                        <img src="../assets/images/kit-robot-piezas.jpg" alt="Manos de estudiantes con piezas de un robot; no aparecen caras" width="420" height="240" loading="lazy">
+                        <figcaption>Una foto puede contar la historia sin mostrar caras.</figcaption>
+                    </figure>
+                    <ol class="step-list">
+                        <li><strong>Pide permiso.</strong> Antes de publicar una foto de personas, pregunta a tu docente por las autorizaciones de la escuela. No publiques nombres, horarios ni datos de contacto.</li>
+                        <li><strong>Quita la ubicación.</strong> Lee el aviso de abajo.</li>
+                        <li><strong>Guárdala</strong> en <code>assets/images</code> con un nombre en minúsculas y sin espacios, como <code>mi-proyecto.jpg</code>.</li>
+                        <li><strong>Pásala por el filtro de rollo.</strong> Con ayuda de tu docente, ejecuta <code>python3 tools/film98.py assets/images/mi-proyecto.jpg</code> una sola vez. Deja la foto en 640 pixeles por el lado más largo, le da aspecto de cámara de 1998, le borra los metadatos y crea su miniatura.</li>
+                        <li><strong>Escribe un texto <code>alt</code></strong> que explique lo que muestra la foto.</li>
+                        <li><strong>Prueba</strong> la página en una computadora y en un teléfono.</li>
+                    </ol>
+                    <p class="safety-note"><strong>¡Las fotos de teléfono guardan dónde se tomaron!</strong> Una foto publicada con ubicación puede revelar la dirección de una escuela o una casa. Quítala antes de publicarla:<br>
+                    <strong>iPhone:</strong> en Fotos, pulsa Compartir, luego Opciones, y desactiva Ubicación.<br>
+                    <strong>Mac:</strong> en Vista Previa, abre Herramientas &gt; Mostrar inspector, entra en la pestaña GPS y pulsa Eliminar información de ubicación.<br>
+                    <strong>Windows:</strong> clic derecho en el archivo, Propiedades &gt; Detalles &gt; Quitar propiedades e información personal.</p>
+                    <h3>Código para copiar</h3>
+                    <pre class="code-block"><code>&lt;figure class="photo-frame"&gt;
+  &lt;img src="../assets/images/mi-proyecto.jpg"
+       alt="Estudiantes observan un modelo de energía solar"
+       width="640" height="480" loading="lazy"&gt;
+  &lt;figcaption&gt;Lo que quieres contar de la foto.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                    <p>El <code>../</code> sube una carpeta: lo necesitan las páginas de <code>pages</code> para llegar a <code>assets</code>. En <code>index.html</code> se quita.</p>
+                    <p><code>width</code> y <code>height</code> reservan el espacio de la foto para que la página no brinque al cargar. <code>loading="lazy"</code> espera a que la foto esté cerca de la pantalla para descargarla. Si la foto no es tuya, revisa su licencia y agrega su autor a los <a href="galeria.html#creditos">créditos</a>.</p>
+                    <h3>Agregarla a la galería</h3>
+                    <p>El filtro ya guardó su miniatura en <code>assets/images/mini</code>. Solo copia un <code>&lt;figure&gt;</code> de <code>galeria.html</code>.</p>
+                </section>
+
+                <section class="article-card" id="gif">
+                    <h2 class="green">Agregar un GIF</h2>
+                    <p>Usa animaciones propias o que tengas permiso de publicar. Guárdalas en <code>assets/gifs</code> y escribe un <code>alt</code> que explique lo que pasa. Si es solo un adorno, deja <code>alt=""</code> para que los lectores de pantalla lo salten.</p>
+                    <pre class="code-block"><code>&lt;figure class="gif-card gif-solo"&gt;
+  &lt;img src="../assets/gifs/mi-animacion.gif"
+       alt="Lo que ocurre en la animación"
+       width="320" height="110" loading="lazy"&gt;
+  &lt;figcaption&gt;Lo que la animación explica.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                    <p class="safety-note"><strong>Regla de oro:</strong> nada de GIF que parpadeen más de tres veces por segundo. Los destellos rápidos pueden provocar crisis a personas con epilepsia fotosensible. El botón <strong>PAUSAR ANIMACIONES</strong> detiene cualquier GIF de la página sin que tengas que programar nada.</p>
+                </section>
+
+                <section class="article-card" id="agregar-caso">
+                    <h2 class="yellow">Agregar un caso de éxito</h2>
+                    <ol>
+                        <li><strong>Pide permiso</strong> al equipo y a la escuela. Si hay menores de edad, también a sus familias.</li>
+                        <li><strong>Revisa la foto:</strong> quítale la ubicación y confirma que quien la tomó permite usarla.</li>
+                        <li><strong>Escribe solo lo que se pueda respaldar:</strong> qué ganaron, dónde y cuándo. No exageres un logro.</li>
+                        <li><strong>No escribas nombres de estudiantes.</strong> Enlaza mejor la página del proyecto.</li>
+                        <li><strong>Pon la fecha.</strong> Di "en 2025", no "el año pasado", y anota cuándo revisaste la información.</li>
+                        <li>Copia la sección del equipo IRVEN en <code>casos-de-exito.html</code> y cambia su <code>id</code>.</li>
+                    </ol>
+                </section>
+
+                <section class="article-card" id="recetas">
+                    <h2 class="cyan">Recetas para copiar</h2>
+                    <p>Piezas listas del sitio. Pega el código dentro de la zona <code>&lt;main&gt;</code> de cualquier página.</p>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <thead><tr><th scope="col">Pieza</th><th scope="col">Clase</th><th scope="col">Para qué</th></tr></thead>
+                            <tbody>
+                                <tr><td>Tarjeta</td><td><code>article-card</code></td><td>Cada tema de una página.</td></tr>
+                                <tr><td>Título de color</td><td><code>cyan</code>, <code>magenta</code>, <code>green</code>, <code>yellow</code>, <code>orange</code></td><td>Sobre un <code>&lt;h2&gt;</code>.</td></tr>
+                                <tr><td>Nota amarilla</td><td><code>learning-note</code></td><td>Un consejo o una pregunta.</td></tr>
+                                <tr><td>Aviso rojo</td><td><code>safety-note</code></td><td>Algo de seguridad.</td></tr>
+                                <tr><td>Foto con marco</td><td><code>photo-frame</code></td><td>Una foto con su pie de foto.</td></tr>
+                                <tr><td>Foto a un lado</td><td>agrega <code>float-right</code> o <code>float-left</code></td><td>El texto rodea la foto.</td></tr>
+                                <tr><td>Dos fotos</td><td><code>photo-grid</code></td><td>Contenedor de dos fotos juntas.</td></tr>
+                                <tr><td>GIF con marco</td><td><code>gif-card gif-solo</code></td><td>Un GIF centrado.</td></tr>
+                                <tr><td>Dos GIF</td><td><code>gif-strip</code></td><td>Contenedor de dos <code>gif-card</code>.</td></tr>
+                                <tr><td>Separador</td><td><code>separator</code></td><td>La barra arcoíris entre tarjetas.</td></tr>
+                                <tr><td>Botón</td><td><code>retro-button</code></td><td>Sobre un <code>&lt;button&gt;</code>; en un enlace agrega <code>button-link</code>.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Una tarjeta completa</h3>
+                    <pre class="code-block"><code>&lt;section class="article-card" id="mi-tema"&gt;
+  &lt;h2 class="yellow"&gt;Mi tema&lt;/h2&gt;
+  &lt;p&gt;Lo que quiero contar.&lt;/p&gt;
+  &lt;p class="learning-note"&gt;&lt;strong&gt;Pregunta:&lt;/strong&gt; ¿qué pasaría si...?&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                </section>
+
+                <section class="article-card" id="pruebas">
+                    <h2 class="yellow">Antes de publicar</h2>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/ciclo-ingenieria.gif" alt="Animación de cinco cajas que se iluminan en orden: define, dibuja, construye, prueba y mejora" width="320" height="110" loading="lazy">
+                        <figcaption>Probar también es parte de construir.</figcaption>
+                    </figure>
+                    <ul>
+                        <li>Abre las dieciséis páginas. ¿Todas las fotos y los GIF aparecen?</li>
+                        <li>Haz clic en cada opción del menú y en los botones nuevos.</li>
+                        <li>Juega al menos una partida de lo que hayas cambiado.</li>
+                        <li>Si tocaste el motor de ajedrez, pulsa <a href="ajedrez.html#perft">PROBAR LAS REGLAS</a>. Si cambiaste una misión de bloques, comprueba que su solución todavía funcione.</li>
+                        <li>Mira la página en un teléfono. ¿Hay que desplazarse de lado? Eso es un error.</li>
+                        <li>Revisa que ninguna foto tenga ubicación, nombres completos ni datos de contacto.</li>
+                        <li>Revisa que cada foto que no sea tuya tenga licencia y crédito.</li>
+                        <li>Pide a tu docente o a una persona adulta que revise todo. Un sitio público lo puede ver cualquiera.</li>
+                    </ul>
+                    <p>Los pasos para compartir el sitio en un ZIP o publicarlo con GitHub Pages están en <code>README.md</code>, dentro de la carpeta del proyecto.</p>
+                </section>
+
+                <section class="article-card" id="problemas">
+                    <h2 class="orange">Si algo falla</h2>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <thead><tr><th scope="col">Problema</th><th scope="col">Qué revisar</th></tr></thead>
+                            <tbody>
+                                <tr><td>Un enlace no abre la página esperada</td><td>El nombre del archivo en <code>href</code> debe ser idéntico al del archivo HTML.</td></tr>
+                                <tr><td>La página aparece sin diseño</td><td>Que exista <code>assets/css/style.css</code> y que la etiqueta <code>&lt;link&gt;</code> apunte bien: <code>../assets/css/style.css</code> en la carpeta <code>pages</code>, y <code>assets/css/style.css</code> en <code>index.html</code>.</td></tr>
+                                <tr><td>Una foto o un GIF no aparece</td><td>El nombre, las mayúsculas, la extensión y la carpeta. Al publicar, <code>Foto.jpg</code> y <code>foto.jpg</code> son archivos distintos.</td></tr>
+                                <tr><td>Un botón no responde</td><td>Que la página cargue su programa y que el <code>id</code> del botón coincida con el que busca el programa.</td></tr>
+                                <tr><td>Un juego no empieza</td><td>Abre la consola del navegador con <code>F12</code>. Un mensaje rojo suele indicar el archivo y la línea del error.</td></tr>
+                                <tr><td>Los GIF no se mueven</td><td>Mira si el botón dice <strong>REANUDAR ANIMACIONES</strong>. También puede estar activada la opción de reducir movimiento en tu sistema.</td></tr>
+                                <tr><td>La página se sale de la pantalla</td><td>Revisa la sección 14 de <code>style.css</code>; no elimines las reglas para teléfonos.</td></tr>
+                                <tr><td>Un enlace externo no carga</td><td>La conexión a internet, o busca la fuente por su nombre.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="article-card" id="seguridad">
+                    <h2 class="magenta">Seguridad y privacidad</h2>
+                    <ul>
+                        <li>Trabaja con una persona docente o adulta cuando una actividad use herramientas, plantas, hongos o materiales de laboratorio.</li>
+                        <li>No pruebes ni manipules cultivos o sustancias desconocidas fuera de una actividad supervisada.</li>
+                        <li>Pide autorización antes de compartir imágenes de otras personas y respeta las reglas de la escuela.</li>
+                        <li>No agregues apellidos, teléfonos, direcciones, horarios ni cuentas de redes sociales.</li>
+                    </ul>
+                    <h3>¿Qué guarda este sitio?</h3>
+                    <p>No usa cookies ni rastreadores. La tabla de récords del arcade es la excepción: al abrirla se conecta a Supabase, que como cualquier servicio web ve la dirección IP, y al pulsar PUBLICAR se envían el juego, un apodo al azar y el resultado. El video de <a href="acerca.html">Acerca de</a> viene de YouTube y solo se carga si pulsas su botón. Se guardan solo en tu navegador, con <code>localStorage</code>: el contador de visitas, las firmas del libro, tu preferencia de pausar animaciones, tus programas de bloques, tus sellos del Pasaporte, tu mural, tu Hongotchi, tu récord de Robot Runner y tu apodo. Los resultados de ajedrez y del laboratorio no se guardan: se borran al recargar la página. Puedes borrarlas limpiando los datos del sitio en tu navegador.</p>
+                </section>
+
+                <section class="article-card" id="glosario">
+                    <h2 class="cyan">Glosario</h2>
+                    <dl class="steam-list">
+                        <div><dt>Atributo</dt><dd>Información dentro de una etiqueta HTML, como <code>src</code>, <code>alt</code> o <code>href</code>.</dd></div>
+                        <div><dt>Clase (<code>class</code>)</dt><dd>Nombre que permite aplicar el mismo estilo a varios elementos.</dd></div>
+                        <div><dt>CSS</dt><dd>Lenguaje que define el diseño y la apariencia de una página.</dd></div>
+                        <div><dt>Dato</dt><dd>Observación o medida registrada para poder revisarla después.</dd></div>
+                        <div><dt>GIF</dt><dd>Formato de imagen que puede mostrar una secuencia corta de cuadros animados.</dd></div>
+                        <div><dt>GitHub Pages</dt><dd>Servicio que publica páginas web estáticas desde un repositorio de GitHub.</dd></div>
+                        <div><dt>HTML</dt><dd>Lenguaje que organiza el contenido de una página web.</dd></div>
+                        <div><dt>Identificador (<code>id</code>)</dt><dd>Nombre único de una parte de la página; sirve para encontrarla o enlazarla.</dd></div>
+                        <div><dt>JavaScript</dt><dd>Lenguaje que permite que una página responda a acciones y actualice su contenido.</dd></div>
+                        <div><dt>Licencia</dt><dd>Permiso que indica qué puedes hacer con una obra de otra persona.</dd></div>
+                        <div><dt>Metadatos</dt><dd>Información oculta en un archivo, como el modelo del teléfono o el lugar donde se tomó una foto.</dd></div>
+                        <div><dt>Prototipo</dt><dd>Modelo sencillo que permite probar una idea antes de construir una solución final.</dd></div>
+                        <div><dt>Variable</dt><dd>Factor que puede cambiar y que se observa o controla durante una prueba.</dd></div>
+                    </dl>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Guía del sitio</strong><br>
+            Preguntar, experimentar, observar y compartir: así crecen las ideas.
+            <p>[ <a href="galeria.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="../index.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>

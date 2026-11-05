@@ -1,0 +1,378 @@
+<!doctype html>
+<!--
+    ¡Hola, persona curiosa! En 1998 mucha gente aprendió a hacer páginas web
+    así: abriendo el código fuente de las páginas que le gustaban.
+
+    Esta es la portada de CiTIAM Labs. Cambia algo, guarda y recarga.
+    Mapa de los archivos: pages/guia.html y README.md
+    Colores y formas:     assets/css/style.css
+    Acciones de esta página: assets/js/script.js y assets/js/home.js
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Conoce CiTIAM Labs, el club de ciencia, tecnología, ingeniería, artes y matemáticas de Highpoint School en Hermosillo.">
+    <title>CiTIAM Labs — Club STEAM de Sonora</title>
+    <link rel="icon" href="assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement">
+            <strong>BOLETÍN DEL CLUB:</strong>
+            <span class="blink">¡IDEAS EN CONSTRUCCIÓN!</span>
+            Highpoint School — Hermosillo, Sonora
+        </div>
+        <p class="marquee-box"><span>*** Bienvenidos a CiTIAM Labs *** Pregunta, prueba, observa y comparte *** Reúne sellos en tu Pasaporte *** Descubre las Historias y los Artistas de Hermosillo *** Conoce al equipo IRVEN en Casos de éxito *** NUEVO: programa con bloques, juega ajedrez y entra al laboratorio virtual *** Hecho a mano desde el desierto de Sonora ***</span></p>
+        <header class="masthead">
+            <p class="eyebrow">TEC DE MONTERREY PRESENTA</p>
+            <div class="masthead-row">
+                <img src="assets/gifs/globo-hermosillo.gif" alt="Globo terráqueo pixelado que gira; un punto rojo marca Hermosillo, en Sonora" width="96" height="96">
+                <h1>CiTIAM Labs</h1>
+                <img src="assets/gifs/robot-mini.gif" alt="Pequeño robot pixelado que mueve los brazos" width="96" height="96">
+            </div>
+            <p class="subtitle">Ciencia · Tecnología · Ingeniería · Artes · Matemáticas</p>
+            <p class="school">Un laboratorio escolar para hacer preguntas, probar ideas y compartir descubrimientos.</p>
+            <figure class="photo-frame home-photo">
+                <img src="assets/images/jardin-del-club.jpg" alt="Integrantes del club CiTIAM reunidos en el jardín de Highpoint School" width="800" height="600" fetchpriority="high">
+                <figcaption>El club también aprende observando y cuidando el jardín escolar.</figcaption>
+            </figure>
+        </header>
+
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="index.html" aria-current="page">Inicio</a>
+            <a href="pages/acerca.html">Acerca de</a>
+            <a href="pages/proyectos.html">Proyectos</a>
+            <a href="pages/casos-de-exito.html">Casos de éxito</a>
+            <a href="pages/temas.html">Temas</a>
+            <a href="pages/historias.html">Historias</a>
+            <a href="pages/artistas.html">Artistas</a>
+            <a href="pages/laboratorio.html">Laboratorio</a>
+            <a href="pages/programacion.html">Programación</a>
+            <a href="pages/bloques.html">Bloques</a>
+            <a href="pages/arcade.html">Arcade</a>
+            <a href="pages/ajedrez.html">Ajedrez</a>
+            <a href="pages/pasaporte.html">Pasaporte</a>
+            <a href="pages/sitios.html">Sitios útiles</a>
+            <a href="pages/galeria.html">Galería</a>
+            <a href="pages/guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+
+        <div class="columns">
+            <aside class="sidebar" aria-label="Datos del club">
+                <h2 class="sidebar-title">[ DESDE EL LAB ]</h2>
+                <div class="badge">
+                    HECHO EN HERMOSILLO<br>
+                    <span>HIGHPOINT STEAM</span>
+                </div>
+                <section class="sidebar-widget">
+                    <h2>VISITA NÚMERO</h2>
+                    <output class="counter-box" id="hit-counter" aria-live="polite">0000000</output>
+                    <p class="tiny">En este navegador</p>
+                </section>
+                <a class="start-here" href="#destinos-title">
+                    <img src="assets/gifs/flecha.gif" alt="" width="40" height="20">
+                    ¡Empieza aquí!
+                </a>
+                <h2 class="sidebar-title">[ LO NUEVO ]</h2>
+                <ul class="news-list">
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/pasaporte.html">Pasaporte de sellos</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/historias.html">Historias</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/artistas.html">Artistas de Hermosillo</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/sitios.html">Sitios útiles</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/acerca.html">Video: conócenos</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="#historia">Nuestra historia</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/casos-de-exito.html">Casos de éxito</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/bloques.html">Taller de bloques</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/ajedrez.html">Ajedrez</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/laboratorio.html">Laboratorio virtual</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="pages/galeria.html">Galería de fotos y GIF</a></li>
+                    <li><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> <a href="#libro-de-visitas">Libro de visitas</a></li>
+                                    </ul>
+                <figure class="photo-frame">
+                    <img src="assets/images/cerro-de-la-campana.jpg" alt="Vista de Hermosillo al atardecer desde el Cerro de la Campana" width="800" height="451" loading="lazy">
+                    <figcaption>Hermosillo desde el Cerro de la Campana. Foto: Karla Espinoza Palafox, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a>.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="assets/gifs/sol-mini.gif" alt="Sol pixelado con rayos que giran" width="48" height="48" loading="lazy">
+                <p class="tiny privacy-note">Las fotos muestran actividades del club. No publicamos nombres de estudiantes.</p>
+                <p class="tiny privacy-note">Explora con calma: el sitio no guarda tus resultados de los juegos.</p>
+                <img class="sidebar-gif" src="assets/gifs/bajo-construccion.gif" alt="Letrero amarillo y negro: zona de obra, seguimos construyendo" width="160" height="44" loading="lazy">
+                <img class="sidebar-gif" src="assets/gifs/hongo-mini.gif" alt="Hongo pixelado que se mueve de arriba abajo" width="48" height="48" loading="lazy">
+                <img class="sidebar-gif" src="assets/gifs/computadora-crt.gif" alt="Computadora antigua con líneas de código en la pantalla" width="64" height="64" loading="lazy">
+                <img class="sidebar-gif" src="assets/gifs/orbita.gif" alt="Planeta en órbita alrededor de una estrella" width="96" height="96" loading="lazy">
+                <img class="sidebar-gif" src="assets/gifs/adn.gif" alt="Doble hélice de ADN que gira" width="96" height="96" loading="lazy">
+            </aside>
+
+            <main class="content" id="contenido">
+                <section class="article-card">
+                    <h2 class="cyan">Bienvenidos al laboratorio</h2>
+                    <p><strong>CiTIAM Labs</strong> es el club de Highpoint School donde las preguntas se convierten en experimentos, diseños y proyectos. Nos inspira lo que tenemos cerca: el sol de Hermosillo, las plantas, el agua, los hongos y las ideas de nuestra comunidad.</p>
+                    <p>Esta página es la entrada a nuestro club. No necesitas saber programar para empezar: puedes mirar los proyectos, leer una guía y probar un juego. Cada página es como una sala diferente del laboratorio.</p>
+                    <p>Si algo te sorprende, anótalo. Si una respuesta no sale a la primera, cambia tu estrategia y vuelve a intentar. En ciencia e ingeniería, los intentos también producen información útil.</p>
+                    <a class="retro-button button-link" href="pages/acerca.html">VER EL VIDEO Y CONOCER EL PROGRAMA</a>
+                </section>
+
+                <section class="article-card bulletin" id="hoy" aria-labelledby="hoy-title">
+                    <h2 class="green" id="hoy-title">Hoy en CiTIAM</h2>
+                    <div class="fact-card">
+                        <p class="fact-label">¿SABÍAS QUE...?</p>
+                        <p id="hoy-dato"></p>
+                        <p class="tiny"><a id="hoy-enlace" href="pages/historias.html">Leer más</a></p>
+                    </div>
+                    <p><strong>Tu misión de hoy:</strong> <a id="hoy-mision" href="pages/pasaporte.html">abre tu Pasaporte</a></p>
+                    <p class="tiny">Tu rango: <strong id="hoy-rango"></strong>. El dato cambia cada día, así que vuelve mañana.</p>
+                    <a class="retro-button button-link" href="pages/pasaporte.html">VER MI PASAPORTE</a>
+                </section>
+
+                <img class="separator" src="assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8">
+
+                <section class="article-card" aria-labelledby="destinos-title">
+                    <h2 class="yellow" id="destinos-title">Elige tu siguiente parada</h2>
+                    <p>Usa estos botones para entrar directamente a la sección que te interesa. Puedes regresar a esta portada en cualquier momento con el botón <strong>Inicio</strong> del menú.</p>
+                    <div class="link-grid">
+                        <a class="link-card" href="pages/proyectos.html">
+                            <img class="link-icon" src="assets/gifs/hongo-mini.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 01 · BITÁCORA</span>
+                            <strong>Conoce los proyectos</strong>
+                            <span>Mira cómo el club explora los hongos ostra, arma robots y observa el jardín escolar.</span>
+                            <span class="retro-button button-link">ENTRAR A PROYECTOS</span>
+                        </a>
+                        <a class="link-card" href="pages/temas.html">
+                            <img class="link-icon" src="assets/gifs/sol-mini.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 02 · GUÍA DE CAMPO</span>
+                            <strong>Explora los temas STEAM</strong>
+                            <span>Descubre cómo se conectan ciencia, tecnología, ingeniería, artes y matemáticas.</span>
+                            <span class="retro-button button-link">ENTRAR A LA GUÍA</span>
+                        </a>
+                        <a class="link-card" href="pages/arcade.html">
+                            <img class="link-icon" src="assets/gifs/cartas-memoria.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 03 · RETOS OPCIONALES</span>
+                            <strong>Prueba el arcade del club</strong>
+                            <span>Robot Runner, Buscacactus, tu propio Hongotchi y más retos.</span>
+                            <span class="retro-button button-link">IR A LOS JUEGOS</span>
+                        </a>
+                        <a class="link-card" href="pages/programacion.html">
+                            <img class="link-icon" src="assets/gifs/computadora-crt.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 04 · TALLER WEB</span>
+                            <strong>Aprende programación</strong>
+                            <span>Construye una web desde cero con HTML, CSS y JavaScript usando CiTIAM como ejemplo.</span>
+                            <span class="retro-button button-link">ENTRAR AL TALLER</span>
+                        </a>
+                        <a class="link-card" href="pages/laboratorio.html">
+                            <img class="link-icon" src="assets/gifs/atomo.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 05 · SIMULADORES</span>
+                            <strong>Entra al laboratorio virtual</strong>
+                            <span>Lanza planetas, frena una epidemia, arma átomos y mide tus reflejos.</span>
+                            <span class="retro-button button-link">EXPERIMENTAR</span>
+                        </a>
+                        <a class="link-card" href="pages/bloques.html">
+                            <img class="link-icon" src="assets/gifs/bloques-icono.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 06 · ROBOT</span>
+                            <strong>Programa con bloques</strong>
+                            <span>Une bloques como en Scratch y lleva a un robot por laberintos y líneas.</span>
+                            <span class="retro-button button-link">ARMAR BLOQUES</span>
+                        </a>
+                        <a class="link-card" href="pages/ajedrez.html">
+                            <img class="link-icon" src="assets/gifs/caballo-icono.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 07 · 64 CASILLAS</span>
+                            <strong>Juega ajedrez</strong>
+                            <span>Reta a la computadora, resuelve problemas de mate y descubre cómo piensa.</span>
+                            <span class="retro-button button-link">IR AL TABLERO</span>
+                        </a>
+                        <a class="link-card" href="pages/galeria.html">
+                            <img class="link-icon" src="assets/gifs/lupa-codigo.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 08 · ÁLBUM</span>
+                            <strong>Abre la galería</strong>
+                            <span>Todas las fotos y los GIF del sitio, con sus autores y licencias.</span>
+                            <span class="retro-button button-link">VER LA GALERÍA</span>
+                        </a>
+                        <a class="link-card" href="pages/guia.html">
+                            <img class="link-icon" src="assets/gifs/robot-mini.gif" alt="" width="48" height="48">
+                            <span class="link-kicker">SALA 09 · MANUAL</span>
+                            <strong>Lee la guía del sitio</strong>
+                            <span>Cómo está hecho este sitio y cómo puedes cambiarlo sin descomponer nada.</span>
+                            <span class="retro-button button-link">ABRIR LA GUÍA</span>
+                        </a>
+                    </div>
+                </section>
+
+                <section class="article-card" id="historia" aria-labelledby="historia-title">
+                    <h2 class="cyan" id="historia-title">Nuestra historia</h2>
+                    <p>CiTIAM Labs crece por generaciones. Cada grupo llega con sus propias preguntas, y esta es la historia hasta ahora.</p>
+                    <h3>2025: la primera generación</h3>
+                    <p>Aquí empezó todo. De esta generación salió el equipo IRVEN, cuyo proyecto nació ese mismo año como EcoTrack y sigue creciendo hasta hoy. <a href="pages/casos-de-exito.html">Conoce su historia en Casos de éxito</a>.</p>
+                    <h3>Septiembre de 2026: arranca la segunda generación</h3>
+                    <figure class="photo-frame">
+                        <img src="assets/images/acto-inaugural.jpg" alt="Foto de grupo del acto inaugural de la segunda generación: estudiantes con el uniforme de la escuela y personas adultas, de pie y en cuclillas, frente a un muro azul" width="800" height="331" loading="lazy">
+                        <figcaption>Acto inaugural de la segunda generación. Foto: Comunicación de Highpoint.</figcaption>
+                    </figure>
+                    <p>Estudiantes y personas adultas que los acompañan se reunieron para inaugurar la segunda generación del programa. Hacer ciencia también necesita una comunidad: alguien que pregunte contigo, te ayude a mejorar y celebre lo que descubres.</p>
+                    <h3>Su primera sesión</h3>
+                    <figure class="photo-frame">
+                        <img src="assets/images/segunda-generacion-primera-sesion.jpg" alt="Integrantes de la segunda generación, con el uniforme de la escuela y abrazados, junto a dos personas adultas en un salón con una pantalla de proyección" width="800" height="361" loading="lazy">
+                        <figcaption>La segunda generación de CiTIAM Labs en su primera sesión.</figcaption>
+                    </figure>
+                    <p>Así se veía el grupo en su primer día: todo por preguntar y todo por probar.</p>
+                    <p class="learning-note"><strong>¿Y lo que sigue?</strong> Se está escribiendo ahora. Mira <a href="pages/proyectos.html">en qué trabaja el club</a> y piensa qué pregunta traerías tú.</p>
+                </section>
+
+                <section class="article-card bulletin" aria-labelledby="caso-title">
+                    <h2 class="yellow" id="caso-title"><img src="assets/gifs/nuevo.gif" alt="Nuevo:" width="42" height="16"> Caso de éxito: equipo IRVEN</h2>
+                    <figure class="photo-frame float-right">
+                        <img src="assets/images/equipo-irven.jpg" alt="Tres integrantes del equipo IRVEN, de pie frente a un público, presentan un mapa en una pantalla" width="800" height="578" loading="lazy">
+                        <figcaption>El equipo IRVEN presenta su plataforma.</figcaption>
+                    </figure>
+                    <p>Empezaron en la primera generación de CiTIAM Labs y ganaron una mención honorífica en FireCAMP, de FireLab, en 2026. Su proyecto nació en 2025 como EcoTrack y evolucionó. Hoy estudian en PrepaTec y <a href="https://irven.app" target="_blank" rel="noopener noreferrer">irven.app</a> se incuba en Future Founders Academy, en conjunto con el Instituto de Emprendimiento Eugenio Garza Lagüera.</p>
+                    <p>Son un ejemplo de perseverancia: siguieron trabajando en su idea cuando ya nadie la pedía de tarea.</p>
+                    <a class="retro-button button-link" href="pages/casos-de-exito.html">CONOCER SU HISTORIA</a>
+                </section>
+
+                <section class="article-card">
+                    <h2 class="magenta">¿Qué significa CiTIAM?</h2>
+                    <p>CiTIAM reúne cinco maneras de aprender. No son materias aisladas: al resolver un problema real, a menudo necesitamos varias al mismo tiempo.</p>
+                    <dl class="steam-list">
+                        <div><dt>Ci — Ciencia</dt><dd>Observar con atención, hacer preguntas y buscar pruebas.</dd></div>
+                        <div><dt>T — Tecnología</dt><dd>Usar herramientas e ideas para resolver una necesidad.</dd></div>
+                        <div><dt>I — Ingeniería</dt><dd>Diseñar, construir, probar y mejorar una solución.</dd></div>
+                        <div><dt>A — Artes</dt><dd>Imaginar posibilidades y comunicar las ideas con claridad.</dd></div>
+                        <div><dt>M — Matemáticas</dt><dd>Medir, comparar cantidades y reconocer patrones.</dd></div>
+                    </dl>
+                    <p>Imagina que queremos cuidar una planta del patio: la ciencia ayuda a observarla; la tecnología puede medir la luz; la ingeniería diseña una sombra; el arte hace que el diseño sea claro y agradable; las matemáticas ayudan a calcular sus medidas.</p>
+                    <figure class="gif-card gif-solo">
+                        <img src="assets/gifs/planta-y-agua.gif" alt="Animación pixelada: una planta en maceta crece mientras caen gotas de agua bajo el Sol" width="320" height="110" loading="lazy">
+                        <figcaption>Una pregunta sencilla puede unir las cinco áreas.</figcaption>
+                    </figure>
+                    <a class="retro-button button-link" href="pages/temas.html">APRENDER MÁS SOBRE STEAM</a>
+                </section>
+
+                <section class="article-card">
+                    <h2 class="green">Cómo se convierte una pregunta en proyecto</h2>
+                    <p>En el club trabajamos en pasos pequeños. Puedes usar este mismo método para una actividad de clase, siempre con materiales seguros y el acompañamiento de tu docente.</p>
+                    <ol class="step-list">
+                        <li><strong>Pregunta:</strong> elige algo que puedas observar o medir. Por ejemplo: ¿en qué parte del patio permanece más tiempo la sombra?</li>
+                        <li><strong>Predice:</strong> escribe qué crees que ocurrirá y por qué. A esa explicación inicial se le llama hipótesis.</li>
+                        <li><strong>Prueba:</strong> decide qué observarás, qué materiales necesitas y cómo mantendrás la comparación justa.</li>
+                        <li><strong>Registra:</strong> apunta la fecha, la hora, las medidas y cualquier detalle importante. No inventes datos que no observaste.</li>
+                        <li><strong>Explica y mejora:</strong> compara los resultados con tu predicción, comparte lo que aprendiste y decide qué probarías después.</li>
+                    </ol>
+                    <figure class="gif-card gif-solo">
+                        <img src="assets/gifs/matraz-burbujas.gif" alt="Animación pixelada de un matraz con líquido verde y burbujas, junto a las palabras observa, anota y compara" width="320" height="110" loading="lazy">
+                        <figcaption>Observa, anota y compara.</figcaption>
+                    </figure>
+                    <p class="learning-note"><strong>Un consejo:</strong> cambiar una sola cosa a la vez suele ayudar a descubrir qué pudo causar un cambio en el resultado.</p>
+                </section>
+
+                <img class="separator" src="assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card">
+                    <h2 class="orange">Un vistazo al laboratorio</h2>
+                    <p>Estas ilustraciones animadas fueron creadas para el sitio con gráficos sencillos inspirados en la informática de los años noventa. Las fotografías de estudiantes son de las actividades del club.</p>
+                    <div class="gif-strip">
+                        <figure class="gif-card">
+                            <img src="assets/gifs/robot-en-el-laboratorio.gif" alt="Animación pixelada de un robot de colores en un laboratorio oscuro" width="320" height="110" loading="lazy">
+                            <figcaption>Un robot sigue una secuencia de instrucciones.</figcaption>
+                        </figure>
+                        <figure class="gif-card">
+                            <img src="assets/gifs/sol-del-desierto.gif" alt="Animación pixelada del Sol sobre un cactus en el desierto" width="320" height="110" loading="lazy">
+                            <figcaption>El desierto también puede ser un lugar para investigar.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="mini-photo-grid">
+                        <figure class="photo-frame">
+                            <img src="assets/images/robotica-equipo.jpg" alt="Estudiantes colaboran mientras arman un robot educativo" width="600" height="800" loading="lazy">
+                            <figcaption>Construir en equipo convierte un diseño en algo que podemos probar.</figcaption>
+                        </figure>
+                        <figure class="photo-frame">
+                            <img src="assets/images/cultivo-hongos-equipo.jpg" alt="Estudiantes muestran los hongos ostra que cultivaron en el club" width="600" height="800" loading="lazy">
+                            <figcaption>El cultivo de hongos reúne observación, paciencia y registro.</figcaption>
+                        </figure>
+                    </div>
+                    <a class="retro-button button-link" href="pages/proyectos.html">VER FOTOS Y PROYECTOS</a>
+                    <a class="retro-button button-link" href="pages/galeria.html">ABRIR LA GALERÍA COMPLETA</a>
+                </section>
+
+                <section class="article-card">
+                    <h2 class="yellow">Nuestro patio es el desierto de Sonora</h2>
+                    <figure class="photo-frame float-right">
+                        <img src="assets/images/saguaro-atardecer.jpg" alt="Silueta de un saguaro frente a un atardecer rojo y naranja" width="800" height="600" loading="lazy">
+                        <figcaption>Saguaro al atardecer. Foto: National Park Service, dominio público.</figcaption>
+                    </figure>
+                    <p>Hermosillo está en el desierto sonorense, un ecosistema que México comparte con Estados Unidos. Mucho sol, poca agua y plantas con formas sorprendentes: es un lugar excelente para hacer preguntas.</p>
+                    <p>¿Por qué un cactus puede guardar agua? ¿Cómo cambia una sombra del invierno al verano? ¿Cuánta energía llega del Sol? No hace falta ir lejos para investigar; a veces basta con salir al patio.</p>
+                    <figure class="photo-frame">
+                        <img src="assets/images/desierto-sonora.jpg" alt="Paisaje del desierto de Sonora con cactus, arbustos y montañas bajo un cielo con nubes" width="800" height="533" loading="lazy">
+                        <figcaption>Desierto de Sonora, México. Foto: Tomas Castelazo, <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>.</figcaption>
+                    </figure>
+                </section>
+
+                <section class="article-card bulletin" aria-labelledby="mission-title">
+                    <h2 class="cyan" id="mission-title">Misión de observación</h2>
+                    <p>¿No sabes qué investigar? Pide una idea y úsala como punto de partida. Puedes dibujar lo que observas o apuntarlo en tu cuaderno; no necesitas compartir información personal en internet.</p>
+                    <button class="retro-button" id="idea-button" type="button">DAME UNA IDEA</button>
+                    <p class="idea-prompt" id="idea-prompt" aria-live="polite">Tu próxima pregunta puede empezar con algo que veas en el patio.</p>
+                    <p class="tiny">Realiza observaciones en un lugar seguro y con permiso de tu docente.</p>
+                </section>
+
+                <section class="article-card">
+                    <h2 class="yellow">Preguntas frecuentes para empezar</h2>
+                    <h3>¿Y si me equivoco?</h3>
+                    <p>Revisa tus pasos. Un error puede mostrar qué parte del plan hay que cambiar. Escribe lo que ocurrió de verdad: los resultados inesperados también sirven para aprender.</p>
+                    <h3>¿Tengo que saber mucho de computadoras?</h3>
+                    <p>No. Puedes empezar leyendo, mirando las fotos o resolviendo un reto. El apartado <a href="pages/programacion.html">Programación</a> te enseña HTML, CSS y JavaScript desde cero con ejemplos del propio sitio.</p>
+                    <h3>¿Puedo hacer cualquier experimento en casa?</h3>
+                    <p>No todos los experimentos son seguros. Consulta siempre con tu docente y una persona adulta antes de reunir materiales o probar una idea. Nunca pruebes cultivos, hongos o sustancias desconocidas.</p>
+                    <a class="retro-button button-link" href="pages/guia.html">LEER LA GUÍA DEL SITIO</a>
+                </section>
+
+                <section class="article-card" id="libro-de-visitas" aria-labelledby="guestbook-title">
+                    <h2 class="green" id="guestbook-title">Libro de visitas</h2>
+                    <p>En 1998 toda página personal tenía uno. Déjanos una firma con un <strong>apodo</strong>, nunca con tu nombre completo, teléfono o dirección.</p>
+                    <p class="learning-note"><strong>¿Quién puede leerlo?</strong> Solo este navegador. Tu firma no viaja a internet ni la verá nadie más. Sirve para probar cómo una página puede recordar datos con <code>localStorage</code>.</p>
+                    <form id="guestbook-form">
+                        <label for="gb-name">Tu apodo:</label>
+                        <input id="gb-name" type="text" maxlength="30" autocomplete="off" required>
+                        <label for="gb-msg">Tu comentario:</label>
+                        <textarea id="gb-msg" rows="3" maxlength="200" required></textarea>
+                        <div>
+                            <button class="retro-button" type="submit">FIRMAR</button>
+                            <button class="retro-button" id="clear-guestbook" type="button">BORRAR MIS FIRMAS</button>
+                        </div>
+                    </form>
+                    <p id="guestbook-status" class="game-feedback" aria-live="polite"></p>
+                    <div id="guestbook-entries"></div>
+                </section>
+
+                <section class="article-card bulletin">
+                    <h2 class="magenta">Mensaje del laboratorio</h2>
+                    <p>Una buena investigación empieza con una pregunta que se pueda observar. Anota lo que crees que ocurrirá, prueba tu idea con cuidado y compara tus resultados.</p>
+                    <p class="tiny">Sitio educativo de Highpoint School · Hermosillo, Sonora · Edición retro de 1998</p>
+                </section>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <strong>CiTIAM Labs — Highpoint School, Hermosillo</strong><br>
+            Un club para investigar, construir y compartir.
+            <p>[ <a href="pages/guia.html">« Sala anterior</a> | <a href="index.html">Anillo CiTIAM</a> | <a href="pages/acerca.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="index.html"><img src="assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="pages/galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/home.js"></script>
+</body>
+</html>

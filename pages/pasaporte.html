@@ -1,0 +1,118 @@
+<!doctype html>
+<!--
+    Pasaporte CiTIAM: los sellos se ganan jugando por todo el sitio.
+    Psst. En las maquinitas de 1998 había un código famoso:
+    arriba arriba abajo abajo izquierda derecha izquierda derecha B A
+    Pruébalo en cualquier página, con el teclado.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Reúne sellos completando retos por todo el sitio de CiTIAM Labs, sube de rango e imprime tu diploma.">
+    <title>Pasaporte — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>PASAPORTE CiTIAM:</strong> reúne sellos y descubre la sala secreta.</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">TU MISIÓN POR TODO EL SITIO</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/trofeo.gif" alt="" width="96" height="96">
+                <h1>Pasaporte</h1>
+                <img src="../assets/gifs/robot-mini.gif" alt="" width="96" height="96">
+            </div>
+            <p class="subtitle">Cada reto completado vale un sello</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="laboratorio.html">Laboratorio</a>
+            <a href="programacion.html">Programación</a>
+            <a href="bloques.html">Bloques</a>
+            <a href="arcade.html">Arcade</a>
+            <a href="ajedrez.html">Ajedrez</a>
+            <a href="pasaporte.html" aria-current="page">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns columns-wide">
+            <main class="content" id="contenido">
+                <section class="article-card" aria-labelledby="rango-title">
+                    <h2 class="yellow" id="rango-title">Tu rango: <span id="pass-rank"></span></h2>
+                    <p class="sim-report" id="pass-count" aria-live="polite"></p>
+                    <div class="balance" aria-hidden="true"><span id="pass-bar"></span></div>
+                    <p class="tiny">Tu pasaporte se guarda solo en este navegador. Si cambias de computadora, empieza de nuevo.</p>
+                </section>
+
+                <section class="article-card" aria-labelledby="sellos-title">
+                    <h2 class="cyan" id="sellos-title">Tus sellos</h2>
+                    <p>Cada recuadro te dice cómo ganarlo. Pulsa uno para ir directo al reto.</p>
+                    <div class="stamp-grid" id="stamp-grid"></div>
+                </section>
+
+                <section class="article-card bulletin" id="sala-secreta" aria-labelledby="secreta-title" hidden>
+                    <h2 class="green" id="secreta-title">Sala secreta: ¡la encontraste!</h2>
+                    <p>Muy pocas personas llegan hasta aquí. Descubriste el código Konami, famoso en los videojuegos desde los años ochenta.</p>
+                    <p>Tu premio es el <strong>modo terminal</strong>, que tiñe todo el sitio de verde, como las pantallas de las computadoras viejas.</p>
+                    <button class="retro-button" id="toggle-terminal" type="button">ACTIVAR MODO TERMINAL</button>
+                    <p class="learning-note"><strong>No se lo cuentes a nadie.</strong> Mejor reta a alguien a encontrarlo. Una pista: usa <strong>Ver código fuente</strong> en esta misma página.</p>
+                </section>
+
+                <section class="article-card" aria-labelledby="diploma-title">
+                    <h2 class="orange" id="diploma-title">Tu diploma</h2>
+                    <p id="diploma-note"></p>
+                    <div id="diploma-tools" hidden>
+                        <label class="editor-label" for="diploma-name">Tu apodo para el diploma:</label>
+                        <input class="block-field" id="diploma-name" type="text" maxlength="30" autocomplete="off">
+                        <button class="retro-button" id="diploma-print" type="button">IMPRIMIR DIPLOMA</button>
+                    </div>
+                    <div class="diploma" id="diploma" hidden>
+                        <p class="diploma-kicker">CiTIAM LABS CERTIFICA QUE</p>
+                        <p class="diploma-name" id="diploma-shown"></p>
+                        <p>completó <strong id="diploma-count"></strong> sellos del Pasaporte CiTIAM con el rango de</p>
+                        <p class="diploma-rank" id="diploma-rank"></p>
+                        <p class="tiny">Hecho a mano en Hermosillo, Sonora. Diploma de juego, para presumir en casa.</p>
+                    </div>
+                </section>
+
+                <section class="article-card">
+                    <h2 class="magenta">¿Compartes esta computadora?</h2>
+                    <p>Puedes borrar tus sellos para que alguien más empiece desde cero.</p>
+                    <button class="retro-button" id="stamps-reset" type="button">BORRAR MIS SELLOS</button>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Pasaporte</strong><br>
+            No importa cuántos sellos tengas, sino cuánto aprendiste por el camino.
+            <p>[ <a href="ajedrez.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="sitios.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/pasaporte.js"></script>
+</body>
+</html>

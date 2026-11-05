@@ -1,0 +1,176 @@
+<!doctype html>
+<!--
+    Taller de bloques: como Scratch, pero hecho solo con HTML, CSS y JavaScript.
+    Todo el programa está en assets/js/bloques.js. Para inventar un bloque
+    nuevo, empieza por la sección 1 de ese archivo.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Programa a un robot con bloques: figuras, laberintos y un seguidor de línea. Mira el JavaScript que hay detrás.">
+    <title>Taller de bloques — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>TALLER DE BLOQUES:</strong> programa sin miedo a equivocarte de letra.</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">PROGRAMA A TU ROBOT</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/bloques-icono.gif" alt="" width="96" height="96">
+                <h1>Bloques</h1>
+                <img src="../assets/gifs/robot-mini.gif" alt="" width="96" height="96">
+            </div>
+            <p class="subtitle">Une bloques, pulsa EJECUTAR y mira qué pasa</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="laboratorio.html">Laboratorio</a>
+            <a href="programacion.html">Programación</a>
+            <a href="bloques.html" aria-current="page">Bloques</a>
+            <a href="arcade.html">Arcade</a>
+            <a href="ajedrez.html">Ajedrez</a>
+            <a href="pasaporte.html">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns columns-wide">
+            <main class="content" id="contenido">
+                <section class="article-card" id="taller-bloques" aria-labelledby="taller-title">
+                    <h2 class="yellow" id="taller-title">Elige una misión</h2>
+                    <div class="mission-buttons" id="mission-buttons" role="group" aria-label="Misiones"></div>
+                    <div class="mission-box">
+                        <p id="mission-text"></p>
+                        <p class="learning-note" id="mission-hint" hidden></p>
+                        <button class="retro-button" id="mission-show-hint" type="button">VER UNA PISTA</button>
+                        <button class="retro-button" id="mission-solution" type="button">VER UNA SOLUCIÓN</button>
+                    </div>
+
+                    <div class="blocks-app">
+                        <div class="blocks-panel blocks-palette-panel">
+                            <h3>Paleta</h3>
+                            <div id="block-palette"></div>
+                        </div>
+
+                        <div class="blocks-panel">
+                            <h3>Tu programa</h3>
+                            <div class="block-hat">AL PULSAR EJECUTAR</div>
+                            <div id="block-program"></div>
+                            <div class="block-controls">
+                                <button class="retro-button" id="block-undo" type="button">DESHACER</button>
+                                <button class="retro-button" id="block-clear" type="button">BORRAR TODO</button>
+                            </div>
+                            <p id="block-count">Bloques: 0</p>
+                        </div>
+
+                        <div class="blocks-panel blocks-stage-panel">
+                            <canvas id="block-stage" width="320" height="240" role="img" aria-label="Escenario donde el robot ejecuta tu programa"></canvas>
+                            <div class="block-controls">
+                                <button class="retro-button" id="block-run" type="button">EJECUTAR</button>
+                                <button class="retro-button" id="block-step" type="button">PASO A PASO</button>
+                                <button class="retro-button" id="block-reset" type="button">REGRESAR</button>
+                                <label for="block-speed">Velocidad:</label>
+                                <select id="block-speed">
+                                    <option value="1">Lenta</option>
+                                    <option value="4" selected>Normal</option>
+                                    <option value="16">Rápida</option>
+                                    <option value="4000">Al instante</option>
+                                </select>
+                            </div>
+                            <p id="block-status" class="game-feedback" aria-live="polite"></p>
+                            <h3>Tu programa en JavaScript</h3>
+                            <pre class="code-block" id="block-code"></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-card" aria-labelledby="uso-title">
+                    <h2 class="cyan" id="uso-title">Cómo se usa</h2>
+                    <ul>
+                        <li><strong>Con mouse:</strong> arrastra un bloque de la paleta a tu programa. Para borrarlo, regrésalo a la paleta o pulsa su <code>x</code>.</li>
+                        <li><strong>En tableta o teléfono:</strong> toca un bloque de la paleta y llegará a donde dice <em>los bloques nuevos llegan aquí</em>. Para moverlo, arrástralo desde su asa <code>::</code>.</li>
+                        <li><strong>Con teclado:</strong> usa <code>Tab</code> para llegar a un bloque de la paleta y <code>Enter</code> para agregarlo. En el asa <code>::</code> de un bloque, las flechas lo mueven y <code>Suprimir</code> lo borra.</li>
+                    </ul>
+                    <p>Tu programa de cada misión se guarda solo en este navegador.</p>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card" aria-labelledby="ideas-title">
+                    <h2 class="green" id="ideas-title">Cuatro ideas que sirven en todo lenguaje</h2>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/bloques-programa.gif" alt="Animación: cuatro bloques se iluminan por turnos mientras el robot dibuja un cuadrado" width="320" height="110" loading="lazy">
+                        <figcaption>El programa se lee de arriba abajo, un bloque a la vez.</figcaption>
+                    </figure>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <thead><tr><th scope="col">Idea</th><th scope="col">Qué significa</th><th scope="col">Bloque</th><th scope="col">En JavaScript</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Secuencia</strong></td><td>Las instrucciones se ejecutan en orden.</td><td>avanzar, girar</td><td><code>avanzar(40);</code></td></tr>
+                                <tr><td><strong>Ciclo</strong></td><td>Repetir sin volver a escribir lo mismo.</td><td>repetir</td><td><code>for</code>, <code>while</code></td></tr>
+                                <tr><td><strong>Condición</strong></td><td>Decidir según lo que mide un sensor.</td><td>si, si no</td><td><code>if</code>, <code>else</code></td></tr>
+                                <tr><td><strong>Variable</strong></td><td>Un número con nombre, que puede cambiar.</td><td>poner n, sumarle a n</td><td><code>n = n + 5;</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Mira el cuadro <strong>Tu programa en JavaScript</strong> mientras armas tus bloques: es el mismo programa escrito con palabras. Cuando te sientas listo, ve al <a href="programacion.html#taller">taller de código</a> y escríbelo a mano.</p>
+                    <p class="learning-note"><strong>Depurar es parte de programar.</strong> Si algo sale mal, usa <strong>PASO A PASO</strong>: el bloque resaltado es el que sigue. Encontrar el error es muchas veces la parte más interesante.</p>
+                </section>
+
+                <section class="article-card" aria-labelledby="retos-title">
+                    <h2 class="orange" id="retos-title">Retos extra</h2>
+                    <figure class="photo-frame float-right">
+                        <img src="../assets/images/kit-robot-piezas.jpg" alt="Manos de estudiantes armando motores amarillos y otras piezas sobre una mesa" width="420" height="240" loading="lazy">
+                        <figcaption>Los robots del club usan estas mismas ideas.</figcaption>
+                    </figure>
+                    <ol>
+                        <li><strong>Geometría:</strong> dibuja un polígono de 6 lados y otro de 9. ¿Qué regla conecta el número de lados con el ángulo de giro?</li>
+                        <li><strong>Ciclos anidados:</strong> en el dibujo libre, repite un cuadrado 12 veces girando 30 grados entre cada uno.</li>
+                        <li><strong>Variables:</strong> haz una espiral cuadrada. ¿Qué cambia si giras 89 grados en lugar de 90?</li>
+                        <li><strong>Laberinto:</strong> ¿funciona el programa de la mano derecha también con la mano izquierda? ¿Cuál llega más rápido?</li>
+                        <li><strong>Seguidor de línea:</strong> sube la velocidad del robot avanzando 6 pasos. ¿Hasta dónde sigue la línea? En robótica real pasa lo mismo.</li>
+                        <li><strong>Código:</strong> cambia un número en un bloque y predice qué cambiará en el JavaScript antes de mirarlo.</li>
+                    </ol>
+                </section>
+
+                <section class="article-card bulletin">
+                    <h2 class="magenta">¿Se puede hacer esto sin instalar nada?</h2>
+                    <p>Sí. Este taller son unas 1,300 líneas de JavaScript, sin bibliotecas. Los bloques son elementos HTML, el robot se dibuja en un <code>&lt;canvas&gt;</code> y el programa es una simple lista que el navegador recorre. Puedes leer <code>assets/js/bloques.js</code> y agregar tu propio bloque.</p>
+                    <a class="retro-button button-link" href="guia.html#programas">VER DÓNDE ESTÁ CADA COSA</a>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Taller de bloques</strong><br>
+            Primero la idea; las letras vienen después.
+            <p>[ <a href="programacion.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="arcade.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/bloques.js"></script>
+</body>
+</html>

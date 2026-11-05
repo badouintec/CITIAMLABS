@@ -1,0 +1,272 @@
+<!doctype html>
+<!--
+    Curso inicial de HTML, CSS y JavaScript.
+    El taller interactivo está en assets/js/programacion.js.
+    Dentro de <pre> el símbolo < se escribe &lt; y > se escribe &gt;.
+    Si no, el navegador los leería como etiquetas en lugar de mostrarlos.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Aprende desde cero HTML, CSS y JavaScript construyendo CiTIAM Labs paso a paso.">
+    <title>Programación desde cero — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>TALLER DE CÓDIGO:</strong> aprende haciendo una página como esta.</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">LABORATORIO WEB · NIVEL INICIAL</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/computadora-crt.gif" alt="" width="64" height="64">
+                <h1>Programación</h1>
+                <img src="../assets/gifs/lupa-codigo.gif" alt="" width="96" height="96">
+            </div>
+            <p class="subtitle">Tu primera web: HTML + CSS + JavaScript</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="laboratorio.html">Laboratorio</a>
+            <a href="programacion.html" aria-current="page">Programación</a>
+            <a href="bloques.html">Bloques</a>
+            <a href="arcade.html">Arcade</a>
+            <a href="ajedrez.html">Ajedrez</a>
+            <a href="pasaporte.html">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns">
+            <aside class="sidebar" aria-label="Ruta de aprendizaje">
+                <h2 class="sidebar-title">[ RUTA DE APRENDIZAJE ]</h2>
+                <ul class="menu">
+                    <li><a href="#preparacion">Antes de empezar</a></li>
+                    <li><a href="#fuente">Ver el código fuente</a></li>
+                    <li><a href="bloques.html">¡Empieza con bloques!</a></li>
+                    <li><a href="#html">1. HTML</a></li>
+                    <li><a href="#css">2. CSS</a></li>
+                    <li><a href="#javascript">3. JavaScript</a></li>
+                    <li><a href="#taller">Taller interactivo</a></li>
+                    <li><a href="#publicar">Probar y publicar</a></li>
+                    <li><a href="#despues">¿Y después de la web?</a></li>
+                    <li><a href="#recursos">Más recursos</a></li>
+                </ul>
+                <div class="badge">CREAR<br><span>PROBAR · MEJORAR</span></div>
+                <p class="tiny privacy-note">El taller ejecuta tu código en una vista aislada. No lo envía a internet.</p>
+                <img class="sidebar-gif" src="../assets/gifs/computadora-crt.gif" alt="Computadora antigua con líneas de código en la pantalla" width="64" height="64">
+                <img class="sidebar-gif" src="../assets/gifs/lupa-codigo.gif" alt="Lupa que recorre líneas de código de colores" width="96" height="96" loading="lazy">
+                <img class="sidebar-gif" src="../assets/gifs/bajo-construccion.gif" alt="Letrero amarillo y negro: zona de obra, seguimos construyendo" width="160" height="44" loading="lazy">
+                <img class="sidebar-gif" src="../assets/gifs/robot-mini.gif" alt="Pequeño robot pixelado que mueve los brazos" width="48" height="48" loading="lazy">
+            </aside>
+            <main class="content" id="contenido">
+                <section class="article-card" id="preparacion">
+                    <h2 class="cyan">¿Qué vas a construir?</h2>
+                    <p>Vas a aprender cómo se conectan las tres piezas que ya usa CiTIAM Labs. Mira el menú gris, las tarjetas negras y los botones: <strong>HTML</strong> define qué elementos hay, <strong>CSS</strong> les da aspecto y <strong>JavaScript</strong> hace que respondan. No tienes que memorizar todo: escribe una versión pequeña, pruébala y cambia una cosa a la vez.</p>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/html-css-js.gif" alt="Animación en tres pasos: una página sencilla con HTML, luego con colores por CSS, y al final un botón que responde a un clic gracias a JavaScript" width="320" height="110">
+                        <figcaption>La misma página con HTML, después con CSS y al final con JavaScript.</figcaption>
+                    </figure>
+                    <ol>
+                        <li>Abre la carpeta del sitio en un editor de código, como Visual Studio Code.</li>
+                        <li>Abre <code>index.html</code> en el navegador para ver el resultado actual.</li>
+                        <li>Cuando termines un cambio, guarda el archivo y recarga el navegador.</li>
+                    </ol>
+                    <p class="learning-note"><strong>Idea importante:</strong> los nombres de archivos y rutas deben coincidir exactamente. Por ejemplo, <code>assets/css/style.css</code> indica que el archivo está dentro de <code>assets</code>, luego <code>css</code>. El único HTML en la carpeta principal es <code>index.html</code>; las demás páginas están en <code>pages</code>.</p>
+                </section>
+
+                <section class="article-card bulletin" id="con-bloques">
+                    <h2 class="magenta">¿Nunca has programado? Empieza con bloques</h2>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/bloques-programa.gif" alt="Animación: cuatro bloques se iluminan por turnos mientras el robot dibuja un cuadrado" width="320" height="110" loading="lazy">
+                    </figure>
+                    <p>En el <a href="bloques.html">taller de bloques</a> armas programas sin preocuparte por las comas ni las llaves, y a un lado ves el mismo programa escrito en JavaScript. Es una buena forma de entender primero las ideas: secuencias, ciclos, condiciones y variables.</p>
+                    <a class="retro-button button-link" href="bloques.html">ABRIR EL TALLER DE BLOQUES</a>
+                </section>
+
+                <section class="article-card" id="fuente">
+                    <h2 class="green">El truco de 1998: ver el código fuente</h2>
+                    <p>Toda página web trae su receta a la vista. En una computadora, haz clic derecho sobre esta página y elige <strong>Ver código fuente</strong>, o pulsa <code>Ctrl+U</code> en Windows. En Chrome para Mac es <code>Opción+Cmd+U</code>.</p>
+                    <p>Dejamos comentarios para ti al principio de cada archivo y antes de cada parte difícil. Un comentario es una nota para las personas: el navegador no la muestra. Así se escriben en cada lenguaje:</p>
+                    <pre class="code-block"><code>&lt;!-- comentario en HTML --&gt;
+/* comentario en CSS y en JavaScript */
+// comentario de una línea en JavaScript</code></pre>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/terminal-codigo.gif" alt="Animación: en una pantalla negra se escriben, letra por letra, una línea de HTML, una de CSS y una de JavaScript" width="320" height="110" loading="lazy">
+                        <figcaption>Tres lenguajes, una página. Cada línea hace un trabajo distinto.</figcaption>
+                    </figure>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card" id="html">
+                    <h2 class="yellow">1. HTML: organiza el contenido</h2>
+                    <p>HTML describe el significado de cada parte. Un título usa <code>&lt;h1&gt;</code>, un párrafo usa <code>&lt;p&gt;</code> y un enlace usa <code>&lt;a&gt;</code>. La mayoría tiene apertura y cierre. La estructura de esta misma página empieza así:</p>
+                    <pre class="code-block"><code>&lt;header class="masthead"&gt;
+  &lt;h1&gt;CiTIAM Labs&lt;/h1&gt;
+  &lt;p class="subtitle"&gt;Un laboratorio para aprender&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;section class="article-card"&gt;
+  &lt;h2&gt;Un proyecto nuevo&lt;/h2&gt;
+  &lt;p&gt;Aquí contamos qué queremos investigar.&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                    <p><code>&lt;header&gt;</code> agrupa la cabecera; <code>&lt;section&gt;</code> agrupa un tema; <code>class</code> le pone un nombre que CSS puede reutilizar. Para añadir una tarjeta a CiTIAM, duplica una sección, cambia sus títulos y texto, y guarda. Usa etiquetas según su propósito y no saltes de título solo por su tamaño.</p>
+                    <h3>Enlaces e imágenes</h3>
+                    <pre class="code-block"><code>&lt;a href="proyectos.html"&gt;Ver proyectos&lt;/a&gt;
+&lt;img src="../assets/images/jardin-del-club.jpg"
+     alt="El jardín escolar de CiTIAM"&gt;</code></pre>
+                    <p><code>href</code> señala a dónde va un enlace, <code>src</code> señala dónde está la imagen y <code>alt</code> describe la imagen para quien no puede verla. Las rutas relativas parten de la carpeta del archivo HTML. Por eso esta página, que vive en la carpeta <code>pages</code>, escribe <code>../</code> para subir una carpeta y llegar a <code>assets</code>. La portada, <code>index.html</code>, no lo necesita: está junto a <code>assets</code>.</p>
+                </section>
+
+                <section class="article-card" id="css">
+                    <h2 class="magenta">2. CSS: diseña la página</h2>
+                    <p>CSS selecciona elementos y define sus propiedades. En el sitio, <code>.article-card</code> selecciona las secciones que tienen <code>class="article-card"</code>; el punto significa “clase”. Este es un ejemplo inspirado en las tarjetas negras de CiTIAM:</p>
+                    <pre class="code-block"><code>.article-card {
+  padding: 14px;
+  border: 2px ridge #555;
+  background: #050505;
+  color: white;
+}
+
+.article-card h2 {
+  color: cyan;
+}</code></pre>
+                    <p>Una regla contiene un selector y propiedades entre llaves. <code>padding</code> crea espacio interior, <code>border</code> dibuja un borde y <code>background</code> cambia el fondo. El archivo compartido por todas las páginas es <code>assets/css/style.css</code>.</p>
+                    <h3>Hazlo adaptable</h3>
+                    <p>El diseño de CiTIAM usa una cuadrícula y cambia a una columna en pantallas pequeñas. Las reglas <code>@media</code> permiten cambiar estilos según el ancho. Prueba abrir el sitio en un teléfono y no elimines estas reglas al editar.</p>
+                    <pre class="code-block"><code>@media (max-width: 700px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+                </section>
+
+                <section class="article-card" id="javascript">
+                    <h2 class="green">3. JavaScript: agrega acciones</h2>
+                    <p>JavaScript encuentra elementos HTML y reacciona a eventos. En la portada, el botón de ideas tiene <code>id="idea-button"</code>; el programa escucha cuando alguien hace clic y cambia el texto de una pregunta.</p>
+                    <pre class="code-block"><code>const boton = document.querySelector("#idea-button");
+const mensaje = document.querySelector("#idea-prompt");
+
+boton.addEventListener("click", () =&gt; {
+  mensaje.textContent = "¿Cómo cambia la sombra durante el día?";
+});</code></pre>
+                    <p><code>querySelector</code> busca el primer elemento que coincide con el selector. El símbolo <code>#</code> busca un <code>id</code>. <code>addEventListener</code> conecta el clic con una función, y <code>textContent</code> cambia el texto de forma segura.</p>
+                    <p class="learning-note"><strong>Conecta las piezas:</strong> si cambias el <code>id</code> en HTML, actualiza también el selector en JavaScript. Revisa la consola del navegador si un botón deja de responder.</p>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card" id="taller">
+                    <h2 class="orange">Taller interactivo: escribe, ejecuta y observa</h2>
+                    <p>Modifica los tres cuadros y pulsa <strong>PROBAR MI PÁGINA</strong>. El primero acepta HTML, el segundo CSS y el tercero JavaScript. Empieza cambiando el título, el color o el mensaje del botón. La vista previa está aislada del resto del sitio.</p>
+                    <label class="editor-label" for="playground-html">HTML</label>
+                    <textarea class="code-editor" id="playground-html" spellcheck="false" aria-describedby="playground-help">&lt;main class="tarjeta"&gt;
+  &lt;p class="etiqueta"&gt;MI PRIMERA WEB&lt;/p&gt;
+  &lt;h1&gt;Hola, CiTIAM&lt;/h1&gt;
+  &lt;p&gt;Estoy aprendiendo a programar desde cero.&lt;/p&gt;
+  &lt;button id="saludo"&gt;PULSA AQUÍ&lt;/button&gt;
+  &lt;p id="respuesta"&gt;&lt;/p&gt;
+&lt;/main&gt;</textarea>
+                    <label class="editor-label" for="playground-css">CSS</label>
+                    <textarea class="code-editor" id="playground-css" spellcheck="false">body {
+  background: #000033;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+.tarjeta {
+  max-width: 420px;
+  margin: 30px auto;
+  padding: 24px;
+  border: 4px ridge cyan;
+  background: #050505;
+}
+h1 { color: yellow; }
+button { padding: 10px; cursor: pointer; }</textarea>
+                    <label class="editor-label" for="playground-js">JavaScript</label>
+                    <textarea class="code-editor" id="playground-js" spellcheck="false">document.querySelector("#saludo").addEventListener("click", () =&gt; {
+  document.querySelector("#respuesta").textContent =
+    "¡Lo lograste! Tu botón ya tiene una acción.";
+});</textarea>
+                    <p id="playground-help" class="tiny">El código se ejecuta solo en la vista previa de abajo. No introduzcas datos personales.</p>
+                    <button class="retro-button" id="run-playground" type="button">PROBAR MI PÁGINA</button>
+                    <p id="playground-status" class="game-feedback" aria-live="polite">La vista previa está lista.</p>
+                    <iframe class="playground-preview" id="playground-preview" title="Vista previa de tu página de práctica" sandbox="allow-scripts"></iframe>
+                    <h3>Prueba estos cambios</h3>
+                    <ol>
+                        <li>Cambia el título dentro de <code>&lt;h1&gt;</code> y vuelve a probar.</li>
+                        <li>Cambia <code>yellow</code> por <code>magenta</code> en CSS.</li>
+                        <li>Cambia el texto que está entre comillas en <code>textContent</code>.</li>
+                        <li>Quita una llave o una comilla del JavaScript a propósito. Arriba de la vista previa aparecerá un aviso con el error; léelo y corrígelo.</li>
+                    </ol>
+                </section>
+
+                <section class="article-card" id="publicar">
+                    <h2 class="cyan">4. Prueba y comparte tu sitio</h2>
+                    <ol>
+                        <li>Guarda tus archivos con nombres claros: HTML para el contenido, CSS para el diseño y JavaScript para las acciones.</li>
+                        <li>Abre la página localmente y prueba todos los enlaces, botones e imágenes.</li>
+                        <li>Comprueba que se vea en pantalla pequeña. Corrige cualquier desbordamiento.</li>
+                        <li>Si vas a publicar, pide a tu docente que revise los permisos de las imágenes y que no haya información personal.</li>
+                        <li>GitHub Pages puede publicar un sitio estático. Consulta la guía para ver los pasos y pide ayuda a una persona adulta.</li>
+                    </ol>
+                    <p>Cuando algo falle, revisa primero la ruta del archivo, los nombres de <code>id</code> y la consola del navegador. Cambia una cosa por vez y vuelve a probar.</p>
+                    <a class="retro-button button-link" href="guia.html">ABRIR LA GUÍA DEL PROYECTO</a>
+                </section>
+
+                <section class="article-card" id="despues">
+                    <h2 class="green">¿Y después de la web?</h2>
+                    <figure class="photo-frame float-right">
+                        <img src="../assets/images/arduino-uno.jpg" alt="Placa electrónica azul tipo Arduino Uno vista desde arriba" width="800" height="602" loading="lazy">
+                        <figcaption>Placa Arduino Uno. Foto: JrawX, CC0.</figcaption>
+                    </figure>
+                    <p>Las ideas que aprendes aquí sirven en otros lugares. Un botón que espera un clic se parece a un robot que espera la lectura de un sensor: en los dos casos, un programa recibe una señal y decide qué hacer.</p>
+                    <p>Por eso los robots del club y esta página tienen algo en común. Los lenguajes pueden ser distintos, pero variables, condiciones y funciones aparecen casi en todos. Visita la <a href="proyectos.html#robotica">sección de robótica</a> para verlo.</p>
+                </section>
+
+                <section class="article-card" id="recursos">
+                    <h2 class="yellow">Más recursos para seguir aprendiendo</h2>
+                    <p>Estos recursos gratuitos explican conceptos y ofrecen prácticas. Algunas páginas están en inglés; trabaja con una persona docente si necesitas ayuda para elegir una actividad.</p>
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/es/docs/Learn_web_development" target="_blank" rel="noopener noreferrer">MDN: Aprende desarrollo web</a> — guías de HTML, CSS y JavaScript con ejemplos.</li>
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer">MDN: HTML</a> — elementos, atributos y estructura semántica.</li>
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank" rel="noopener noreferrer">MDN: CSS</a> — selectores, colores, diseño y adaptación a pantallas.</li>
+                        <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">MDN: JavaScript</a> — variables, funciones, eventos y el navegador.</li>
+                        <li><a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer">W3Schools</a> — ejemplos interactivos para practicar fundamentos.</li>
+                    </ul>
+                    <p class="learning-note"><strong>Ruta sugerida:</strong> empieza por HTML, practica estilos sencillos con CSS y después agrega interacciones con JavaScript. Regresa a las páginas de CiTIAM para encontrar ideas de contenido.</p>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Taller de programación</strong><br>
+            El mejor código es el que entiendes, pruebas y mejoras.
+            <p>[ <a href="laboratorio.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="bloques.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/programacion.js"></script>
+</body>
+</html>

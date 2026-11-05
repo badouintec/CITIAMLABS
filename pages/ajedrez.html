@@ -1,0 +1,228 @@
+<!doctype html>
+<!--
+    Ajedrez completo, sin bibliotecas.
+    assets/js/ajedrez-motor.js tiene las reglas y la computadora.
+    assets/js/ajedrez.js tiene el tablero y los botones.
+    Si cambias el motor, pulsa PROBAR LAS REGLAS antes de confiar en él.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Juega ajedrez contra la computadora o con un amigo, resuelve problemas de mate y descubre la matemática del tablero.">
+    <title>Ajedrez — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>SALA DE AJEDREZ:</strong> ¿le ganas a la computadora del club?</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">64 CASILLAS · MATEMÁTICAS Y ESTRATEGIA</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/caballo-icono.gif" alt="" width="96" height="96">
+                <h1>Ajedrez</h1>
+                <img src="../assets/gifs/lupa-codigo.gif" alt="" width="96" height="96">
+            </div>
+            <p class="subtitle">Juega, resuelve problemas y descubre cómo piensa una máquina</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="laboratorio.html">Laboratorio</a>
+            <a href="programacion.html">Programación</a>
+            <a href="bloques.html">Bloques</a>
+            <a href="arcade.html">Arcade</a>
+            <a href="ajedrez.html" aria-current="page">Ajedrez</a>
+            <a href="pasaporte.html">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns">
+            <aside class="sidebar" aria-label="Índice de ajedrez">
+                <h2 class="sidebar-title">[ TABLERO ]</h2>
+                <ul class="menu">
+                    <li><a href="#partida">Jugar</a></li>
+                    <li><a href="#problemas">Mate en uno</a></li>
+                    <li><a href="#piezas">Cómo se mueven</a></li>
+                    <li><a href="#pensar">Cómo piensa</a></li>
+                    <li><a href="#perft">Probar las reglas</a></li>
+                    <li><a href="#trigo">La leyenda del trigo</a></li>
+                </ul>
+                <div class="badge">PENSAR<br><span>ANTES DE MOVER</span></div>
+                <img class="sidebar-gif" src="../assets/gifs/caballo-icono.gif" alt="Caballo blanco que salta en forma de L sobre un tablero pequeño" width="96" height="96">
+                <p class="tiny privacy-note">La computadora calcula en tu navegador. Las partidas no se guardan ni se envían a ningún lado.</p>
+                <figure class="photo-frame">
+                    <img src="../assets/images/deep-blue.jpg" alt="Gabinete negro de la computadora Deep Blue en un museo" width="600" height="800" loading="lazy">
+                    <figcaption>Deep Blue, de IBM, en un museo. Foto: Erik Pitti, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a>.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="../assets/gifs/estrella.gif" alt="" width="24" height="24" loading="lazy">
+                <figure class="photo-frame">
+                    <img src="../assets/images/piezas-de-ajedrez.jpg" alt="Tablero de ajedrez de madera con las piezas en su posición inicial" width="800" height="492" loading="lazy">
+                    <figcaption>Piezas de estilo Staunton. Foto: Wilfredor, CC0.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="../assets/gifs/robot-mini.gif" alt="Pequeño robot pixelado que mueve los brazos" width="48" height="48" loading="lazy">
+            </aside>
+            <main class="content" id="contenido">
+                <section class="article-card game-page-section" id="partida" aria-labelledby="partida-title">
+                    <h2 class="yellow" id="partida-title">Tablero</h2>
+                    <p class="tiny">Toca una pieza y luego la casilla a la que quieres moverla. Con teclado: usa las flechas y <code>Enter</code>.</p>
+                    <div class="chess-layout">
+                        <div>
+                            <div class="chess-board" id="chess-board" role="group" aria-label="Tablero de ajedrez"></div>
+                            <div class="block-controls">
+                                <button class="retro-button" id="chess-new" type="button">NUEVA PARTIDA</button>
+                                <button class="retro-button" id="chess-undo" type="button">DESHACER</button>
+                                <button class="retro-button" id="chess-hint" type="button">PISTA</button>
+                                <button class="retro-button" id="chess-flip" type="button">VOLTEAR TABLERO</button>
+                            </div>
+                        </div>
+                        <div class="chess-panel">
+                            <div class="chess-options">
+                                <label for="chess-mode">Contra quién</label>
+                                <select id="chess-mode">
+                                    <option value="computer">La computadora</option>
+                                    <option value="two">Otra persona</option>
+                                </select>
+                                <label for="chess-color">Juegas con</label>
+                                <select id="chess-color">
+                                    <option value="w">Blancas</option>
+                                    <option value="b">Negras</option>
+                                </select>
+                                <label for="chess-level">Nivel</label>
+                                <select id="chess-level">
+                                    <option value="aprendiz">Aprendiz</option>
+                                    <option value="estudiante" selected>Estudiante</option>
+                                    <option value="maestra">Maestra</option>
+                                </select>
+                            </div>
+                            <p id="chess-status" aria-live="polite"></p>
+                            <div class="balance" aria-hidden="true"><span id="balance-fill"></span></div>
+                            <p id="balance-label"></p>
+                            <pre class="code-block" id="chess-moves" tabindex="0" aria-label="Lista de jugadas"></pre>
+                            <p class="tiny">R rey · D dama · T torre · A alfil · C caballo</p>
+                        </div>
+                    </div>
+                    <p id="chess-think" aria-live="polite"></p>
+                </section>
+
+                <section class="article-card game-page-section" id="problemas" aria-labelledby="problemas-title">
+                    <h2 class="magenta" id="problemas-title">Problemas: mate en una jugada</h2>
+                    <p>Encuentra la jugada que deja al rey sin salida. Reconocer estos patrones es lo primero que se aprende para atacar.</p>
+                    <div class="block-controls" id="puzzle-buttons"></div>
+                    <p class="learning-note" id="puzzle-status" aria-live="polite">Elige un problema: aparecerá en el tablero de arriba.</p>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card" id="piezas" aria-labelledby="piezas-title">
+                    <h2 class="cyan" id="piezas-title">Cómo se mueve cada pieza</h2>
+                    <p>El objetivo es dar <strong>jaque mate</strong>: atacar al rey rival de manera que no tenga ninguna defensa. Si tocas una pieza en el tablero, verás todas sus jugadas posibles.</p>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <thead><tr><th scope="col">Pieza</th><th scope="col">Valor</th><th scope="col">Cómo se mueve</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="piece-icon pieza-P" aria-hidden="true"></span> Peón</td><td>1</td><td>Avanza una casilla, o dos desde su fila inicial. Captura en diagonal. Si llega al final, se transforma: eso es coronar.</td></tr>
+                                <tr><td><span class="piece-icon pieza-N" aria-hidden="true"></span> Caballo</td><td>3</td><td>Salta en forma de L: dos casillas y una a un lado. Es la única pieza que salta sobre otras.</td></tr>
+                                <tr><td><span class="piece-icon pieza-B" aria-hidden="true"></span> Alfil</td><td>3</td><td>En diagonal. Siempre se queda en casillas del mismo color.</td></tr>
+                                <tr><td><span class="piece-icon pieza-R" aria-hidden="true"></span> Torre</td><td>5</td><td>En línea recta: filas y columnas.</td></tr>
+                                <tr><td><span class="piece-icon pieza-Q" aria-hidden="true"></span> Dama</td><td>9</td><td>Como la torre y el alfil juntos.</td></tr>
+                                <tr><td><span class="piece-icon pieza-K" aria-hidden="true"></span> Rey</td><td>Sin precio</td><td>Una casilla en cualquier dirección. Nunca puede quedar atacado.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Tres reglas especiales</h3>
+                    <ul>
+                        <li><strong>Enroque:</strong> el rey se mueve dos casillas hacia una torre y la torre salta a su otro lado. Ninguno debe haberse movido, y el rey no puede estar en jaque ni cruzar una casilla atacada.</li>
+                        <li><strong>Captura al paso:</strong> si un peón avanza dos casillas y queda junto a un peón rival, este puede capturarlo como si hubiera avanzado una. Solo se permite en la jugada siguiente.</li>
+                        <li><strong>Tablas:</strong> la partida empata por ahogado (no hay jugadas legales, pero tampoco jaque), por repetir tres veces la posición, por 50 jugadas sin capturas ni movimientos de peón, o por falta de piezas para dar mate.</li>
+                    </ul>
+                </section>
+
+                <section class="article-card" id="pensar" aria-labelledby="pensar-title">
+                    <h2 class="green" id="pensar-title">Cómo piensa la computadora</h2>
+                    <p>No entiende el ajedrez como tú. Solo hace dos cosas, muy rápido:</p>
+                    <ol class="step-list">
+                        <li><strong>Da puntos a una posición.</strong> Suma el valor de las piezas de cada bando y agrega un poco si están en buenas casillas: un caballo en el centro vale más que en una esquina.</li>
+                        <li><strong>Prueba jugadas.</strong> "Si yo juego esto, tú responderás lo mejor para ti, y entonces yo..." A esta idea se le llama <strong>minimax</strong>: yo busco el máximo y supongo que tú buscas el mínimo para mí.</li>
+                    </ol>
+                    <p>El problema es que las posibilidades explotan. Hay 20 primeras jugadas, 400 posiciones tras la respuesta y casi 200 mil después de solo dos jugadas de cada lado.</p>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/arbol-jugadas.gif" alt="Animación: las posiciones posibles crecen de 1 a 20, 400, 8,902 y 197,281 tras cuatro jugadas" width="320" height="110" loading="lazy">
+                        <figcaption>Crecimiento exponencial: cada jugada multiplica las posibilidades.</figcaption>
+                    </figure>
+                    <p>Por eso usa <strong>poda alfa-beta</strong>: si una jugada ya resultó peor que otra que analizó antes, deja de revisarla. Mira el recuadro verde bajo el tablero: te dice cuántas posiciones revisó en su última jugada. Compara los niveles Aprendiz y Maestra.</p>
+                    <p>En 1950, el matemático Claude Shannon estimó que hay unas 10<sup>120</sup> partidas posibles de ajedrez, muchas más que los átomos estimados en el universo observable. Ninguna computadora puede revisarlas todas. En 1997, Deep Blue derrotó al campeón mundial Garry Kasparov analizando cerca de 200 millones de posiciones por segundo. Hoy un teléfono juega mejor que Deep Blue.</p>
+                    <p class="learning-note"><strong>Investiga:</strong> en el nivel Maestra, la computadora dedica cerca de un segundo y medio a pensar. Eso alcanza para revisar miles de posiciones en tu navegador. ¿Cuántas revisó? ¿Cuánto tardarías tú en revisar esa cantidad a una por segundo?</p>
+                </section>
+
+                <section class="article-card" id="perft" aria-labelledby="perft-title">
+                    <h2 class="orange" id="perft-title">¿Cómo sabemos que las reglas están bien?</h2>
+                    <p>Las reglas del ajedrez tienen casos rarísimos, y un programa puede fallar sin que nadie lo note. Los programadores usan una prueba llamada <strong>perft</strong>: contar todas las posiciones posibles tras N jugadas y compararlas con los valores que ya se conocen. Si coinciden, es casi seguro que las reglas están bien.</p>
+                    <button class="retro-button" id="perft-run" type="button">PROBAR LAS REGLAS</button>
+                    <div class="table-scroll">
+                        <table class="retro-table">
+                            <thead><tr><th scope="col">Jugadas</th><th scope="col">Contamos</th><th scope="col">Valor conocido</th><th scope="col">Resultado</th><th scope="col">Tiempo</th></tr></thead>
+                            <tbody id="perft-body"></tbody>
+                        </table>
+                    </div>
+                    <p class="tiny">Así se prueba el software de verdad: comparando contra un resultado que se conoce de antemano.</p>
+                </section>
+
+                <section class="article-card" id="trigo" aria-labelledby="trigo-title">
+                    <h2 class="yellow" id="trigo-title">La leyenda del trigo</h2>
+                    <p>Cuenta la leyenda que el inventor del ajedrez le pidió a su rey un premio que parecía modesto: un grano de trigo en la primera casilla, dos en la segunda, cuatro en la tercera, y así, duplicando hasta la casilla 64. El rey se rió... hasta que hicieron la cuenta.</p>
+                    <div class="sim-controls">
+                        <label for="wheat-square">Casilla <output id="wheat-label">1</output> de 64</label>
+                        <input id="wheat-square" type="range" min="1" max="64" value="1">
+                    </div>
+                    <div class="wheat-board" id="wheat-board" aria-hidden="true"></div>
+                    <p>Granos en esta casilla: <span class="big-number" id="wheat-grains"></span></p>
+                    <p>Total hasta aquí: <span class="big-number" id="wheat-total"></span></p>
+                    <p class="sim-report" id="wheat-compare" aria-live="polite"></p>
+                    <p class="tiny">Cálculo aproximado: un grano pesa unos 40 miligramos y la cosecha mundial es de unos 800 millones de toneladas al año.</p>
+                    <p class="learning-note"><strong>Trigo y Sonora:</strong> en el Valle del Yaqui, en Sonora, el agrónomo Norman Borlaug desarrolló trigos que multiplicaron las cosechas de varios países. Recibió el Premio Nobel de la Paz en 1970. Investiga: ¿qué es la Revolución Verde?</p>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Sala de ajedrez</strong><br>
+            Si encuentras una buena jugada, busca una mejor.
+            <p>[ <a href="arcade.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="pasaporte.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+
+    <dialog id="promotion-dialog" aria-labelledby="promotion-title">
+        <h2 id="promotion-title">¡Tu peón corona! Elige una pieza</h2>
+        <button type="button" value="Q" aria-label="Dama"></button>
+        <button type="button" value="R" aria-label="Torre"></button>
+        <button type="button" value="B" aria-label="Alfil"></button>
+        <button type="button" value="N" aria-label="Caballo"></button>
+    </dialog>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/ajedrez-motor.js"></script>
+    <script src="../assets/js/ajedrez.js"></script>
+</body>
+</html>

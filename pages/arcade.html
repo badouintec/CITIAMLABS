@@ -1,0 +1,357 @@
+<!doctype html>
+<!--
+    Los juegos. Cada uno es una <section> y su programa está en
+    assets/js/arcade.js, en el orden de esta página.
+    OJO: arcade.js busca los elementos por su id. Si cambias un id aquí,
+    cámbialo también allá.
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Juegos educativos de matemáticas, robótica y ciencia del desierto en CiTIAM Labs.">
+    <title>Arcade del club — CiTIAM Labs</title>
+    <link rel="icon" href="../assets/gifs/favicon.gif" type="image/gif">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="page">
+        <div class="announcement"><strong>SALA DE RETOS:</strong> juegos cortos para aprender probando.</div>
+        <header class="masthead masthead-small">
+            <p class="eyebrow">JUEGOS EDUCATIVOS CiTIAM</p>
+            <div class="masthead-row">
+                <img src="../assets/gifs/calculadora.gif" alt="" width="96" height="96">
+                <h1>Arcade del club</h1>
+                <img src="../assets/gifs/cartas-memoria.gif" alt="" width="96" height="96">
+            </div>
+            <p class="subtitle">Piensa una estrategia, pruébala y vuelve a intentar.</p>
+        </header>
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a href="../index.html">Inicio</a>
+            <a href="acerca.html">Acerca de</a>
+            <a href="proyectos.html">Proyectos</a>
+            <a href="casos-de-exito.html">Casos de éxito</a>
+            <a href="temas.html">Temas</a>
+            <a href="historias.html">Historias</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="laboratorio.html">Laboratorio</a>
+            <a href="programacion.html">Programación</a>
+            <a href="bloques.html">Bloques</a>
+            <a href="arcade.html" aria-current="page">Arcade</a>
+            <a href="ajedrez.html">Ajedrez</a>
+            <a href="pasaporte.html">Pasaporte</a>
+            <a href="sitios.html">Sitios útiles</a>
+            <a href="galeria.html">Galería</a>
+            <a href="guia.html">Guía</a>
+        </nav>
+        <div class="toolbar" role="group" aria-label="Controles de sonido y animación">
+            <button class="retro-button" id="btn-midi" type="button">MÚSICA MIDI</button>
+            <button class="retro-button" id="btn-modem" type="button">SONIDO DE MÓDEM</button>
+            <button class="retro-button" id="btn-pausa" type="button">PAUSAR ANIMACIONES</button>
+        </div>
+        <div class="columns">
+            <aside class="sidebar" aria-label="Lista de juegos">
+                <h2 class="sidebar-title">[ JUEGOS ]</h2>
+                <ul class="menu">
+                    <li><a href="#runner"><strong>Robot Runner</strong></a></li>
+                    <li><a href="#buscacactus"><strong>Buscacactus</strong></a></li>
+                    <li><a href="#hongotchi"><strong>Hongotchi</strong></a></li>
+                    <li><a href="#expedicion"><strong>Expedición</strong></a></li>
+                    <li><a href="#math-game">Reto matemático</a></li>
+                    <li><a href="#robot-game">Ruta del robot</a></li>
+                    <li><a href="#desert-quiz">Misión desierto</a></li>
+                    <li><a href="#memory-game">Memorama STEAM</a></li>
+                    <li><a href="#shadow-lab">Sombras y Sol</a></li>
+                    <li><a href="#code-game">Detective de código</a></li>
+                    <li><a href="#rgb-game">Reto RGB</a></li>
+                    <li><a href="#curiosidades">Bitácora</a></li>
+                    <li><a href="ajedrez.html">¡Ajedrez!</a></li>
+                    <li><a href="bloques.html">Taller de bloques</a></li>
+                </ul>
+                <div class="badge">APRENDER<br><span>JUGANDO Y PENSANDO</span></div>
+                <p class="tiny privacy-note">Los juegos funcionan en esta página. Un resultado solo sale de aquí si pulsas PUBLICAR, y va con un apodo al azar.</p>
+                <img class="sidebar-gif" src="../assets/gifs/estrella.gif" alt="" width="24" height="24">
+                <figure class="photo-frame">
+                    <img src="../assets/images/maquinas-arcade.jpg" alt="Dos personas de espaldas juegan en máquinas de arcade" width="800" height="606" loading="lazy">
+                    <figcaption>Así eran los arcades. Foto: Andrevruas, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="../assets/gifs/robot-mini.gif" alt="Pequeño robot pixelado que mueve los brazos" width="48" height="48" loading="lazy">
+                <figure class="photo-frame">
+                    <img src="../assets/images/paneles-solares.jpg" alt="Paneles solares inclinados en un terreno seco bajo un cielo azul" width="800" height="494" loading="lazy">
+                    <figcaption>El panel solar es la meta del robot. Foto: Dennis Schroeder, NREL, dominio público.</figcaption>
+                </figure>
+                <img class="sidebar-gif" src="../assets/gifs/sol-mini.gif" alt="Sol pixelado con rayos que giran" width="48" height="48" loading="lazy">
+            </aside>
+            <main class="content" id="contenido">
+                <section class="article-card">
+                    <h2 class="cyan">Sala de maquinitas</h2>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/inserta-moneda.gif" alt="Letrero de arcade con monedas que giran: créditos gratis, pulsa comenzar" width="320" height="110">
+                    </figure>
+                    <p>Este rincón es una parte del sitio de CiTIAM Labs, no un sitio aparte del club. Aquí encontrarás retos de operaciones, programación y ciencias. Los problemas son ejemplos didácticos, no datos meteorológicos ni mediciones reales de Hermosillo.</p>
+                    <p>Si te equivocas, busca qué te enseña ese intento. La estrategia que pruebas importa tanto como el resultado.</p>
+                </section>
+
+                <section class="article-card game-page-section" id="runner" aria-labelledby="runner-title">
+                    <h2 class="yellow" id="runner-title">Robot Runner</h2>
+                    <p><strong>Salta los cactus y las rocas.</strong> Atrapa las gotas de agua para ganar puntos extra. Barra espaciadora, clic o toca la pantalla.</p>
+                    <canvas class="sim-canvas" id="runner-canvas" width="480" height="160" tabindex="0" role="img" aria-label="Juego: un robot corre por el desierto y salta obstáculos"></canvas>
+                    <div class="game-status">
+                        <span>Puntos: <span id="runner-score">0</span></span>
+                        <span>Récord: <span id="runner-record">0</span></span>
+                    </div>
+                    <label class="tiny"><input id="runner-sound" type="checkbox"> Con sonido</label>
+                    <div class="records" id="records-runner" hidden></div>
+                </section>
+
+                <section class="article-card game-page-section" id="buscacactus" aria-labelledby="mine-title">
+                    <h2 class="green" id="mine-title">Buscacactus</h2>
+                    <p><strong>Abre todas las casillas sin pincharte.</strong> El número te dice cuántos cactus hay alrededor. Clic derecho, o el botón BANDERITA, para marcar donde crees que hay uno.</p>
+                    <div class="mine-window">
+                        <div class="mine-title">Buscacactus 98</div>
+                        <div class="mine-top">
+                            <span class="mine-lcd" id="mine-left" aria-label="Cactus sin marcar">010</span>
+                            <button class="mine-face" id="mine-face" type="button" aria-label="Empezar de nuevo">:-)</button>
+                            <span class="mine-lcd" id="mine-time" aria-label="Segundos">000</span>
+                        </div>
+                        <div class="mine-board" id="mine-board" role="group" aria-label="Campo de cactus"></div>
+                    </div>
+                    <div class="block-controls"><button class="retro-button" id="mine-flag" type="button" aria-pressed="false">BANDERITA: NO</button></div>
+                    <p class="game-feedback" id="mine-status" aria-live="polite"></p>
+                    <div class="records" id="records-buscacactus" hidden></div>
+                </section>
+
+                <section class="article-card game-page-section" id="hongotchi" aria-labelledby="tchi-title">
+                    <h2 class="magenta" id="tchi-title">Hongotchi: tu mascota es un hongo</h2>
+                    <p><strong>Mantén sus tres medidores en verde y crecerá hasta la cosecha.</strong> Los medidores bajan de verdad, aunque cierres la página. ¡Regresa mañana a verlo! Si no quieres esperar, usa la máquina del tiempo.</p>
+                    <div class="tchi-layout">
+                        <div class="tchi-egg">
+                            <p class="tchi-brand">HONGOTCHI</p>
+                            <canvas id="tchi-canvas" width="64" height="64" role="img" aria-label="Tu hongo en la pantalla"></canvas>
+                            <p class="tchi-stage" id="tchi-stage" aria-live="polite"></p>
+                        </div>
+                        <div>
+                            <p class="tchi-meter">Humedad <span><i id="tchi-water"></i></span></p>
+                            <p class="tchi-meter">Aire fresco <span><i id="tchi-air"></i></span></p>
+                            <p class="tchi-meter">Limpieza <span><i id="tchi-clean"></i></span></p>
+                            <div class="block-controls">
+                                <button class="retro-button" id="tchi-do-water" type="button">ROCIAR</button>
+                                <button class="retro-button" id="tchi-do-air" type="button">VENTILAR</button>
+                                <button class="retro-button" id="tchi-do-clean" type="button">LIMPIAR</button>
+                                <button class="retro-button" id="tchi-do-talk" type="button">PLATICAR</button>
+                            </div>
+                            <div class="block-controls">
+                                <button class="retro-button" id="tchi-do-time" type="button">MÁQUINA DEL TIEMPO: +1 HORA</button>
+                                <button class="retro-button" id="tchi-harvest" type="button" hidden>¡COSECHAR!</button>
+                                <button class="retro-button" id="tchi-restart" type="button" hidden>EMPEZAR OTRO CULTIVO</button>
+                            </div>
+                            <p class="game-feedback" id="tchi-message" aria-live="polite"></p>
+                            <p class="tiny">Cosechas: <span id="tchi-count">0</span>. Conoce el <a href="proyectos.html#hongos">cultivo real del club</a>.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-card game-page-section" id="expedicion" aria-labelledby="trip-title">
+                    <h2 class="orange" id="trip-title">Expedición al Pinacate</h2>
+                    <p><strong>Cruza el desierto de Sonora hasta el cráter sin quedarte sin agua.</strong> Elige bien: cada decisión cuenta, y los consejos son reales.</p>
+                    <canvas class="sim-canvas" id="trip-canvas" width="320" height="120" role="img" aria-label="Escena de la expedición en el desierto"></canvas>
+                    <div class="game-status">
+                        <span>Tramo: <span id="trip-day"></span></span>
+                        <span>Agua: <span id="trip-water"></span></span>
+                        <span>Energía: <span id="trip-energy"></span></span>
+                    </div>
+                    <p class="quiz-question" id="trip-story" aria-live="polite">Tienes 9 botellas de agua, una mochila y mucha curiosidad.</p>
+                    <div class="block-controls" id="trip-choices"></div>
+                </section>
+
+                <img class="separator" src="../assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
+                <section class="article-card game-page-section" id="math-game" aria-labelledby="math-title">
+                    <img class="game-icon" src="../assets/gifs/calculadora.gif" alt="" width="96" height="96" loading="lazy">
+                    <h2 class="yellow" id="math-title">1. Reto relámpago de matemáticas</h2>
+                    <p>Resuelve cinco problemas antes de que termine el reloj. Cada respuesta correcta vale un punto. Aparecerán operaciones de suma, resta y multiplicación en situaciones imaginarias con mapas, plantas y sensores.</p>
+                    <div class="game-status">
+                        <span id="math-round">Ronda: lista</span>
+                        <span id="math-score">Puntos: 0</span>
+                        <span id="math-timer">Tiempo: 45 s</span>
+                    </div>
+                    <p class="math-question" id="math-question" aria-live="polite">Pulsa comenzar para recibir tu primer problema.</p>
+                    <form id="math-form" class="game-controls">
+                        <label for="math-answer">Tu respuesta:</label>
+                        <input id="math-answer" type="number" step="1" inputmode="numeric" disabled required>
+                        <button class="retro-button" id="math-submit" type="submit" disabled>COMPROBAR</button>
+                        <button class="retro-button" id="math-start" type="button">COMENZAR</button>
+                    </form>
+                    <p id="math-feedback" class="game-feedback" aria-live="polite"></p>
+                </section>
+
+                <section class="article-card game-page-section" id="robot-game" aria-labelledby="route-title">
+                    <img class="game-icon" src="../assets/gifs/robot-mini.gif" alt="" width="96" height="96" loading="lazy">
+                    <h2 class="green" id="route-title">2. Programa la ruta del robot</h2>
+                    <p>El robot empieza en la esquina inferior izquierda. Debe llegar al panel solar, en la esquina superior derecha, sin chocar con las rocas. Agrega hasta ocho instrucciones, una por cada casilla que avanzará. Puedes borrar la secuencia y volver a empezar.</p>
+                    <div class="route-board" id="route-board" role="img" aria-label="Cuadrícula de navegación del robot"></div>
+                    <p class="route-key"><img src="../assets/gifs/robot-mini.gif" alt="" width="24" height="24"> Robot &nbsp; <img src="../assets/gifs/roca-mini.gif" alt="" width="24" height="24"> Roca &nbsp; <img src="../assets/gifs/panel-mini.gif" alt="" width="24" height="24"> Panel solar</p>
+                    <p class="route-program" id="route-program" aria-live="polite">Programa: vacío (0/8)</p>
+                    <div class="game-controls route-controls" role="group" aria-label="Agregar instrucciones al programa">
+                        <button class="retro-button" type="button" data-move="up">ARRIBA</button>
+                        <button class="retro-button" type="button" data-move="left">IZQUIERDA</button>
+                        <button class="retro-button" type="button" data-move="down">ABAJO</button>
+                        <button class="retro-button" type="button" data-move="right">DERECHA</button>
+                        <button class="retro-button" id="route-undo" type="button">DESHACER</button>
+                        <button class="retro-button" id="route-clear" type="button">BORRAR</button>
+                        <button class="retro-button" id="route-run" type="button">EJECUTAR</button>
+                    </div>
+                    <p id="route-feedback" class="game-feedback" aria-live="polite">Reto: piensa primero cómo rodear las rocas.</p>
+                </section>
+
+                <section class="article-card game-page-section" id="desert-quiz" aria-labelledby="quiz-title">
+                    <img class="game-icon" src="../assets/gifs/sol-mini.gif" alt="" width="96" height="96" loading="lazy">
+                    <h2 class="magenta" id="quiz-title">3. Misión desierto: preguntas de ciencia</h2>
+                    <p>Responde cinco preguntas sobre Sonora, plantas, energía solar, sensores y matemáticas. Después de cada respuesta aparece una explicación. El orden de las preguntas y de las respuestas cambia en cada partida.</p>
+                    <div class="game-status">
+                        <span id="quiz-round">Pregunta: lista</span>
+                        <span id="quiz-score">Aciertos: 0</span>
+                    </div>
+                    <p class="quiz-question" id="quiz-question" aria-live="polite">Pulsa comenzar misión cuando estés listo.</p>
+                    <div class="quiz-answers" id="quiz-answers"></div>
+                    <p id="quiz-feedback" class="game-feedback" aria-live="polite"></p>
+                    <button class="retro-button" id="quiz-start" type="button">COMENZAR MISIÓN</button>
+                    <button class="retro-button" id="quiz-next" type="button" hidden>SIGUIENTE PREGUNTA</button>
+                </section>
+
+                <section class="article-card game-page-section" id="memory-game" aria-labelledby="memory-title">
+                    <img class="game-icon" src="../assets/gifs/cartas-memoria.gif" alt="" width="96" height="96" loading="lazy">
+                    <h2 class="yellow" id="memory-title">4. Memorama de conceptos STEAM</h2>
+                    <p>Encuentra las seis parejas que conectan una palabra con su explicación. Voltea dos tarjetas por turno: si forman pareja, se quedan abiertas. Si no coinciden, vuelve a intentarlo y recuerda dónde viste cada concepto.</p>
+                    <p><strong>Cómo ganar:</strong> encuentra todas las parejas. El tablero cuenta tus intentos; trata de terminar con la menor cantidad posible.</p>
+                    <div class="game-status">
+                        <span id="memory-pairs">Parejas: 0/6</span>
+                        <span id="memory-moves">Intentos: 0</span>
+                    </div>
+                    <div class="memory-board" id="memory-board" role="group" aria-label="Tablero del memorama STEAM"></div>
+                    <p id="memory-feedback" class="game-feedback" aria-live="polite">Pulsa comenzar para mezclar las tarjetas.</p>
+                    <button class="retro-button" id="memory-start" type="button">COMENZAR MEMORAMA</button>
+                    <div class="records" id="records-memorama" hidden></div>
+                </section>
+
+                <section class="article-card game-page-section" id="shadow-lab" aria-labelledby="shadow-title">
+                    <h2 class="green" id="shadow-title">5. Laboratorio de sombras</h2>
+                    <p>Explora cómo cambia la sombra de un objeto cuando cambia la altura aparente del Sol. Mueve el control: un ángulo pequeño representa al Sol bajo y produce una sombra más larga; un ángulo grande representa al Sol alto y produce una sombra más corta.</p>
+                    <p>Este modelo usa trigonometría con un objeto imaginario de 10 centímetros. No es una medición del clima ni del Sol de hoy; es una simulación para comparar ángulos.</p>
+                    <div class="shadow-control">
+                        <label for="sun-angle">Altura del Sol en el modelo: <output id="sun-angle-label" for="sun-angle">30</output> grados</label>
+                        <input id="sun-angle" type="range" min="15" max="75" value="30">
+                    </div>
+                    <div class="shadow-visual" id="shadow-visual" role="img" aria-label="Modelo de un objeto y su sombra">
+                        <span class="shadow-object" aria-hidden="true"></span>
+                        <span class="shadow-bar" aria-hidden="true"></span>
+                    </div>
+                    <p class="game-status"><span>Longitud calculada de la sombra: <output id="shadow-length">17.3</output> cm</span></p>
+                    <p id="shadow-feedback" class="game-feedback" aria-live="polite">Mueve el control y observa cómo se alarga o acorta la sombra.</p>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/sombra-del-dia.gif" alt="Animación: el Sol cruza el cielo sobre un cactus; la sombra es larga en la mañana, corta al mediodía y larga en la tarde, siempre del lado contrario al Sol" width="320" height="110" loading="lazy">
+                        <figcaption>Durante el día, la sombra siempre queda del lado contrario al Sol.</figcaption>
+                    </figure>
+                </section>
+
+                <section class="article-card game-page-section" id="code-game" aria-labelledby="code-title">
+                    <img class="game-icon" src="../assets/gifs/lupa-codigo.gif" alt="" width="96" height="96" loading="lazy">
+                    <h2 class="magenta" id="code-title">6. Detective de código</h2>
+                    <p>Lee el fragmento y descubre qué hace. Este reto practica las etiquetas, los estilos y las acciones que encontrarás en el apartado <a href="programacion.html">Programación</a>.</p>
+                    <div class="game-status">
+                        <span id="code-round">Pregunta: lista</span>
+                        <span id="code-score">Aciertos: 0</span>
+                    </div>
+                    <p class="code-block" id="code-snippet">Pulsa comenzar para investigar el primer fragmento.</p>
+                    <p class="quiz-question" id="code-question" aria-live="polite">¿Qué hace este código?</p>
+                    <div class="quiz-answers" id="code-answers"></div>
+                    <p id="code-feedback" class="game-feedback" aria-live="polite"></p>
+                    <button class="retro-button" id="code-start" type="button">COMENZAR INVESTIGACIÓN</button>
+                    <button class="retro-button" id="code-next" type="button" hidden>SIGUIENTE PREGUNTA</button>
+                </section>
+
+                <section class="article-card game-page-section" id="rgb-game" aria-labelledby="rgb-title">
+                    <h2 class="orange" id="rgb-title">7. Reto RGB: mezcla un color</h2>
+                    <p>Las pantallas combinan rojo (R), verde (G) y azul (B). Ajusta los tres controles para acercarte al color objetivo. Cada canal va de 0 a 255; no necesitas acertar exactamente para aprender cómo cambia la mezcla.</p>
+                    <figure class="gif-card gif-solo">
+                        <img src="../assets/gifs/rgb-subpixeles.gif" alt="Animación: puntos rojos, verdes y azules de una pantalla se encienden en distintas combinaciones y el resultado es amarillo, cian, magenta o blanco" width="320" height="110" loading="lazy">
+                        <figcaption>Cada pixel de una pantalla tiene tres luces pequeñas. Al mezclarlas aparecen otros colores.</figcaption>
+                    </figure>
+                    <div class="color-challenge">
+                        <div class="color-swatch" id="rgb-target" role="img" aria-label="Color objetivo"></div>
+                        <p>COLOR OBJETIVO</p>
+                        <code id="rgb-target-values" hidden></code>
+                    </div>
+                    <div class="color-challenge">
+                        <div class="color-swatch" id="rgb-current" role="img" aria-label="Tu color"></div>
+                        <p>TU MEZCLA</p>
+                        <code id="rgb-current-values" aria-live="polite">RGB(128, 128, 128)</code>
+                    </div>
+                    <div class="rgb-controls">
+                        <label for="rgb-red">Rojo <output id="rgb-red-value">128</output></label>
+                        <input id="rgb-red" type="range" min="0" max="255" value="128">
+                        <label for="rgb-green">Verde <output id="rgb-green-value">128</output></label>
+                        <input id="rgb-green" type="range" min="0" max="255" value="128">
+                        <label for="rgb-blue">Azul <output id="rgb-blue-value">128</output></label>
+                        <input id="rgb-blue" type="range" min="0" max="255" value="128">
+                    </div>
+                    <div class="game-status">
+                        <span id="rgb-round">Ronda: 1/5</span>
+                        <span id="rgb-score">Aciertos: 0</span>
+                    </div>
+                    <p id="rgb-feedback" class="game-feedback" aria-live="polite">Ajusta los canales y comprueba tu mezcla.</p>
+                    <button class="retro-button" id="rgb-check" type="button">COMPROBAR COLOR</button>
+                    <button class="retro-button" id="rgb-next" type="button" hidden>SIGUIENTE COLOR</button>
+                </section>
+
+                <section class="article-card" id="curiosidades">
+                    <h2 class="orange">Bitácora del desierto</h2>
+                    <figure class="photo-frame float-right">
+                        <img src="../assets/images/ocotillo-tras-lluvia.jpg" alt="Ocotillo y saguaros en el desierto de Sonora, con un cielo azul y nubes" width="600" height="800" loading="lazy">
+                        <figcaption>Ocotillo y saguaros. Foto: BLM Arizona, dominio público.</figcaption>
+                    </figure>
+                    <p>Una ficha breve puede ser el principio de una investigación. Lee el dato, abre la fuente sugerida y busca otra referencia que lo confirme.</p>
+                    <div class="fact-card" aria-live="polite" aria-atomic="true">
+                        <p class="fact-label">FICHA DE CAMPO CiTIAM</p>
+                        <p id="fact-text">Cargando dato curioso...</p>
+                        <p id="fact-source" class="tiny"></p>
+                    </div>
+                    <button class="retro-button" id="next-fact" type="button">SIGUIENTE FICHA</button>
+                </section>
+
+                <section class="article-card">
+                    <h2 class="yellow">¿Quieres un reto mayor?</h2>
+                    <img class="game-icon" src="../assets/gifs/caballo-icono.gif" alt="" width="96" height="96" loading="lazy">
+                    <p><strong><a href="ajedrez.html">Ajedrez:</a></strong> juega contra la computadora, resuelve problemas de mate y descubre cómo piensa una máquina.</p>
+                    <p><strong><a href="bloques.html">Taller de bloques:</a></strong> si te gustó la ruta del robot, ahora programa uno con ciclos y sensores.</p>
+                    <p><strong><a href="pasaporte.html">Pasaporte:</a></strong> cada reto de esta sala vale un sello.</p>
+                </section>
+
+                <section class="article-card bulletin">
+                    <h2 class="cyan">Reto completado</h2>
+                    <p>Cuenta qué estrategia te ayudó, qué fue difícil y qué probarías después. Visita la <a href="proyectos.html">bitácora de proyectos</a> para ver cómo se aplican estas ideas en las actividades del club.</p>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <strong>CiTIAM Labs — Arcade del club</strong><br>
+            Un buen intento siempre deja una pista.
+            <p>[ <a href="bloques.html">« Sala anterior</a> | <a href="../index.html">Anillo CiTIAM</a> | <a href="ajedrez.html">Sala siguiente »</a> ]</p>
+            <div class="badge-row">
+                <a href="../index.html"><img src="../assets/gifs/boton-citiam.gif" alt="Botón: CiTIAM Labs, laboratorio" width="88" height="31" loading="lazy"></a>
+                <img src="../assets/gifs/boton-hermosillo.gif" alt="Botón: hecho en Hermosillo" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-hecho-a-mano.gif" alt="Botón: hecho a mano con HTML, CSS y JavaScript" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-nada-que-instalar.gif" alt="Botón: nada que instalar" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-sin-rastreo.gif" alt="Botón: sin cookies ni rastreos" width="88" height="31" loading="lazy">
+                <img src="../assets/gifs/boton-800x600.gif" alt="Botón: ideal en 800 por 600" width="88" height="31" loading="lazy">
+            </div>
+            <p class="tiny">Última actualización: 3 de noviembre de 2026 · <a href="galeria.html#creditos">Créditos de las fotos</a></p>
+        </footer>
+    </div>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/records.js"></script>
+    <script src="../assets/js/arcade.js"></script>
+    <script src="../assets/js/maquinitas.js"></script>
+</body>
+</html>
