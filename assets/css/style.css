@@ -55,7 +55,7 @@ body {
     padding: 18px 10px;
     background: var(--navy) url("../gifs/fondo-estrellas.gif");
     color: var(--white);
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: Arial, sans-serif;
     font-size: 15px;
 }
 
