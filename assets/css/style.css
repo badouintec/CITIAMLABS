@@ -23,9 +23,11 @@
    == 18 Laboratorio virtual
    == 19 Robotín, Pasaporte, Historias y Artistas
    == 20 Sala de maquinitas
+   == 21 Escritorio: ventanas, skins y juguetes
 
    Regla del diseño: nada de sombras suaves, esquinas redondeadas ni
    degradados decorativos. Si no se podía ver en 1998, no va aquí.
+   La excepción son los skins opcionales de la sección 21.
    ===================================================================== */
 
 
@@ -2569,7 +2571,7 @@ html.modo-terminal {
 
 .tchi-brand {
     margin: 0 0 6px;
-    color: var(--white);
+    color: var(--black);
     font-family: Impact, sans-serif;
     font-size: 16px;
     letter-spacing: 1px;
@@ -2670,5 +2672,476 @@ html.modo-terminal {
     .tchi-egg {
         width: 210px;
         margin: 0 auto;
+    }
+}
+
+
+/* == 21 Escritorio: ventanas, skins y juguetes ======================== */
+
+/* Tarjetas enrollables y rayas de barra de título del Mac. */
+.article-card > h2 {
+    padding-right: 34px;
+    border-bottom: 0;
+}
+
+.article-card > h2::after {
+    content: "";
+    display: block;
+    height: 7px;
+    margin: 6px -34px 0 0;
+    background: repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px 3px);
+}
+
+.article-card {
+    position: relative;
+}
+
+.shade-box {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 2px outset var(--gray);
+    background: var(--gray);
+    color: var(--black);
+    cursor: pointer;
+    font: bold 15px/1 Arial, sans-serif;
+}
+
+.shade-box:active {
+    border-style: inset;
+}
+
+.article-card.is-shaded > :not(h2, .shade-box) {
+    display: none;
+}
+
+.article-card.is-shaded > h2 {
+    margin-bottom: 0;
+}
+
+/* Ventanas: blanco y negro, como un Macintosh de 1986. */
+.desk-window {
+    position: fixed;
+    z-index: 20;
+    width: min(340px, calc(100vw - 12px));
+    max-height: calc(100vh - 12px);
+    overflow-y: auto;
+    border: 2px solid #000000;
+    background: #ffffff;
+    box-shadow: 3px 3px 0 #000000;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+.desk-titlebar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 6px;
+    border-bottom: 2px solid #000000;
+    background: repeating-linear-gradient(to bottom, #000000 0 1px, #ffffff 1px 3px);
+    cursor: move;
+    touch-action: none;
+    user-select: none;
+}
+
+.desk-close {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: 2px solid #000000;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.desk-close:hover,
+.desk-close:focus {
+    background: #000000;
+}
+
+.desk-titlebar h2 {
+    margin: 0 auto;
+    padding: 0 8px;
+    background: #ffffff;
+    color: #000000;
+    font: bold 13px "Courier New", monospace;
+    white-space: nowrap;
+}
+
+.desk-body {
+    padding: 8px;
+}
+
+.desk-body fieldset {
+    min-width: 0; /* por defecto un fieldset crece con su contenido */
+    margin: 0 0 8px;
+    padding: 6px 8px;
+    border: 1px solid #000000;
+}
+
+.desk-body legend {
+    padding: 0 4px;
+    font-weight: bold;
+}
+
+.desk-body label {
+    display: block;
+    padding: 3px 0;
+}
+
+.desk-body .retro-button {
+    color: #000000;
+}
+
+.radio-face {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+    border: 2px inset #808080;
+    background: #000000;
+}
+
+.radio-bars {
+    flex: none;
+    width: 96px;
+    height: 28px;
+    image-rendering: pixelated;
+}
+
+.radio-text {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    margin: 0;
+    color: #00ff00;
+    font: bold 13px "Courier New", monospace;
+    white-space: nowrap;
+}
+
+/* El pop-up: colores que gritan, a propósito. */
+.scam-window .desk-body {
+    background: #ffff00;
+    text-align: center;
+}
+
+.scam-prize {
+    margin: 4px 0;
+    color: #b00000;
+    font: bold 17px Arial, sans-serif;
+}
+
+.scam-result {
+    font-weight: bold;
+    text-align: left;
+}
+
+.scam-window ul,
+.scam-window .tiny {
+    text-align: left;
+}
+
+/* Estela y protector de pantalla. */
+.trail-star {
+    position: fixed;
+    z-index: 40;
+    width: 16px;
+    height: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: pixelated;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.saver-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    image-rendering: pixelated;
+    cursor: none;
+}
+
+/* Atardecer-o-matic. */
+.sunset-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 3px inset #808080;
+    background: #000000;
+    cursor: ew-resize;
+    image-rendering: pixelated;
+    touch-action: none;
+}
+
+/* Menú plegable: el botón solo existe en pantallas angostas. */
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page > * {
+        min-width: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        order: -2;
+        width: 100%;
+        margin: 0 0 6px;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .site-nav.is-collapsible {
+        order: -1;
+        margin: 0 0 10px;
+    }
+
+    .site-nav.is-collapsible:not(.is-open) {
+        display: none;
+    }
+
+    .robotin-body {
+        transform: scale(0.75);
+        transform-origin: bottom right;
+    }
+}
+
+/* Palabra de cada skin. Vacía en el clásico. */
+.skin-word {
+    margin: 2px 0 0;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.skin-word:empty {
+    display: none;
+}
+
+/* ---- Skin Atardecer: vaporwave con franjas de 256 colores ---- */
+html[data-skin="atardecer"] {
+    --navy: #1a0033;
+    --green: #7dffd6;
+    --cyan: #6ffff2;
+    --yellow: #ffe66d;
+    --gray: #d9b8f0;
+}
+
+html[data-skin="atardecer"] body {
+    background: linear-gradient(to bottom, #1a0033 0 12%, #2b0a3d 12% 24%, #4a1259 24% 36%, #7a1f6b 36% 48%, #b02f78 48% 60%, #ff6f91 60% 72%, #ff9a76 72% 84%, #ffc371 84%) fixed;
+}
+
+html[data-skin="atardecer"] body::before {
+    content: "";
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    height: 34vh;
+    background:
+        repeating-linear-gradient(to right, #ff2fb0 0 2px, transparent 2px 60px),
+        repeating-linear-gradient(to bottom, #ff2fb0 0 2px, #2b0a3d 2px 34px);
+    transform: perspective(240px) rotateX(58deg);
+    transform-origin: bottom;
+}
+
+html[data-skin="atardecer"] .masthead {
+    border-color: #ff71ce;
+    background: #1a0033;
+}
+
+html[data-skin="atardecer"] .columns,
+html[data-skin="atardecer"] .article-card {
+    background: #1d0638;
+}
+
+html[data-skin="atardecer"] .article-card {
+    border-color: #ff71ce;
+}
+
+html[data-skin="atardecer"] .sidebar {
+    background: #2b0a3d;
+}
+
+html[data-skin="atardecer"] .toolbar {
+    background: #8a5fb5;
+}
+
+html[data-skin="atardecer"] .skin-word {
+    color: #ff71ce;
+}
+
+/* ---- Skin Mac Plus: invierte todo y sube el contraste, y las imágenes se
+   invierten de regreso. Así no hay que cambiar cada color del sitio. ---- */
+html[data-skin="mac"] {
+    filter: invert(1) grayscale(1) contrast(1.6);
+    background: #000000;
+}
+
+html[data-skin="mac"] body {
+    background: repeating-conic-gradient(#000000 0 25%, #ffffff 0 50%) 0 0 / 2px 2px;
+}
+
+html[data-skin="mac"] img,
+html[data-skin="mac"] canvas,
+html[data-skin="mac"] iframe,
+html[data-skin="mac"] .desk-window {
+    filter: invert(1);
+}
+
+html[data-skin="mac"] .desk-window canvas {
+    filter: none;
+}
+
+/* ---- Skin Aero: cielo, vidrio y botones de gel ---- */
+html[data-skin="aero"] {
+    --navy: #0a3a6b;
+    --green: #9dffb0;
+    --cyan: #a8f0ff;
+    --yellow: #ffffff;
+    --gray: #cfeeff;
+}
+
+html[data-skin="aero"] body {
+    background:
+        radial-gradient(circle at 8% 22%, #ffffff66 0 22px, transparent 23px),
+        radial-gradient(circle at 12% 34%, #ffffff44 0 12px, transparent 13px),
+        radial-gradient(circle at 92% 18%, #ffffff55 0 30px, transparent 31px),
+        radial-gradient(circle at 88% 42%, #ffffff33 0 16px, transparent 17px),
+        linear-gradient(to bottom, #2f9be6 0%, #9fdcff 55%, #e9fbff 76%, #8fdc5a 77%, #3f9e2f 100%) fixed;
+    background-attachment: fixed;
+}
+
+html[data-skin="aero"] .masthead {
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    background: linear-gradient(to bottom, #1c6fb5 0 50%, #0a4a86 50%);
+}
+
+html[data-skin="aero"] .masthead h1 {
+    color: #ffffff;
+}
+
+html[data-skin="aero"] .columns {
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0a3a6b;
+}
+
+html[data-skin="aero"] .article-card {
+    border: 1px solid #ffffff88;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #2a6ea8, #0f4c81 40%);
+}
+
+html[data-skin="aero"] .sidebar {
+    background: #0a3a6b;
+}
+
+html[data-skin="aero"] .site-nav,
+html[data-skin="aero"] .toolbar,
+html[data-skin="aero"] .footer {
+    border: 2px solid #ffffff;
+    background: #bfe9ff;
+}
+
+html[data-skin="aero"] .site-nav a,
+html[data-skin="aero"] .retro-button,
+html[data-skin="aero"] .shade-box {
+    border: 1px solid #1f6ea8;
+    border-radius: 7px;
+    background: linear-gradient(to bottom, #f4fcff 0 48%, #a9dcfa 48%);
+    color: #06305a;
+}
+
+html[data-skin="aero"] .skin-word {
+    color: #ffffff;
+}
+
+/* ---- Skin Neón: la ciudad de noche del future funk ---- */
+html[data-skin="neon"] {
+    --navy: #07001a;
+    --green: #05ffa1;
+    --cyan: #01cdfe;
+    --yellow: #fffb96;
+    --gray: #ff9be8;
+}
+
+html[data-skin="neon"] body {
+    background: repeating-linear-gradient(to bottom, #07001a 0 3px, #120033 3px 4px);
+}
+
+html[data-skin="neon"] body::before {
+    content: "";
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    height: 30vh;
+    background: linear-gradient(to right, #000000 0 7%, transparent 7% 9%, #000000 9% 15%, transparent 15% 18%, #000000 18% 22%, transparent 22% 78%, #000000 78% 84%, transparent 84% 86%, #000000 86% 93%, transparent 93% 95%, #000000 95%);
+    border-bottom: 3px solid #ff2fb0;
+}
+
+html[data-skin="neon"] .masthead {
+    border-color: #ff2fb0;
+    background: #0d0221;
+}
+
+html[data-skin="neon"] .masthead h1 {
+    color: #01cdfe;
+}
+
+html[data-skin="neon"] .columns {
+    border-color: #01cdfe;
+    background: #0d0221;
+}
+
+html[data-skin="neon"] .article-card {
+    border-color: #ff2fb0;
+    background: #0d0221;
+}
+
+html[data-skin="neon"] .sidebar {
+    background: #120033;
+}
+
+html[data-skin="neon"] .toolbar {
+    background: #6a1b9a;
+}
+
+html[data-skin="neon"] .skin-word {
+    color: #ff71ce;
+}
+
+@media print {
+    .desk-window,
+    .shade-box,
+    .trail-star,
+    .saver-canvas,
+    .menu-toggle {
+        display: none !important;
     }
 }

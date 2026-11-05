@@ -12,7 +12,8 @@
      6. Robotín
 
    Otros programas:
-     home.js          solo en index.html (Hoy en CiTIAM, ideas, contador, libro de visitas)
+     escritorio.js    en todas las páginas (Panel de Control, skins y juguetes)
+     home.js          solo en index.html (Hoy en CiTIAM, ideas, contador, libro de visitas, atardecer)
      arcade.js        solo en arcade.html (los retos y la bitácora)
      records.js       solo en arcade.html (tabla de récords en Supabase)
      maquinitas.js    solo en arcade.html (Robot Runner, Buscacactus, Hongotchi, Expedición)
@@ -670,6 +671,7 @@ const STAMPS = [
     { id: "epidemia", name: "Contra la epidemia", hint: "Corre una epidemia hasta el final.", page: "laboratorio", anchor: "epidemia" },
     { id: "atomos", name: "Arma átomos", hint: "Completa los 5 retos de átomos.", page: "laboratorio", anchor: "atomos" },
     { id: "reaccion", name: "Reflejos", hint: "Termina una serie de tiempo de reacción.", page: "laboratorio", anchor: "reaccion" },
+    { id: "no-caigo", name: "No caigo", hint: "Descubre la trampa del pop-up que sale en la portada.", page: "index" },
     { id: "secreto", name: "???", hint: "Hay un código secreto. Mira el código fuente del Pasaporte.", page: "pasaporte" }
 ];
 const STAMP_RANKS = [[STAMPS.length, "Leyenda de CiTIAM"], [15, "Jefatura de laboratorio"], [9, "Investigación en marcha"], [4, "Asistente de laboratorio"], [1, "Aprendiz"], [0, "Visitante"]];

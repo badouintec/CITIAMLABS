@@ -8,6 +8,7 @@
      2. Contador de visitas
      3. Libro de visitas
      4. Hoy en CiTIAM: un dato por día y tu siguiente misión
+     5. Atardecer-o-matic: el cielo según la hora
 
    El contador y el libro guardan sus datos solo en este navegador.
    Nada viaja a internet, por eso nadie más puede ver las firmas.
@@ -145,3 +146,181 @@ function renderToday() {
 
 window.addEventListener("stamp-earned", renderToday);
 renderToday();
+
+
+/* ---------------------------------------------------------------------
+   5. Atardecer-o-matic
+   Un paisaje de 320 x 120 pixeles. El color del cielo depende de la altura
+   del Sol: SKY guarda varios cielos y se mezclan los dos más cercanos.
+   Solo se anima el piso, y nunca con las animaciones en pausa.
+   --------------------------------------------------------------------- */
+{
+    const canvas = document.querySelector("#sunset-canvas");
+    const context = canvas.getContext("2d");
+    const hourInput = document.querySelector("#sunset-hour");
+    const timeLabel = document.querySelector("#sunset-time");
+    const note = document.querySelector("#sunset-note");
+    const WIDTH = canvas.width;
+    const HEIGHT = canvas.height;
+    const HORIZON = 78;
+    const SUNRISE = 6;
+    const SUNSET = 19;
+    const BANDS = 12; // pocas franjas de color, como una pantalla de 256 colores
+    const SKY = [
+        { height: -0.5, top: [2, 2, 30], low: [12, 8, 54], ground: [8, 6, 30], line: [110, 60, 200] },
+        { height: -0.12, top: [20, 8, 60], low: [96, 30, 112], ground: [24, 12, 50], line: [255, 70, 190] },
+        { height: 0.02, top: [43, 10, 61], low: [255, 111, 145], ground: [50, 16, 70], line: [255, 90, 200] },
+        { height: 0.2, top: [70, 90, 170], low: [255, 195, 113], ground: [120, 80, 70], line: [255, 180, 120] },
+        { height: 0.5, top: [40, 120, 220], low: [160, 215, 255], ground: [205, 170, 110], line: [160, 120, 70] },
+        { height: 1, top: [30, 110, 225], low: [150, 210, 255], ground: [215, 180, 120], line: [170, 130, 80] }
+    ];
+    const STARS = Array.from({ length: 50 }, (_, i) => [(i * 73) % WIDTH, (i * 37) % HORIZON]);
+    let hour = 19;
+    let gridOffset = 0;
+    let isVisible = true;
+    let lastFrame = 0;
+
+    const mix = (a, b, amount) => a.map((value, i) => Math.round(value + (b[i] - value) * amount));
+    const toColor = ([red, green, blue]) => `rgb(${red}, ${green}, ${blue})`;
+    const sunHeight = (time) => Math.sin(Math.PI * (time - SUNRISE) / (SUNSET - SUNRISE));
+    const belowHorizon = (time) => time < SUNRISE || time > SUNSET;
+
+    function skyAt(height) {
+        const value = Math.max(SKY[0].height, Math.min(height, 1));
+        const nextIndex = SKY.findIndex((sky) => sky.height >= value);
+        const after = SKY[Math.max(nextIndex, 1)];
+        const before = SKY[Math.max(nextIndex, 1) - 1];
+        const amount = (value - before.height) / (after.height - before.height);
+        return Object.fromEntries(["top", "low", "ground", "line"].map((key) => [key, mix(before[key], after[key], amount)]));
+    }
+
+    function drawSun(height, sky) {
+        const x = Math.round(((hour - 5) / 17) * WIDTH);
+        const y = Math.round(HORIZON - 16 - height * 50);
+        const radius = 15;
+        const color = mix([255, 90, 140], [255, 240, 120], Math.max(0, Math.min(height * 2.5, 1)));
+        for (let row = -radius; row <= radius; row += 1) {
+            /* Cerca del horizonte el Sol se parte en franjas. */
+            const striped = height < 0.35 && row > 0 && (row % 5) < Math.min(1 + row / 4, 3);
+            if (striped || y + row >= HORIZON) {
+                continue;
+            }
+            const half = Math.round(Math.sqrt(radius * radius - row * row));
+            context.fillStyle = toColor(mix(color, sky.low, row > 0 ? (row / radius) * 0.25 : 0));
+            context.fillRect(x - half, y + row, half * 2, 1);
+        }
+    }
+
+    function drawSaguaro(x, base, size, color) {
+        context.fillStyle = color;
+        context.fillRect(x, base - size, 4, size);
+        context.fillRect(x - 5, base - Math.round(size * 0.65), 5, 2);
+        context.fillRect(x - 5, base - Math.round(size * 0.9), 2, Math.round(size * 0.25));
+        context.fillRect(x + 4, base - Math.round(size * 0.5), 5, 2);
+        context.fillRect(x + 7, base - Math.round(size * 0.8), 2, Math.round(size * 0.3));
+    }
+
+    function draw() {
+        const height = belowHorizon(hour)
+            ? -Math.min(1, Math.min(Math.abs(hour - SUNRISE), Math.abs(hour - SUNSET)) / 3)
+            : sunHeight(hour);
+        const sky = skyAt(height);
+
+        for (let band = 0; band < BANDS; band += 1) {
+            context.fillStyle = toColor(mix(sky.top, sky.low, band / (BANDS - 1)));
+            context.fillRect(0, Math.floor((band / BANDS) * HORIZON), WIDTH, Math.ceil(HORIZON / BANDS));
+        }
+        if (height < -0.02) {
+            context.fillStyle = "#ffffff";
+            STARS.slice(0, Math.round(Math.min(1, -height * 2.5) * STARS.length)).forEach(([x, y]) => context.fillRect(x, y, 1, 1));
+        }
+        if (height > -0.2) {
+            drawSun(height, sky);
+        }
+
+        const hills = toColor(mix(sky.ground, sky.top, 0.4));
+        context.fillStyle = hills;
+        for (let x = 0; x < WIDTH; x += 4) { // el Cerro de la Campana, más o menos
+            const rise = Math.round(7 + 6 * Math.sin(x / 41) + 4 * Math.sin(x / 13));
+            context.fillRect(x, HORIZON - rise, 4, rise);
+        }
+
+        context.fillStyle = toColor(sky.ground);
+        context.fillRect(0, HORIZON, WIDTH, HEIGHT - HORIZON);
+        context.fillStyle = toColor(sky.line);
+        for (let i = 0; i < 7; i += 1) {
+            const depth = ((i + gridOffset) / 7) ** 2.2;
+            context.fillRect(0, HORIZON + Math.floor(depth * (HEIGHT - HORIZON)), WIDTH, 1);
+        }
+        for (let row = HORIZON; row < HEIGHT; row += 1) {
+            for (let k = -12; k <= 12; k += 1) {
+                const slope = k * 1.1;
+                context.fillRect(Math.round(WIDTH / 2 + slope * (row - HORIZON + 6)), row, Math.max(1, Math.ceil(Math.abs(slope))), 1);
+            }
+        }
+
+        const silhouette = toColor(mix(sky.ground, [0, 0, 0], height > 0.35 ? 0.55 : 0.85));
+        drawSaguaro(62, 92, 38, silhouette);
+        drawSaguaro(200, 84, 22, silhouette);
+    }
+
+    function explain() {
+        if (belowHorizon(hour)) {
+            return hour > SUNSET && hour < SUNSET + 1
+                ? "Ya se metió el Sol, pero su luz todavía llega a lo alto de la atmósfera. Por eso queda ese brillo morado."
+                : "Noche: sin luz directa del Sol se alcanzan a ver las estrellas, que de día siguen ahí.";
+        }
+        const height = sunHeight(hour);
+        if (height < 0.3) {
+            return "Con el Sol bajo, su luz cruza mucho más aire. El azul se dispersa por el camino y a tus ojos llegan sobre todo el naranja y el rojo.";
+        }
+        return "Con el Sol alto, el aire dispersa la luz azul mucho más que la roja. Esa luz azul te llega de todas partes: por eso el cielo se ve azul.";
+    }
+
+    function setHour(value) {
+        hour = Math.max(5, Math.min(22, value));
+        hourInput.value = hour;
+        const whole = Math.floor(hour);
+        timeLabel.textContent = `${String(whole).padStart(2, "0")}:${String(Math.round((hour - whole) * 60)).padStart(2, "0")}`;
+        const text = explain();
+        if (note.textContent !== text) {
+            note.textContent = text;
+        }
+        draw();
+    }
+
+    function hourFromPointer(event) {
+        const box = canvas.getBoundingClientRect();
+        setHour(5 + Math.round((((event.clientX - box.left) / box.width) * 17) * 4) / 4);
+    }
+
+    function setNow() {
+        const now = new Date();
+        setHour(now.getHours() + Math.floor(now.getMinutes() / 15) / 4);
+    }
+
+    hourInput.addEventListener("input", () => setHour(Number(hourInput.value)));
+    document.querySelector("#sunset-now").addEventListener("click", setNow);
+    canvas.addEventListener("pointerdown", (event) => {
+        canvas.setPointerCapture(event.pointerId);
+        hourFromPointer(event);
+        canvas.addEventListener("pointermove", hourFromPointer);
+        canvas.addEventListener("pointerup", () => canvas.removeEventListener("pointermove", hourFromPointer), { once: true });
+    });
+
+    new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+    }).observe(canvas);
+
+    function animate(time) {
+        if (isVisible && !animationsPaused && time - lastFrame > 90) {
+            lastFrame = time;
+            gridOffset = (gridOffset + 0.05) % 1;
+            draw();
+        }
+        window.requestAnimationFrame(animate);
+    }
+
+    setHour(18.5);
+    window.requestAnimationFrame(animate);
+}

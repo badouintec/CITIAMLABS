@@ -93,22 +93,22 @@ Todas menos la portada viven en `pages/`, con la extensión `.html`.
 
 | Página | Para qué sirve | Programas que carga |
 | --- | --- | --- |
-| [`index.html`](./index.html) | Portada del club, su historia por generaciones, guía para explorar, misión de observación y libro de visitas. | `script.js`, `home.js` |
-| [`acerca.html`](./pages/acerca.html) | Qué es el programa, con video y respuestas para familias y profesores. | `script.js` |
-| [`proyectos.html`](./pages/proyectos.html) | Fotografías e historias del cultivo de hongo ostra, la robótica y el jardín escolar. | `script.js` |
-| [`casos-de-exito.html`](./pages/casos-de-exito.html) | Proyectos de exalumnos del club, como el equipo IRVEN. | `script.js` |
-| [`temas.html`](./pages/temas.html) | Explicaciones sencillas de Ciencia, Tecnología, Ingeniería, Artes y Matemáticas. | `script.js` |
-| [`historias.html`](./pages/historias.html) | Historias reales de ciencia, con adivinanzas y fuentes. | `script.js`, `historias.js` |
-| [`artistas.html`](./pages/artistas.html) | Artistas de Hermosillo y Sonora, y un mural para pintar. | `script.js`, `artistas.js` |
-| [`laboratorio.html`](./pages/laboratorio.html) | Siete simuladores: órbitas, epidemia, átomos, tiempo de reacción, sonido, caída libre y reloj de la Tierra. | `script.js`, `laboratorio.js` |
-| [`programacion.html`](./pages/programacion.html) | Curso inicial de HTML, CSS y JavaScript con un taller de código interactivo. | `script.js`, `programacion.js` |
-| [`bloques.html`](./pages/bloques.html) | Programación con bloques, estilo Scratch: un robot, siete misiones y el JavaScript equivalente. | `script.js`, `bloques.js` |
-| [`arcade.html`](./pages/arcade.html) | Sala de maquinitas (Robot Runner, Buscacactus, Hongotchi y Expedición), siete retos y la bitácora. | `script.js`, `records.js`, `arcade.js`, `maquinitas.js` |
-| [`ajedrez.html`](./pages/ajedrez.html) | Ajedrez completo contra la computadora o entre dos personas, problemas de mate y la matemática del tablero. | `script.js`, `ajedrez-motor.js`, `ajedrez.js` |
-| [`pasaporte.html`](./pages/pasaporte.html) | Sellos, rangos, diploma y sala secreta. | `script.js`, `pasaporte.js` |
-| [`sitios.html`](./pages/sitios.html) | Directorio de sitios útiles, con reglas de seguridad. | `script.js` |
-| [`galeria.html`](./pages/galeria.html) | Todas las fotos y los GIF del sitio, con autores y licencias. | `script.js` |
-| [`guia.html`](./pages/guia.html) | Manual del sitio para estudiantes. | `script.js` |
+| [`index.html`](./index.html) | Portada del club, su historia por generaciones, guía para explorar, misión de observación y libro de visitas. | `script.js`, `escritorio.js`, `home.js` |
+| [`acerca.html`](./pages/acerca.html) | Qué es el programa, con video y respuestas para familias y profesores. | `script.js`, `escritorio.js` |
+| [`proyectos.html`](./pages/proyectos.html) | Fotografías e historias del cultivo de hongo ostra, la robótica y el jardín escolar. | `script.js`, `escritorio.js` |
+| [`casos-de-exito.html`](./pages/casos-de-exito.html) | Proyectos de exalumnos del club, como el equipo IRVEN. | `script.js`, `escritorio.js` |
+| [`temas.html`](./pages/temas.html) | Explicaciones sencillas de Ciencia, Tecnología, Ingeniería, Artes y Matemáticas. | `script.js`, `escritorio.js` |
+| [`historias.html`](./pages/historias.html) | Historias reales de ciencia, con adivinanzas y fuentes. | `script.js`, `escritorio.js`, `historias.js` |
+| [`artistas.html`](./pages/artistas.html) | Artistas de Hermosillo y Sonora, y un mural para pintar. | `script.js`, `escritorio.js`, `artistas.js` |
+| [`laboratorio.html`](./pages/laboratorio.html) | Siete simuladores: órbitas, epidemia, átomos, tiempo de reacción, sonido, caída libre y reloj de la Tierra. | `script.js`, `escritorio.js`, `laboratorio.js` |
+| [`programacion.html`](./pages/programacion.html) | Curso inicial de HTML, CSS y JavaScript con un taller de código interactivo. | `script.js`, `escritorio.js`, `programacion.js` |
+| [`bloques.html`](./pages/bloques.html) | Programación con bloques, estilo Scratch: un robot, siete misiones y el JavaScript equivalente. | `script.js`, `escritorio.js`, `bloques.js` |
+| [`arcade.html`](./pages/arcade.html) | Sala de maquinitas (Robot Runner, Buscacactus, Hongotchi y Expedición), siete retos y la bitácora. | `script.js`, `escritorio.js`, `records.js`, `arcade.js`, `maquinitas.js` |
+| [`ajedrez.html`](./pages/ajedrez.html) | Ajedrez completo contra la computadora o entre dos personas, problemas de mate y la matemática del tablero. | `script.js`, `escritorio.js`, `ajedrez-motor.js`, `ajedrez.js` |
+| [`pasaporte.html`](./pages/pasaporte.html) | Sellos, rangos, diploma y sala secreta. | `script.js`, `escritorio.js`, `pasaporte.js` |
+| [`sitios.html`](./pages/sitios.html) | Directorio de sitios útiles, con reglas de seguridad. | `script.js`, `escritorio.js` |
+| [`galeria.html`](./pages/galeria.html) | Todas las fotos y los GIF del sitio, con autores y licencias. | `script.js`, `escritorio.js` |
+| [`guia.html`](./pages/guia.html) | Manual del sitio para estudiantes. | `script.js`, `escritorio.js` |
 
 El menú principal, la barra de controles y el pie de página están **copiados en cada página**. Sin herramientas adicionales no hay una forma sencilla de compartirlos. Si cambias uno, cámbialo en las dieciséis páginas. En `index.html` los enlaces llevan `pages/` delante y en las demás no.
 
@@ -148,6 +148,7 @@ CITIAMLABS/
     |   `-- mini/            sus miniaturas de 200 pixeles
     `-- js/
         |-- script.js        común: sonido y pausar animaciones
+        |-- escritorio.js    común: Panel de Control, skins y juguetes
         |-- home.js          portada
         |-- arcade.js        retos de aprendizaje
         |-- maquinitas.js    Robot Runner, Buscacactus, Hongotchi y Expedición
@@ -283,7 +284,7 @@ flowchart TD
     own -. "solo en arcade y si está configurado" .-> supabase[("Supabase<br/>tabla de récords")]
 ```
 
-`script.js` siempre se carga antes que el programa propio, porque este usa sus funciones.
+`script.js` siempre se carga primero, porque los demás usan sus funciones. Después va `escritorio.js`, también en todas las páginas.
 
 ### `script.js`: el programa común
 
@@ -295,9 +296,29 @@ Lo cargan las dieciséis páginas. Hace seis cosas: guardar preferencias, sonido
 
 Como un GIF pausado es un `<canvas>`, las reglas de `style.css` para GIF nombran `img` y también `canvas`.
 
+### `escritorio.js`: el Panel de Control
+
+**PANEL DE CONTROL** abre una ventana que se arrastra. Todo lo que hay aquí es opcional: sin tocarlo, el sitio se ve como en 1998.
+
+| Juguete | Qué hace | Dónde cambiarlo |
+| --- | --- | --- |
+| Skins | Clásico 98, Atardecer, Mac Plus, Aero y Neón, como los de Winamp. | `SKINS` y la sección 21 de `style.css` |
+| Radio CiTIAM FM | Enciende la música y muestra sus frecuencias, como un visualizador. | `RADIO_TEXT` y `buildPanel` |
+| Tarjetas enrollables | El botón `–` deja solo el título, como el WindowShade del Mac. | `setShaded` |
+| Estela del cursor | Estrellas detrás del mouse. | `TRAIL_SIZE` |
+| Protector de pantalla | Sale a los 3 minutos sin actividad, si se activa. **PROBAR** lo muestra al instante. | `SAVER_SPRITES`, `SAVER_IDLE_MS` |
+| Pop-up de "¡GANASTE!" | Un simulacro: enseña las señales de una estafa y da el sello **No caigo**. Sale una vez, en la portada, y no envía nada. | `showScam` |
+
+Reglas para quien agregue algo:
+
+- **Si se mueve, debe respetar PAUSAR ANIMACIONES.** Revisa `animationsPaused`.
+- **El japonés siempre lleva su traducción** y usa palabras que existen. Si solo adorna, lleva `aria-hidden`, porque un lector de pantalla no lo pronuncia bien.
+- **Un skin no puede bajar el contraste** ni esconder el foco.
+- **Nada de material ajeno:** ni personajes, ni logos, ni fondos de otros sistemas.
+
 ### `home.js`: la portada
 
-Se carga después de `script.js` porque usa sus funciones. Contiene las ideas de **DAME UNA IDEA**, el contador de visitas y el libro de visitas. El contador y las firmas se guardan solo en ese navegador; por eso nadie más puede ver las firmas.
+Se carga después de `script.js` porque usa sus funciones. Contiene las ideas de **DAME UNA IDEA**, el contador de visitas, el libro de visitas y el **Atardecer-o-matic**, que cambia el cielo según la hora. Sus cielos están en `SKY`. El contador y las firmas se guardan solo en ese navegador; por eso nadie más puede ver las firmas.
 
 ### `maquinitas.js`: la Sala de maquinitas
 
@@ -439,6 +460,8 @@ El volumen del simulador de sonido está fijo y bajo (`VOLUME`). No lo subas.
 ## Reglas del diseño de 1998
 
 Antes de agregar algo, pregúntate si se podía ver en 1998.
+
+La excepción son los skins opcionales: pueden usar degradados y esquinas redondeadas, pero el diseño de siempre no cambia.
 
 **Sí:** colores puros, bordes `ridge`, `inset` y `outset`, Arial, Impact, Courier y Comic Sans (solo en la barra lateral y los subtítulos, nunca con `cursive` de respaldo), fondos de mosaico, GIF pixelados, tablas con borde, botones de 88 x 31, contador de visitas, libro de visitas, "zona de obra" y texto en movimiento.
 
@@ -603,6 +626,7 @@ Copia la sección del equipo IRVEN en `casos-de-exito.html` y cambia su `id`. An
 - [ ] Las dieciséis páginas abren y muestran todas sus fotos y GIF.
 - [ ] Cada opción del menú, del anillo y de los índices funciona.
 - [ ] Se puede terminar una partida de cada juego que cambiaste.
+- [ ] Si tocaste los colores, el sitio se lee bien en los cinco skins del Panel de Control.
 - [ ] Si tocaste el ajedrez, **PROBAR LAS REGLAS** dice `COINCIDE` en todas las filas.
 - [ ] Si tocaste una misión de bloques, su solución todavía la resuelve.
 - [ ] No hay mensajes rojos en la consola del navegador (`F12`).
@@ -682,6 +706,10 @@ Cuando publiques una página, GitHub Pages encontrará `index.html` como portada
 | `citiam-guestbook-entries` | Hasta 50 firmas del libro de visitas. Solo se ven en ese navegador. |
 | `citiam-animaciones-pausadas` | Si la persona pausó las animaciones. |
 | `citiam-musica` | Si la música está encendida. |
+| `citiam-skin` | El skin elegido en el Panel de Control. |
+| `citiam-estela` | Si la estela del cursor está activada. |
+| `citiam-protector` | Si el protector de pantalla está activado. |
+| `citiam-popup-visto` | Si ya salió el pop-up de la portada. |
 | `citiam-bloques-<misión>` | El programa de bloques de cada misión. |
 | `citiam-bloques-logros` | Qué misiones de bloques se han resuelto. |
 | `citiam-pasaporte` | Los sellos ganados. |

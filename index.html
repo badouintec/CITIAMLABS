@@ -119,6 +119,21 @@
                     <a class="retro-button button-link" href="pages/acerca.html">VER EL VIDEO Y CONOCER EL PROGRAMA</a>
                 </section>
 
+                <section class="article-card" id="atardecer" aria-labelledby="atardecer-title">
+                    <h2 class="magenta" id="atardecer-title">Atardecer-o-matic</h2>
+                    <p>¿Por qué el cielo de Hermosillo se pone rojo? <strong>Arrastra el Sol</strong> o mueve la hora.</p>
+                    <canvas class="sunset-canvas" id="sunset-canvas" width="320" height="120" role="img" aria-label="Paisaje del desierto de Sonora con un saguaro y el Sol"></canvas>
+                    <div class="sim-controls">
+                        <label for="sunset-hour">Hora: <strong id="sunset-time">18:30</strong></label>
+                        <input id="sunset-hour" type="range" min="5" max="22" step="0.25" value="18.5">
+                        <button class="retro-button" id="sunset-now" type="button">AHORA</button>
+                    </div>
+                    <p id="sunset-note" aria-live="polite"></p>
+                    <p class="tiny"><strong>Qué simplifica:</strong> los colores y las horas son aproximados. La hora real del atardecer cambia durante el año.</p>
+                </section>
+
+                <img class="separator" src="assets/gifs/separador-arcoiris.gif" alt="" width="476" height="8" loading="lazy">
+
                 <section class="article-card bulletin" id="hoy" aria-labelledby="hoy-title">
                     <h2 class="green" id="hoy-title">Hoy en CiTIAM</h2>
                     <div class="fact-card">
@@ -373,6 +388,7 @@
         </footer>
     </div>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/escritorio.js"></script>
     <script src="assets/js/home.js"></script>
 </body>
 </html>
