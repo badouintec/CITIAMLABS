@@ -82,11 +82,11 @@ function playTone(frequency, duration = 0.12, type = "square", volume = 0.035) {
     return true;
 }
 
-/* El beat: composición original de 8 compases, al estilo vaporwave: como un
-   disco de los 80 tocado lento, con frases cortadas que se repiten. Cada compás
-   tiene 16 pasos. Las notas usan números MIDI (60 es do central). */
-const VAPOR_STEP = 60 / 66 / 4; // segundos por paso, a 66 pulsos por minuto
-const VAPOR_LOOP = 128; // pasos antes de repetir
+/* El beat: composición original al estilo vaporwave. Suena como un disco de
+   los 80 tocado lento y editado con tijeras: VAPOR_ARRANGEMENT salta hacia atrás
+   y repite pedazos, con cortes secos. Cada compás tiene 16 pasos. Las notas
+   usan números MIDI (60 es do central). */
+const VAPOR_STEP = 60 / 62 / 4; // segundos por paso, a 62 pulsos por minuto
 const VAPOR_TRANSPOSE = -2; // todo más grave, como un disco lento
 const VAPOR_CHORDS = [ // bajo y acorde: Re♭maj7, Si♭m9, Sol♭maj7 y La♭7
     [37, [61, 65, 68, 72]],
@@ -104,10 +104,18 @@ const VAPOR_MELODY = [ // paso, nota y duración en pasos
     [96, 77, 1], [97, 77, 1], [98, 77, 1], [99, 77, 1], [100, 80, 4], [106, 77, 2], [108, 75, 4],
     [112, 73, 6], [120, 72, 2], [122, 72, 1], [123, 72, 1], [124, 70, 4]
 ];
+const VAPOR_ARRANGEMENT = [ // desde qué paso toca y cuántos pasos, en orden
+    [0, 32], [16, 16], [24, 4], [24, 4], [24, 4], [28, 4],
+    [32, 32], [48, 8], [52, 4], [52, 4],
+    [64, 32], [64, 32], [96, 16], [104, 8], [104, 4], [104, 4],
+    [112, 16], [120, 4], [120, 4], [120, 8]
+];
+const VAPOR_TIMELINE = VAPOR_ARRANGEMENT.flatMap(([from, steps]) => Array.from({ length: steps }, (_, i) => from + i));
+const VAPOR_LOOP = VAPOR_TIMELINE.length; // pasos antes de repetir
 const VAPOR_PIANO = [0, 3, 6, 10]; // golpes del piano eléctrico dentro del compás
 const VAPOR_KICK = [0, 10];
 const VAPOR_SNARE = [4, 12];
-const VAPOR_BASS = [0, 3, 8, 11, 14];
+const VAPOR_BASS = [0, 3, 6, 8, 11, 14];
 const midiToHz = (midi) => 440 * 2 ** ((midi + VAPOR_TRANSPOSE - 69) / 12);
 
 /* Recibe dónde sonar y devuelve la función que programa cada paso. */
@@ -125,30 +133,66 @@ function createVaporBeat(context, output) {
     /* Todo pasa por este filtro: quita los agudos, como una cinta gastada. */
     const tape = context.createBiquadFilter();
     tape.type = "lowpass";
-    tape.frequency.value = 3400;
+    tape.frequency.value = 2600;
     tape.connect(output);
 
     const reverb = context.createConvolver();
-    reverb.buffer = makeNoise(3.2, (position) => (1 - position) ** 3);
+    reverb.buffer = makeNoise(3.6, (position) => (1 - position) ** 3);
     const wet = context.createGain();
-    wet.gain.value = 0.42;
+    wet.gain.value = 0.5;
     reverb.connect(wet);
     wet.connect(tape);
-
-    const padFilter = context.createBiquadFilter();
-    padFilter.type = "lowpass";
-    padFilter.frequency.value = 900;
-    padFilter.connect(tape);
-    padFilter.connect(reverb);
     const noise = makeNoise(1, () => 1);
 
-    /* Un oscilador muy lento hace temblar la afinación de todas las notas. */
-    const wobble = context.createOscillator();
-    const wobbleDepth = context.createGain();
-    wobble.frequency.value = 0.45;
-    wobbleDepth.gain.value = 14;
-    wobble.connect(wobbleDepth);
-    wobble.start();
+    /* Tres controles de afinación: el temblor de la cinta, el vibrato de la voz
+       y la caída de cada corte. */
+    const makeWobble = (frequency, depth) => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        oscillator.frequency.value = frequency;
+        gain.gain.value = depth;
+        oscillator.connect(gain);
+        oscillator.start();
+        return { oscillator, gain };
+    };
+    const flutter = makeWobble(0.4, 20);
+    const vibrato = makeWobble(3.4, 24);
+    const drag = context.createConstantSource();
+    drag.offset.value = 0;
+    drag.start();
+
+    const hiss = context.createBufferSource();
+    const hissFilter = context.createBiquadFilter();
+    const hissGain = context.createGain();
+    hiss.buffer = noise;
+    hiss.loop = true;
+    hissFilter.type = "bandpass";
+    hissFilter.frequency.value = 3200;
+    hissGain.gain.value = 0.012;
+    hiss.connect(hissFilter);
+    hissFilter.connect(hissGain);
+    hissGain.connect(output);
+    hiss.start();
+
+    /* Un corte manda a silencio el tramo anterior, salvo su reverb. */
+    let section = null;
+    let padFilter = null;
+    let previousVoice = null;
+
+    function startSection(time) {
+        section?.gain.setValueAtTime(0, time);
+        section = context.createGain();
+        section.gain.setValueAtTime(0, 0);
+        section.gain.setValueAtTime(1, time);
+        section.connect(tape);
+        padFilter = context.createBiquadFilter();
+        padFilter.type = "lowpass";
+        padFilter.frequency.value = 850;
+        padFilter.connect(section);
+        padFilter.connect(reverb);
+        drag.offset.setValueAtTime(-55, time);
+        drag.offset.linearRampToValueAtTime(0, time + 0.4);
+    }
 
     function envelope(time, length, volume, attack) {
         const gain = context.createGain();
@@ -158,12 +202,17 @@ function createVaporBeat(context, output) {
         return gain;
     }
 
+    function connectPitch(oscillator) {
+        flutter.gain.connect(oscillator.detune);
+        drag.connect(oscillator.detune);
+    }
+
     function playNote(type, midi, time, length, volume, attack, destination, sendToReverb) {
         const oscillator = context.createOscillator();
         const gain = envelope(time, length, volume, attack);
         oscillator.type = type;
         oscillator.frequency.value = midiToHz(midi);
-        wobbleDepth.connect(oscillator.detune);
+        connectPitch(oscillator);
         oscillator.connect(gain);
         gain.connect(destination);
         if (sendToReverb) {
@@ -174,23 +223,47 @@ function createVaporBeat(context, output) {
         return oscillator;
     }
 
-    /* Una voz grave: dos filtros forman una "a" y la nota entra deslizándose. */
-    function playVoice(midi, time, length) {
+    /* Bajo ochentero: el filtro se cierra rápido, como una cuerda pellizcada. */
+    function playBass(midi, time, length) {
         const oscillator = context.createOscillator();
-        const gain = envelope(time, length, 1, 0.05);
+        const filter = context.createBiquadFilter();
+        const gain = envelope(time, length, 0.3, 0.006);
         oscillator.type = "sawtooth";
-        oscillator.frequency.setValueAtTime(midiToHz(midi) * 0.93, time);
-        oscillator.frequency.exponentialRampToValueAtTime(midiToHz(midi), time + 0.1);
-        wobbleDepth.connect(oscillator.detune);
-        [[720, 7], [1180, 9]].forEach(([frequency, q]) => {
+        oscillator.frequency.value = midiToHz(midi);
+        connectPitch(oscillator);
+        filter.type = "lowpass";
+        filter.Q.value = 7;
+        filter.frequency.setValueAtTime(1300, time);
+        filter.frequency.exponentialRampToValueAtTime(190, time + 0.16);
+        oscillator.connect(filter);
+        filter.connect(gain);
+        gain.connect(section);
+        oscillator.start(time);
+        oscillator.stop(time + length);
+    }
+
+    /* Voz grave: dos filtros forman una vocal que se abre poco a poco, y cada
+       nota llega resbalando desde la anterior. */
+    function playVoice(midi, time, length) {
+        const target = midiToHz(midi);
+        const oscillator = context.createOscillator();
+        const gain = envelope(time, length, 1.5, 0.05);
+        oscillator.type = "sawtooth";
+        oscillator.frequency.setValueAtTime(previousVoice ?? target * 0.93, time);
+        oscillator.frequency.exponentialRampToValueAtTime(target, time + 0.16);
+        previousVoice = target;
+        connectPitch(oscillator);
+        vibrato.gain.connect(oscillator.detune);
+        [[600, 7], [1020, 9]].forEach(([frequency, q]) => {
             const formant = context.createBiquadFilter();
             formant.type = "bandpass";
-            formant.frequency.value = frequency;
             formant.Q.value = q;
+            formant.frequency.setValueAtTime(frequency, time);
+            formant.frequency.linearRampToValueAtTime(frequency * 1.14, time + length);
             oscillator.connect(formant);
             formant.connect(gain);
         });
-        gain.connect(tape);
+        gain.connect(section);
         gain.connect(reverb);
         oscillator.start(time);
         oscillator.stop(time + length);
@@ -207,7 +280,7 @@ function createVaporBeat(context, output) {
         gain.gain.exponentialRampToValueAtTime(0.0001, time + length);
         source.connect(filter);
         filter.connect(gain);
-        gain.connect(tape);
+        gain.connect(section);
         if (sendToReverb) {
             gain.connect(reverb);
         }
@@ -215,45 +288,55 @@ function createVaporBeat(context, output) {
         source.stop(time + length);
     }
 
-    function playStep(step, time) {
-        const bar = Math.floor(step / 16);
+    function playStep(index, time) {
+        const step = VAPOR_TIMELINE[index];
+        const previous = VAPOR_TIMELINE[(index + VAPOR_LOOP - 1) % VAPOR_LOOP];
+        const isCut = section === null || step !== previous + 1;
         const beat = step % 16;
-        const [bass, chord] = VAPOR_CHORDS[bar % VAPOR_CHORDS.length];
+        const [bass, chord] = VAPOR_CHORDS[Math.floor(step / 16) % VAPOR_CHORDS.length];
 
-        if (beat === 0) {
+        if (isCut) {
+            startSection(time);
+        }
+        if (beat === 0 || isCut) {
             chord.forEach((midi) => {
                 [-8, 8].forEach((cents) => {
-                    const note = playNote("sawtooth", midi, time, VAPOR_STEP * 17, 0.022, 0.3, padFilter, false);
+                    const note = playNote("sawtooth", midi, time, VAPOR_STEP * 17, 0.022, 0.08, padFilter, false);
                     note.detune.setValueAtTime(cents, time);
                 });
             });
         }
         if (VAPOR_PIANO.includes(beat)) {
             chord.forEach((midi) => {
-                playNote("sine", midi, time, VAPOR_STEP * 3, 0.05, 0.006, tape, true);
-                playNote("sine", midi + 24, time, VAPOR_STEP * 0.8, 0.012, 0.003, tape, true);
+                playNote("sine", midi, time, VAPOR_STEP * 3, 0.05, 0.006, section, true);
+                playNote("sine", midi + 24, time, VAPOR_STEP * 0.8, 0.012, 0.003, section, true);
             });
         }
         if (VAPOR_BASS.includes(beat)) {
-            playNote("triangle", beat === 14 ? bass + 12 : bass, time, VAPOR_STEP * 2.6, 0.24, 0.012, tape, false);
+            playBass(beat === 6 || beat === 14 ? bass + 12 : bass, time, VAPOR_STEP * 2);
         }
         if (VAPOR_KICK.includes(beat)) {
-            const kick = playNote("sine", 45, time, 0.3, 0.42, 0.005, tape, false);
-            kick.frequency.setValueAtTime(110, time);
+            const kick = playNote("sine", 45, time, 0.28, 0.3, 0.005, section, false);
+            kick.frequency.setValueAtTime(100, time);
             kick.frequency.exponentialRampToValueAtTime(42, time + 0.1);
         }
         if (VAPOR_SNARE.includes(beat)) {
-            playNoise(time, "bandpass", 1500, 0.26, 0.26, true);
+            playNoise(time, "bandpass", 1300, 0.2, 0.2, true);
         }
         if (beat % 2 === 0) {
-            playNoise(time, "highpass", 6000, beat === 14 ? 0.14 : 0.04, 0.035, false);
+            playNoise(time, "highpass", 5000, 0.04, 0.02, false);
         }
         VAPOR_MELODY.filter(([start]) => start === step).forEach(([, midi, steps]) => {
             playVoice(midi - 12, time, VAPOR_STEP * steps * 1.15);
         });
     }
 
-    playStep.stop = () => wobble.stop();
+    playStep.stop = () => {
+        flutter.oscillator.stop();
+        vibrato.oscillator.stop();
+        drag.stop();
+        hiss.stop();
+    };
     return playStep;
 }
 

@@ -290,7 +290,7 @@ flowchart TD
 Lo cargan las dieciséis páginas. Hace seis cosas: guardar preferencias, sonido, pausar animaciones, los sellos del Pasaporte, el código secreto y Robotín. Las tres primeras:
 
 1. **Guardar preferencias.** `readStorage` y `writeStorage` envuelven a `localStorage`, que puede estar bloqueado en una ventana privada o por reglas de la escuela. Si falla, el sitio sigue funcionando.
-2. **Sonido.** El navegador fabrica cada nota con un oscilador; no hay archivos de audio. **MÚSICA MIDI** toca un beat vaporwave original (`VAPOR_MELODY`, `VAPOR_CHORDS`). Empieza apagada; si alguien la enciende, se recuerda e intenta sonar en cada página. Si el navegador lo bloquea, el botón dice **MÚSICA: HAZ CLIC** y arranca con el primer clic.
+2. **Sonido.** El navegador fabrica cada nota con un oscilador; no hay archivos de audio. **MÚSICA MIDI** toca un beat vaporwave original: como un disco de los 80 tocado lento y editado con tijeras (`VAPOR_MELODY`, `VAPOR_CHORDS` y `VAPOR_ARRANGEMENT`, que decide qué pedazos se repiten). Empieza apagada; si alguien la enciende, se recuerda e intenta sonar en cada página. Si el navegador lo bloquea, el botón dice **MÚSICA: HAZ CLIC** y arranca con el primer clic.
 3. **Pausar animaciones.** Un GIF no se puede pausar con CSS, así que el botón lo cambia por un `<canvas>` con un solo cuadro y guarda la imagen para devolverla después. Empieza en pausa si el sistema operativo pide reducir el movimiento.
 
 Como un GIF pausado es un `<canvas>`, las reglas de `style.css` para GIF nombran `img` y también `canvas`.
