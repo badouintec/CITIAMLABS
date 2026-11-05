@@ -290,7 +290,7 @@ flowchart TD
 Lo cargan las dieciséis páginas. Hace seis cosas: guardar preferencias, sonido, pausar animaciones, los sellos del Pasaporte, el código secreto y Robotín. Las tres primeras:
 
 1. **Guardar preferencias.** `readStorage` y `writeStorage` envuelven a `localStorage`, que puede estar bloqueado en una ventana privada o por reglas de la escuela. Si falla, el sitio sigue funcionando.
-2. **Sonido.** El navegador fabrica cada nota con un oscilador; no hay archivos de audio. Solo suena después de pulsar un botón.
+2. **Sonido.** El navegador fabrica cada nota con un oscilador; no hay archivos de audio. **MÚSICA MIDI** toca un beat vaporwave original (`VAPOR_MELODY`, `VAPOR_CHORDS`). Empieza apagada; si alguien la enciende, se recuerda e intenta sonar en cada página. Si el navegador lo bloquea, el botón dice **MÚSICA: HAZ CLIC** y arranca con el primer clic.
 3. **Pausar animaciones.** Un GIF no se puede pausar con CSS, así que el botón lo cambia por un `<canvas>` con un solo cuadro y guarda la imagen para devolverla después. Empieza en pausa si el sistema operativo pide reducir el movimiento.
 
 Como un GIF pausado es un `<canvas>`, las reglas de `style.css` para GIF nombran `img` y también `canvas`.
@@ -659,7 +659,7 @@ Cuando publiques una página, GitHub Pages encontrará `index.html` como portada
 | Un botón no responde | Comprueba que la página carga su programa y que el `id` del botón coincide con el que busca. Si editaste `index.html`, `script.js` debe cargarse antes que `home.js`. |
 | El juego no empieza | Recarga la página y revisa la consola del navegador con ayuda de tu docente. `arcade.js` se detiene por completo si falta alguno de los `id` que busca. |
 | Los GIF no se mueven | Mira si el botón dice **REANUDAR ANIMACIONES**. También puede estar activada la opción de reducir movimiento en el sistema operativo. |
-| El sonido no se oye | Revisa el volumen. Los navegadores solo permiten sonido después de pulsar un botón. |
+| El sonido no se oye | Revisa el volumen. Muchos navegadores solo permiten sonido después de un clic en la página, también al cambiar de página con la música encendida. |
 | La página se sale de la pantalla | Revisa la sección 14 de `style.css`; no elimines las reglas que adaptan las columnas a teléfonos. |
 | Cambié un archivo y no veo el cambio | El navegador pudo guardar la versión anterior. Recarga sin caché con `Ctrl+Shift+R` (`Cmd+Shift+R` en Mac). |
 | El tablero de ajedrez se congela un momento | Es normal en el nivel Maestra: la computadora calcula hasta 1.5 segundos. |
@@ -681,6 +681,7 @@ Cuando publiques una página, GitHub Pages encontrará `index.html` como portada
 | `citiam-visit-count` | Contador de visitas a la portada en ese navegador. No es el total de visitantes del sitio. |
 | `citiam-guestbook-entries` | Hasta 50 firmas del libro de visitas. Solo se ven en ese navegador. |
 | `citiam-animaciones-pausadas` | Si la persona pausó las animaciones. |
+| `citiam-musica` | Si la música está encendida. |
 | `citiam-bloques-<misión>` | El programa de bloques de cada misión. |
 | `citiam-bloques-logros` | Qué misiones de bloques se han resuelto. |
 | `citiam-pasaporte` | Los sellos ganados. |
