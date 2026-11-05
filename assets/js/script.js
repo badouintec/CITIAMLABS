@@ -432,10 +432,150 @@ if (readStorage(MUSIC_KEY) === "si" && startMusic()) {
     });
 }
 
-document.querySelector("#btn-modem")?.addEventListener("click", () => {
-    [440, 620, 480, 880, 700].forEach((frequency, index) => {
-        window.setTimeout(() => playTone(frequency, 0.16, "sawtooth", 0.025), index * 170);
+/* La llamada de un módem de 56k, en orden: tono de marcado, número, timbre,
+   pitido de respuesta, "bidibidi", "bong-bong" y estático. Al conectar, el
+   módem apagaba su bocina: por eso el sonido se corta de golpe. Devuelve cuántos
+   segundos dura. */
+function createModemSound(context, output) {
+    const lowCut = context.createBiquadFilter();
+    const highCut = context.createBiquadFilter();
+    lowCut.type = "highpass";
+    lowCut.frequency.value = 300; // lo que deja pasar una línea de teléfono
+    highCut.type = "lowpass";
+    highCut.frequency.value = 3400;
+    lowCut.connect(highCut);
+    highCut.connect(output);
+
+    function envelope(start, length, volume) {
+        const gain = context.createGain();
+        gain.gain.setValueAtTime(0, start);
+        gain.gain.linearRampToValueAtTime(volume, start + 0.004);
+        gain.gain.setValueAtTime(volume, start + length - 0.004);
+        gain.gain.linearRampToValueAtTime(0, start + length);
+        gain.connect(lowCut);
+        return gain;
+    }
+
+    function tone(frequencies, start, length, volume) {
+        const gain = envelope(start, length, volume);
+        frequencies.forEach((frequency) => {
+            const oscillator = context.createOscillator();
+            oscillator.frequency.value = frequency;
+            oscillator.connect(gain);
+            oscillator.start(start);
+            oscillator.stop(start + length);
+        });
+        return gain;
+    }
+
+    /* Datos a 300 bits por segundo: cada bit elige una de dos frecuencias. */
+    let seed = 1998;
+    function dataTone(low, high, start, length, volume) {
+        const oscillator = context.createOscillator();
+        for (let bit = 0; bit * (1 / 300) < length; bit += 1) {
+            seed = (seed * 75 + 74) % 65537;
+            oscillator.frequency.setValueAtTime(seed % 2 ? high : low, start + bit / 300);
+        }
+        oscillator.connect(envelope(start, length, volume));
+        oscillator.start(start);
+        oscillator.stop(start + length);
+    }
+
+    const noiseBuffer = context.createBuffer(1, context.sampleRate, context.sampleRate);
+    noiseBuffer.getChannelData(0).forEach((_, i, data) => {
+        data[i] = Math.random() * 2 - 1;
     });
+    function noise(start, length, volume) {
+        const source = context.createBufferSource();
+        source.buffer = noiseBuffer;
+        source.loop = true;
+        source.connect(envelope(start, length, volume));
+        source.start(start);
+        source.stop(start + length);
+    }
+
+    const DIGITS = { 1: [697, 1209], 5: [770, 1336], 8: [852, 1336], 9: [852, 1477] };
+    let time = context.currentTime + 0.05;
+    const add = (seconds) => {
+        const start = time;
+        time += seconds;
+        return start;
+    };
+
+    tone([350, 440], add(1.1), 1.1, 0.07); // tono de marcado
+    add(0.15);
+    [5, 5, 5, 1, 9, 9, 8].forEach((digit) => { // 555-1998, un número ficticio
+        tone(DIGITS[digit], add(0.09), 0.09, 0.09);
+        add(0.07);
+    });
+    add(0.5);
+    tone([440, 480], add(1.2), 1.2, 0.06); // timbre
+    add(0.45);
+
+    const answerStart = add(2.4); // pitido de respuesta, con su temblor y chasquidos
+    const answer = tone([2100], answerStart, 2.4, 0.1);
+    const shake = context.createOscillator();
+    const shakeDepth = context.createGain();
+    shake.frequency.value = 15;
+    shakeDepth.gain.value = 0.02;
+    shake.connect(shakeDepth);
+    shakeDepth.connect(answer.gain);
+    shake.start(answerStart);
+    shake.stop(answerStart + 2.4);
+    for (let click = 0.45; click < 2.3; click += 0.45) {
+        answer.gain.setValueAtTime(0, answerStart + click);
+        answer.gain.setValueAtTime(0.1, answerStart + click + 0.006);
+    }
+
+    const dataStart = add(1.3); // "bidibidi": los dos módems se presentan
+    dataTone(980, 1180, dataStart, 1.3, 0.07);
+    dataTone(1650, 1850, dataStart, 1.3, 0.07);
+    add(0.2);
+
+    tone([1200], add(0.5), 0.5, 0.11); // "bong-bong"
+    tone([2400], add(0.5), 0.5, 0.08);
+    add(0.1);
+    const probe = Array.from({ length: 12 }, (_, i) => 300 + i * 270); // prueban la línea
+    tone(probe, add(0.75), 0.75, 0.018);
+    add(0.1);
+
+    noise(add(0.6), 0.6, 0.1); // estático: ya están enviando datos de prueba
+    add(0.35);
+    noise(add(3.2), 3.2, 0.17);
+    return time - context.currentTime;
+}
+
+const modemButton = document.querySelector("#btn-modem");
+let modemBus = null;
+let modemTimer = null;
+
+function hangUpModem() {
+    window.clearTimeout(modemTimer);
+    const bus = modemBus;
+    modemBus = null;
+    bus.gain.setTargetAtTime(0, audioContext.currentTime, 0.01);
+    window.setTimeout(() => bus.disconnect(), 200);
+    modemButton.textContent = "SONIDO DE MÓDEM";
+    modemButton.setAttribute("aria-pressed", "false");
+}
+
+modemButton?.addEventListener("click", () => {
+    if (modemBus) {
+        hangUpModem();
+        return;
+    }
+    if (!getAudioContext()) {
+        modemButton.textContent = "SIN SONIDO EN ESTE NAVEGADOR";
+        modemButton.disabled = true;
+        return;
+    }
+    audioContext.resume();
+    modemBus = audioContext.createGain();
+    modemBus.connect(audioContext.destination);
+    const seconds = createModemSound(audioContext, modemBus);
+    modemTimer = window.setTimeout(hangUpModem, seconds * 1000);
+    modemButton.textContent = "COLGAR EL MÓDEM";
+    modemButton.setAttribute("aria-pressed", "true");
 });
 
 
